@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Add Achievement</h1>
+  <div *ngFor="let achievement of achievements">
+      <div>Achievement: {{achievement.name}} Points: {{achievement.points}}</div>
+  </div>
+  <form (ngSubmit)="onSubmit()" #achievementForm="ngForm">
+    <div class="form-group">
+      <label for="name">Achievement Title</label>
+      <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="model.name" #name='ngModel'>
+      <div [hidden]="name.valid || name.pristine">Name is required</div>
+
+      <label for="desc">Description</label>
+      <input type="text" class="form-control" id="desc" name="desc" required [(ngModel)]="model.description"
+        #name="ngModel">
+      <input type="submit">
+    </div>
+  </form>
+</div>
+

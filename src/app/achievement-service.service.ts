@@ -5,7 +5,8 @@ import { catchError, retry } from 'rxjs/operators';
 import { Achievement } from './models/achievement';
 
 enum URL{
-    LOCAL = "http://localhost:3000"
+    LOCAL = "http://localhost:3000",
+    REMOTE = "http://db-tengence.cvc6slu8aqwy.us-east-1.rds.amazonaws.com"
 }
 
 @Injectable({
@@ -22,7 +23,7 @@ export class AchievementServiceService {
   constructor(private http:HttpClient) { }
 
   getAllAchievements():Observable<Achievement[]>{
-    return this.http.get<Achievement[]>(`${URL.LOCAL}/achievement`).pipe(catchError(this.handleError))
+    return this.http.get<Achievement[]>(`${URL.REMOTE}/achievement`).pipe(catchError(this.handleError))
   }
 
 

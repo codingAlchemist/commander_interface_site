@@ -6,7 +6,7 @@ import { Achievement } from './models/achievement';
 
 enum URL{
     LOCAL = "http://localhost:3000",
-    REMOTE = "http://db-tengence.cvc6slu8aqwy.us-east-1.rds.amazonaws.com"
+    REMOTE = "http://178.62.208.138:3000"
 }
 
 @Injectable({
@@ -16,7 +16,7 @@ export class AchievementServiceService {
 
   readonly options =  {
     headers: new HttpHeaders({
-      'Content-Type':'appication/json'
+      'Content-Type':'application/json;charset=utf-8 '
     })
   }
 
@@ -26,6 +26,10 @@ export class AchievementServiceService {
     return this.http.get<Achievement[]>(`${URL.REMOTE}/achievement`).pipe(catchError(this.handleError))
   }
 
+  createAchievement(achievement: Achievement):Observable<Achievement>{
+    console.log(achievement.data)
+    return this.http.post<Achievement>(`${URL.REMOTE}/achievement/create`,achievement,this.options).pipe(catchError(this.handleError))
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

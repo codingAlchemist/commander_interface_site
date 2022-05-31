@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormBuilder } from '@angular/forms';
 import { AchievementServiceService } from '../achievement-service.service';
 import { Achievement } from '../models/achievement';
 
@@ -9,24 +9,34 @@ import { Achievement } from '../models/achievement';
   styleUrls: ['./achievement-entry.component.scss']
 })
 export class AchievementEntryComponent implements OnInit {
-  model = new Achievement(0,"test","test achievement", 0);
   achievements:Achievement[] = [];
   name = new FormControl('');
 
-  constructor(private service:AchievementServiceService) { }
+  constructor(private service:AchievementServiceService, private formBuilder: FormBuilder) { }
 
+  achievementForm = this.formBuilder.group({
+      achievement: '',
+      description: '',
+      points: 0
+  })
   ngOnInit(): void {
-
-  }
-
-  onSubmit(){
-    console.log("Submit pressed")
+    this.achievements = [];
     this.service.getAllAchievements().subscribe((result:Achievement[]) => {
       result.forEach( (item:Achievement) => {
         console.log(JSON.stringify(item))
         this.achievements.push(item);
       })
-  });
+    });
+  }
+
+  onSubmit(){
+    console.log("Submit pressed" + this.achievementForm.value)
+    let newAchievement = new Achievement(
+      this.achievementForm.value.achievement, 
+      this.achievementForm.value.description,
+      this.achievementForm.value.points);
+
+    this.service.createAchievement(newAchievement).subscribe(achievement => {this.achievements.push(achievement);})
   }
 
 }

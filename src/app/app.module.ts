@@ -8,11 +8,13 @@ import { AchievementEntryComponent } from './achievement-entry/achievement-entry
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { AchievementItemComponent } from './achievement-item/achievement-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AchievementEntryComponent
+    AchievementEntryComponent,
+    AchievementItemComponent
   ],
   imports: [
     BrowserModule,

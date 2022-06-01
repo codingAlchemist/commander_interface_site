@@ -1,0 +1,8 @@
+<div class="container">
+    <h1>Achievments</h1>
+    <a class="btn btn-success" routerLink="/app-achievement-entry">Create New</a>
+    <div *ngFor="let achievement of achievements">
+        <app-achievement-item [achievement]="achievement"></app-achievement-item>
+    </div>
+</div>
+

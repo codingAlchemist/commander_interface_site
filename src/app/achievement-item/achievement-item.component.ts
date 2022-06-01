@@ -1,6 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { Achievement } from '../models/achievement';
 
+
 @Component({
   selector: 'app-achievement-item',
   templateUrl: './achievement-item.component.html',

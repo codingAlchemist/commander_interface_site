@@ -22,6 +22,8 @@ export class AchievementServiceService {
 
   constructor(private http:HttpClient) { }
 
+  loginPlayer():Observable<Player>
+
   getAllAchievements():Observable<Achievement[]>{
     return this.http.get<Achievement[]>(`${URL.REMOTE}/achievement`).pipe(catchError(this.handleError))
   }

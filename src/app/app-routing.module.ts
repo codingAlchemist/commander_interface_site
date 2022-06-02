@@ -9,7 +9,8 @@ const routes: Routes = [
   {path:'app-achievement-entry', component: AchievementEntryComponent},
   {path:'app-achievement-list', component: AchievmentListComponent},
   {path:'app-login-screen', component: LoginScreenComponent},
-  {path:'app-create-account-screen', component: CreateAccountScreenComponent}
+  {path:'app-create-account-screen', component: CreateAccountScreenComponent},
+  {path:'', redirectTo: '/app-login-screen', pathMatch: 'full'}
 
 ];
 

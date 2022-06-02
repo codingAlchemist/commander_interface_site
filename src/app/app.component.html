@@ -1,8 +1,23 @@
 <div class="container">
+    <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fd3a8fb7-5eef-4ae8-857d-977ef347f1e3/degfogn-f42e6946-6fb3-4561-955a-12f2c69b5189.jpg/v1/fill/w_1192,h_670,q_70,strp/_dragon_family__by_era7_degfogn-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTA4MCIsInBhdGgiOiJcL2ZcL2ZkM2E4ZmI3LTVlZWYtNGFlOC04NTdkLTk3N2VmMzQ3ZjFlM1wvZGVnZm9nbi1mNDJlNjk0Ni02ZmIzLTQ1NjEtOTU1YS0xMmYyYzY5YjUxODkuanBnIiwid2lkdGgiOiI8PTE5MjAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.LsHD3_IOTGKWyicRENyj_froItLUdbDNfqW5aTGWgv8" width="100%" height="100%"/>
     <h1>Welcome to the achievements registration</h1>
-    <nav>
-        <a class="btn btn-success" routerLink="/app-login-screen">Login</a>
-    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Commander Achievements</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" routerLink="/app-login-screen">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" routerLink="/app-create-account-screen">Create</a>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     <router-outlet></router-outlet>
 </div>
-

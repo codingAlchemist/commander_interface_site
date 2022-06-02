@@ -1,3 +1,35 @@
 <form (ngSubmit)="createAccount()" [formGroup]="createAccountForm">
-    
+    <div class="form-group">
+        <div class="mb-3">
+            <label class="form-label" for="name" minlength="8">Real Name</label>
+            <input type="text" class="form-control" id="name" name="name" required formControlName="name">
+            
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="nickName">Nick Name</label>
+            <input type="text" class="form-control" id="nickname" name="nickName" required formControlName="nickName">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="age">Age(optional)</label>
+            <input type="number" class="form-control" id="age" name="age" formControlName="age">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="password" minlength="8">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required formControlName="password">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="desc">Description(optional)</label>
+            <textarea type="text" class="form-control" id="desc" name="desc" formControlName="desc" rows="3"></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary mb-3" [disabled]="!createAccountForm.valid">Create Account</button>
+
+        <div *ngIf="createAccountForm.get('realName')?.errors?.['required']">
+            Name is required.
+          </div>
+          <div *ngIf="createAccountForm.get('realName')?.errors?.['minlength']">
+            Name must be at least 4 characters long.
+          </div>
+    </div> 
 </form>

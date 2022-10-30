@@ -12,6 +12,7 @@ export class CreateAccountScreenComponent implements OnInit {
     name: ['', Validators.required,Validators.minLength(8)],
     nickName: ['', Validators.required],
     password: ['', Validators.required,Validators.minLength(8)],
+    email:['',Validators.email],
     age:'',
     desc:'',
     location:''

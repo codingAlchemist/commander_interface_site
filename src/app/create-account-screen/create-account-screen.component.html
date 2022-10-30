@@ -1,9 +1,12 @@
 <form (ngSubmit)="createAccount()" [formGroup]="createAccountForm">
     <div class="form-group">
         <div class="mb-3">
-            <label class="form-label" for="name" minlength="8">Real Name</label>
+            <label class="form-label" for="name" minlength="8">Name</label>
             <input type="text" class="form-control" id="name" name="name" required formControlName="name">
-            
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input type="text" class="form-control" id="email" name="email" required, formControlName="email">
         </div>
         <div class="mb-3">
             <label class="form-label" for="nickName">Nick Name</label>
@@ -15,21 +18,25 @@
         </div>
         <div class="mb-3">
             <label class="form-label" for="password" minlength="8">Password</label>
-            <input type="password" class="form-control" id="password" name="password" required formControlName="password">
+            <input type="password" class="form-control" id="password" name="password" required
+                formControlName="password">
         </div>
-
         <div class="mb-3">
             <label class="form-label" for="desc">Description(optional)</label>
             <textarea type="text" class="form-control" id="desc" name="desc" formControlName="desc" rows="3"></textarea>
         </div>
-        
         <button type="submit" class="btn btn-primary mb-3" [disabled]="!createAccountForm.valid">Create Account</button>
-
-        <div *ngIf="createAccountForm.get('realName')?.errors?.['required']">
+        <div *ngIf="createAccountForm.get('email')?.errors?.['email']">
+            Please enter a valid email
+        </div>
+        <div *ngIf="createAccountForm.get('email')?.errors?.['required']">
+            Email is required
+        </div>
+        <div *ngIf="createAccountForm.get('name')?.errors?.['required']">
             Name is required.
-          </div>
-          <div *ngIf="createAccountForm.get('realName')?.errors?.['minlength']">
+        </div>
+        <div *ngIf="createAccountForm.get('name')?.errors?.['minlength']">
             Name must be at least 4 characters long.
-          </div>
-    </div> 
+        </div>
+    </div>
 </form>

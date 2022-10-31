@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/commcnander_aite",
+            "outputPath": "dist/commander_site",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -76,10 +76,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "commcnander_aite:build:production"
+              "browserTarget": "commander_site:build:production"
             },
             "development": {
-              "browserTarget": "commcnander_aite:build:development"
+              "browserTarget": "commander_site:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -87,7 +87,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "commcnander_aite:build"
+            "browserTarget": "commander_site:build"
           }
         },
         "test": {
@@ -172,5 +172,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "a7078986-abc0-4f20-84d8-f3c04beed700"
   }
 }

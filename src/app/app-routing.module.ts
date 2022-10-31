@@ -7,7 +7,7 @@ import { CreateAccountScreenComponent } from './create-account-screen/create-acc
 
 const routes: Routes = [
   {path:'app-achievement-entry', component: AchievementEntryComponent},
-  {path:'app-achievement-list', component: AchievmentListComponent},
+  {path:'app-achievment-list', component: AchievmentListComponent},
   {path:'app-login-screen', component: LoginScreenComponent},
   {path:'app-create-account-screen', component: CreateAccountScreenComponent},
   {path:'', redirectTo: '/app-login-screen', pathMatch: 'full'}

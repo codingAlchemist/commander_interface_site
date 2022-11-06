@@ -23,7 +23,8 @@ export class CreateAccountScreenComponent implements OnInit {
       this.createAccountForm.value.name!,
       this.createAccountForm.value.password!,
       this.createAccountForm.value.nickName!,
-      1,0
+      "this is a new player",
+      1,0,this.createAccountForm.value.email!,
     );
     this.service.createPlayer(
       player

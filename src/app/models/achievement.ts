@@ -1,13 +1,14 @@
 export class Achievement {
   constructor(
-    public achievement:string,
-    public description:string,
+    public id: number,
+    public name:string,
+    public desc:string,
     public points:number
   ){ }
 
   data = {
-    'achievement' : this.achievement,
-    'description' : this.description,
+    'name' : this.name,
+    'desc' : this.desc,
     'points' : this.points
   }
 }

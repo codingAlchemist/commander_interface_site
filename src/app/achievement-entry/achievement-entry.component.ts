@@ -15,8 +15,9 @@ export class AchievementEntryComponent implements OnInit {
   constructor(private service:AchievementServiceService, private formBuilder: FormBuilder) { }
 
   achievementForm = this.formBuilder.group({
-      achievement: 'test',
-      description: 'test',
+      id: 0,
+      name: 'test',
+      desc: 'test',
       points: 0
   })
   
@@ -33,8 +34,9 @@ export class AchievementEntryComponent implements OnInit {
   onSubmit(){
     console.log("Submit pressed" + this.achievementForm.value)
     let newAchievement = new Achievement(
-      this.achievementForm.value.achievement!,
-      this.achievementForm.value.description!,
+      this.achievementForm.value.id!,
+      this.achievementForm.value.name!,
+      this.achievementForm.value.desc!,
       this.achievementForm.value.points!);
 
     this.service.createAchievement(newAchievement).subscribe(achievement => {this.achievements.push(achievement);})

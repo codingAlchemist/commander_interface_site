@@ -4,11 +4,11 @@
   <form (ngSubmit)="onSubmit()" [formGroup]="achievementForm">
     <div class="form-group">
       <label for="name">Achievement Title</label>
-      <input type="text" class="form-control" id="name" name="name" required formControlName="achievement">
+      <input type="text" class="form-control" id="name" name="name" required formControlName="name">
       <div [hidden]="name.valid || name.pristine">Name is required</div>
 
       <label for="desc">Description</label>
-      <input type="text" class="form-control" id="desc" name="desc" required formControlName="description">
+      <input type="text" class="form-control" id="desc" name="desc" required formControlName="desc">
 
       <label for="points">Points</label>
       <input type="text" class="form-control" id="points" name="points" required formControlName="points">
@@ -16,13 +16,4 @@
       <input class="button" type="submit">
     </div>
   </form>
-  <div class="spacer"></div>
-  <h1>Current Achievements</h1>
-  <div class="list">
-    <div *ngFor="let achievement of achievements">
-      <app-achievement-item [achievement]="achievement"></app-achievement-item>
-      <div>Achievement: {{achievement.achievement}} Points: {{achievement.points}}</div>
-    </div>
-  </div>
-
 </div>

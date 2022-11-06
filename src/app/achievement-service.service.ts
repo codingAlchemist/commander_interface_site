@@ -4,10 +4,12 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Achievement } from './models/achievement';
 import { Player } from './models/player';
+import { ServiceResponse } from './models/service-response.model';
 enum URL{
     LOCAL = "http://localhost:3000",
     REMOTE = "http://147.182.191.84:3000"
 }
+let url = URL.LOCAL
 
 @Injectable({
   providedIn: 'root'
@@ -24,23 +26,27 @@ export class AchievementServiceService {
 
   //Player
   loginPlayer(player:Player):Observable<Player>{
-    return this.http.post<Player>(`${URL.REMOTE}/player/login`,player,this.options).pipe(catchError(this.handleError));
+    return this.http.post<Player>(`${url}/player/login`,player,this.options).pipe(catchError(this.handleError));
   }
 
   createPlayer(player: Player):Observable<Player>{
-    return this.http.post<Player>(`${URL.REMOTE}/player/create`, player, this.options).pipe(catchError(this.handleError));
+    return this.http.post<Player>(`${url}/player/create`, player, this.options).pipe(catchError(this.handleError));
   }
 
   //Achievement
   getAllAchievements():Observable<Achievement[]>{
-    return this.http.get<Achievement[]>(`${URL.REMOTE}/achievement`).pipe(catchError(this.handleError))
+    return this.http.get<Achievement[]>(`${url}/achievement`).pipe(catchError(this.handleError))
   }
 
   createAchievement(achievement: Achievement):Observable<Achievement>{
     console.log(achievement.data)
-    return this.http.post<Achievement>(`${URL.REMOTE}/achievement/create`,achievement,this.options).pipe(catchError(this.handleError))
+    return this.http.post<Achievement>(`${url}/achievement/create`,achievement,this.options).pipe(catchError(this.handleError))
   }
 
+  deleteAchievement(id: number): Observable<ServiceResponse>{
+    console.log(`id to be deleted ${id}`);
+    return this.http.delete<ServiceResponse>(`${url}/achievement/delete/${id}`,this.options).pipe(catchError(this.handleError));
+  }
 
   //Error Handling
   private handleError(error: HttpErrorResponse) {

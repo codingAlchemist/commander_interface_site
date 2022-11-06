@@ -6,6 +6,7 @@
 
 .achievement{
     border: 1px black solid;
+    width: 100%;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -13,4 +14,16 @@
     -o-border-radius: 5px;
     margin: 5px;
     padding: 5px;
+}
+
+.input-group{
+    width: 100% !important;
+}
+
+.showEdit{
+    display: block;
+}
+
+.hideEdit{
+    display: none;
 }

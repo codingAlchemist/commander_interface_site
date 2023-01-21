@@ -1,5 +1,4 @@
-<div class="container">
-  <h1>Add Achievement</h1>
+<h1>Add Achievement</h1>
 
   <form (ngSubmit)="onSubmit()" [formGroup]="achievementForm">
     <div class="form-group">
@@ -13,7 +12,8 @@
       <label for="points">Points</label>
       <input type="text" class="form-control" id="points" name="points" required formControlName="points">
 
-      <input class="button" type="submit">
+      <input class="btn btn-primary mb-3" type="submit">
     </div>
   </form>
-</div>
+
+<ngb-alert #selfClosingAlert *ngIf="successMessage" type="success" (closed)="successMessage = ''">{{achievement.name}} Successfully Created</ngb-alert>

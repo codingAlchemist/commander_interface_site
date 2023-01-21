@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, Validators } from '@angular/forms';
-import { AchievementServiceService } from '../achievement-service.service';
-import { Player } from '../models/player';
+import { FormBuilder, Validators } from '@angular/forms';
+import { AchievementServiceService } from '../../service/achievement-service.service';
+import { Player } from '../../models/player';
 @Component({
   selector: 'app-create-account-screen',
   templateUrl: './create-account-screen.component.html',

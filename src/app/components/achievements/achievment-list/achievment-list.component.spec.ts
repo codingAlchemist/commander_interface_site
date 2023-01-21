@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AchievmentListComponent } from './achievment-list.component';
+import { AchievmentListComponent } from './achievement-list.component';
 
 describe('AchievmentListComponent', () => {
   let component: AchievmentListComponent;

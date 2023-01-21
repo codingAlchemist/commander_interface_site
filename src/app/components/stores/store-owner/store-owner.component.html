@@ -1,0 +1,14 @@
+<div class="col-xs-1" align="center">
+    <h1>Store And Owner Registration</h1>
+    <form (ngSubmit)="onSubmit()" [formGroup]="storeOwnerForm">
+        <div class="form-group">
+            <label for="name">Owner Name</label>
+            <input type="text" class="form-control" id="name" name="name" required formControlName="name">
+            <label for="pass">Owner Password</label>
+            <input type="text" class="form-control" id="pass" name="pass" required formControlName="pass">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" name="email" required formControlName="email">
+            <button type="submit" class="btn btn-primary mb-3" [disabled]="!storeOwnerForm.valid">Submit</button>
+        </div>
+    </form>
+</div>

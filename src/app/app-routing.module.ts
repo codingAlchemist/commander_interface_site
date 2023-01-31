@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AchievementEntryComponent } from './components/achievement-entry/achievement-entry.component';
-import { AchievmentListComponent } from './components/achievment-list/achievement-list.component';
+import { AchievementEntryComponent } from './components/achievements/achievement-entry/achievement-entry.component';
+import { AchievmentListComponent } from './components/achievements/achievment-list/achievement-list.component';
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
 import { CreateAccountScreenComponent } from './components/create-account-screen/create-account-screen.component';
-import { StoreOwnerComponent } from './components/store-owner/store-owner.component';
+import { StoreOwnerComponent } from './components/stores/store-owner/store-owner.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { StoreListComponent } from './components/stores/store-list/store-list.component';
 
@@ -20,7 +20,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload', useHash: true})],
   exports: [RouterModule],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}]
 })

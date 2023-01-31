@@ -2,11 +2,14 @@
     <h1>Store And Owner Registration</h1>
     <form (ngSubmit)="onSubmit()" [formGroup]="storeOwnerForm">
         <div class="form-group">
-            <label for="name">Owner Name</label>
-            <input type="text" class="form-control" id="name" name="name" required formControlName="name">
-            <label for="pass">Owner Password</label>
+            <div class="mb-3">
+                <label class="form-label" for="name">Owner Name</label>
+                <input type="text" class="form-control" id="name" name="name" required formControlName="name">
+            </div>
+
+            <label class="form-label" for="pass">Owner Password</label>
             <input type="text" class="form-control" id="pass" name="pass" required formControlName="pass">
-            <label for="email">Email</label>
+            <label class="form-label" for="email">Email</label>
             <input type="text" class="form-control" id="email" name="email" required formControlName="email">
             <button type="submit" class="btn btn-primary mb-3" [disabled]="!storeOwnerForm.valid">Submit</button>
         </div>

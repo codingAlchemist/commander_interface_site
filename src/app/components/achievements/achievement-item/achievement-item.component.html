@@ -11,21 +11,21 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Name</span>
               </div>
-            <input type="text" class="form-control" value="{{achievement.name}}">
+            <input type="text" class="form-control" value="{{achievement.name}}" aria-label="name">
         </div>
         <div class="input-group mb-12">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Desc</span>
             </div>
-            <input type="text" class="form-control" value="{{achievement.desc}}">
+            <input type="text" class="form-control" value="{{achievement.desc}}" aria-label="desc">
         </div>
         <div class="input-group mb-12">
             <div class="input-group-prepend" >
                 <span class="input-group-text" id="basic-addon1">Points</span>
             </div>
-            <input type="text" class="form-control" value="{{achievement.points}}">
+            <input type="text" class="form-control" value="{{achievement.points}}" aria-label="points">
         </div>
         <input class="btn btn-success float-end" type="submit" value="Update"/>
-        <input class="btn btn-danger" (click)="showEditAchievement()" value="Cancel"/>
+        <input class="btn btn-danger" (click)="showEditAchievement()" value="Cancel" aria-label="cancel"/>
     </form>
 </div>

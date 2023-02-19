@@ -5,9 +5,10 @@ import { catchError, retry } from 'rxjs/operators';
 import { Achievement } from '.././models/achievement';
 import { Player } from '.././models/player';
 import { Owner } from '.././models/owner';
-
+import { Store } from '../models/store';
 import { ServiceResponse } from '.././models/service-response.model';
 import { Email } from '.././models/email';
+import { CookieService } from 'ngx-cookie-service';
 
 enum URL{
     LOCAL = "http://localhost:3000",
@@ -18,7 +19,7 @@ let url = URL.LOCAL
 @Injectable({
   providedIn: 'root'
 })
-export class AchievementServiceService {
+export class AchievementService {
 
   readonly options =  {
     headers: new HttpHeaders({
@@ -53,6 +54,10 @@ export class AchievementServiceService {
   }
 
   //Store
+  loginOwner(owner: Owner): Observable<Owner>{
+    return this.http.post<Owner>(`${url}/store/owner/login`, owner, this.options).pipe(catchError(this.handleError));
+  }
+  
   createStoreOwner(owner: Owner): Observable<Owner> {
     return this.http.post<Owner>(`${url}/store/owner/create`,owner,this.options).pipe(catchError(this.handleError));
   }
@@ -61,6 +66,13 @@ export class AchievementServiceService {
     return this.http.get<Owner[]>(`${url}/store/owners`).pipe(catchError(this.handleError))
   }
 
+  getOwner(ownerid: string): Observable<Owner>{
+    return this.http.get<Owner>(`${url}/store/owner/${ownerid}`).pipe(catchError(this.handleError))
+  }
+
+  getStoresByOwner(owner: string): Observable<Store[]> {
+      return this.http.get<Store[]>(`${url}/store/stores/${owner}`).pipe(catchError(this.handleError))
+  }
   approveOwner(owner: Owner) : Observable<Owner> {
     return this.http.put<Owner>(`${url}/store/owner/${owner.id}/update`, owner, this.options).pipe(catchError(this.handleError));
   }

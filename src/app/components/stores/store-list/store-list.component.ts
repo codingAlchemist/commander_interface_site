@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Owner } from 'src/app/models/owner';
-import { AchievementServiceService } from '../../../service/achievement-service.service';
+import { AchievementService } from '../../../service/achievement-service.service';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { AchievementServiceService } from '../../../service/achievement-service.
 })
 export class StoreListComponent implements OnInit {
   owners:Owner[] = [];
-  constructor(private service:AchievementServiceService) { }
+  constructor(private service:AchievementService) { }
 
   ngOnInit(): void {
     this.owners = [];

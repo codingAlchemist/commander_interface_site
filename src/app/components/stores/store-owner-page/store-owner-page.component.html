@@ -1,0 +1,7 @@
+<h1>Owner Page</h1>
+<div *ngIf="owner">
+    <div>{{owner.username}}</div>
+    <div *ngFor="let store of stores">
+        <app-store [store]="store"></app-store>
+    </div>
+</div>

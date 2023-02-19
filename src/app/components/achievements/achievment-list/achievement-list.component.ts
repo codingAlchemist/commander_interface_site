@@ -1,6 +1,6 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { Achievement } from '../../../models/achievement';
-import { AchievementServiceService } from '../../../service/achievement-service.service';
+import { AchievementService } from '../../../service/achievement-service.service';
 
 @Component({
   selector: 'app-achievment-list',
@@ -12,7 +12,7 @@ export class AchievmentListComponent implements OnInit {
   achievements:Achievement[] = [];
   
 
-  constructor(private service:AchievementServiceService) {
+  constructor(private service:AchievementService) {
     
    }
 

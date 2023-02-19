@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StoreOwnerComponent } from './store-owner.component';
+import { StoreOwnerPageComponent } from './store-owner-page.component';
 
-describe('StoreOwnerComponent', () => {
-  let component: StoreOwnerComponent;
-  let fixture: ComponentFixture<StoreOwnerComponent>;
+describe('StoreOwnerPageComponent', () => {
+  let component: StoreOwnerPageComponent;
+  let fixture: ComponentFixture<StoreOwnerPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StoreOwnerComponent ]
+      declarations: [ StoreOwnerPageComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(StoreOwnerComponent);
+    fixture = TestBed.createComponent(StoreOwnerPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

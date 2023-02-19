@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormBuilder } from '@angular/forms';
-import { AchievementServiceService } from '../../../service/achievement-service.service';
+import { AchievementService } from '../../../service/achievement-service.service';
 import { Achievement } from '../../../models/achievement';
 import { NgbAlert, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { debounceTime } from 'rxjs/operators';
@@ -23,7 +23,7 @@ export class AchievementEntryComponent implements OnInit {
 	successMessage = '';
 
   constructor(
-    private service: AchievementServiceService,
+    private service: AchievementService,
     private formBuilder: FormBuilder
   ) {}
 

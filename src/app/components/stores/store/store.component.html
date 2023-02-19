@@ -1,0 +1,37 @@
+<div *ngIf="store" class="row">
+    <div class="form-check col-4">
+        <input type="checkbox" class="form-check-input" value="{{store.id}}" id="storeCheck">
+        <label for="storeCheck" class="form-check-label">Select</label>
+    </div>
+    <div class="col-4">{{store.name}}</div>
+</div>
+<div class="accordian" id="eventAccordian">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="eventEntryHeader">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                Accordion Item #1
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="card text-center">
+                    <div class="card-header">
+                      Create Event
+                    </div>
+                    <div class="card-body">
+                        <form (ngSubmit)="submitEvent()"  [formGroup]="eventForm">
+                            <div class="form-group">
+                                <label class="form-label" for="eventCode">Event Code</label>
+                                <input type="text" class="form-control" id="eventCode" name="eventCode" required formControlName="eventCode">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer text-muted">
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

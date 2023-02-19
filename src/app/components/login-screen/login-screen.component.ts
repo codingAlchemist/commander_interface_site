@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder } from '@angular/forms';
+import { FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Owner } from 'src/app/models/owner';
+import { AchievementService } from 'src/app/service/achievement-service.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login-screen',
@@ -7,17 +10,26 @@ import { FormControl, FormBuilder } from '@angular/forms';
   styleUrls: ['./login-screen.component.scss']
 })
 export class LoginScreenComponent implements OnInit {
+  isAdminLogin = false;
   loginForm = this.formBuilder.group({
-    username: '',
-    password: ''
+    username:['',[Validators.required]],
+    password: ['',[Validators.required]]
   })
 
-  constructor( private formBuilder: FormBuilder) { }
+  constructor( private formBuilder: FormBuilder, private achievementService: AchievementService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
   }
 
   login(){
-    
+    if (this.isAdminLogin === true) {
+      console.log("Test");
+    } else {
+      console.log("Test");
+      let owner = new Owner(0, this.loginForm.value.username!, this.loginForm.value.password!, "", false);
+      this.achievementService.loginOwner(owner).subscribe( (owner) => {
+        this.cookieService.set("ownerId",`${owner.id}`);
+      })
+    }
   }
 }

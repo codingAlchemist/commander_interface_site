@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AchievementServiceService } from '../../service/achievement-service.service';
+import { AchievementService } from '../../service/achievement-service.service';
 import { Player } from '../../models/player';
 @Component({
   selector: 'app-create-account-screen',
@@ -16,7 +16,7 @@ export class CreateAccountScreenComponent implements OnInit {
     email:['',Validators.email]
   });
 
-  constructor(private service:AchievementServiceService, private formBuilder: FormBuilder) { }
+  constructor(private service:AchievementService, private formBuilder: FormBuilder) { }
 
   createAccount(){
     let player = new Player(

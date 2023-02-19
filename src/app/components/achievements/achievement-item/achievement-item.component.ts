@@ -1,6 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { Achievement } from '../../../models/achievement';
-import { AchievementServiceService } from '../../../service/achievement-service.service';
+import { AchievementService } from '../../../service/achievement-service.service';
 
 @Component({
   selector: 'app-achievement-item',
@@ -10,7 +10,7 @@ import { AchievementServiceService } from '../../../service/achievement-service.
 export class AchievementItemComponent implements OnInit {
   showEdit: Boolean = false
   @Input() achievement?:Achievement
-  constructor(private service:AchievementServiceService) { }
+  constructor(private service:AchievementService) { }
 
   ngOnInit(): void {
   }

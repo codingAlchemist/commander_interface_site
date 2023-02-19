@@ -11,10 +11,15 @@ import { AchievementItemComponent } from './components/achievements/achievement-
 import { AchievmentListComponent } from './components/achievements/achievment-list/achievement-list.component'
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
 import { CreateAccountScreenComponent } from './components/create-account-screen/create-account-screen.component';
-import { StoreOwnerComponent } from './components/stores/store-owner/store-owner.component';
+import { StoreOwnerRegistrationComponent } from './components/stores/store-owner-registration/store-owner-registration.component';
 import { StoreRegistrationComponent } from './components/stores/store-registration/store-registration.component';
 import { StoreListComponent } from './components/stores/store-list/store-list.component';
 import { StoreOwnerItemComponent } from './components/stores/store-owner-item/store-owner-item.component';
+import { CookieService } from 'ngx-cookie-service';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { StoreOwnerPageComponent } from './components/stores/store-owner-page/store-owner-page.component';
+import { StoreComponent } from './components/stores/store/store.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,10 +28,12 @@ import { StoreOwnerItemComponent } from './components/stores/store-owner-item/st
     AchievmentListComponent,
     LoginScreenComponent,
     CreateAccountScreenComponent,
-    StoreOwnerComponent,
+    StoreOwnerRegistrationComponent,
     StoreRegistrationComponent,
     StoreListComponent,
     StoreOwnerItemComponent,
+    StoreOwnerPageComponent,
+    StoreComponent,
     
   ],
   imports: [
@@ -37,9 +44,10 @@ import { StoreOwnerItemComponent } from './components/stores/store-owner-item/st
     NgbModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatSlideToggleModule
     
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

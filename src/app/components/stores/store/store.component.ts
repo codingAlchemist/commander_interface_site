@@ -9,14 +9,19 @@ import { FormControl, FormBuilder, Validators } from '@angular/forms';
 })
 export class StoreComponent implements OnInit {
   @Input() store: Store;
+  dataBsTarget = "";
+  isOpen = false;
   eventForm =  this.formBuilder.group({
     eventCode:['', Validators.required]
   })
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.dataBsTarget = "#collapseOne"
   }
-
+  collapseEventSection(){
+    this.isOpen = !this.isOpen
+  }
   submitEvent(){
 
   }

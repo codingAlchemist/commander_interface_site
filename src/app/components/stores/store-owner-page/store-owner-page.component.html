@@ -1,7 +1,11 @@
-<h1>Owner Page</h1>
 <div *ngIf="owner">
-    <div>{{owner.username}}</div>
+    <h1>{{owner.username}}</h1>
     <div *ngFor="let store of stores">
         <app-store [store]="store"></app-store>
     </div>
+    <div class="row spacing-top">
+        <button class="btn btn-primary" (click)="revealAddStorePage()">{{storeRegistrationShown ? 'Hide Form' : 'Add Store'}}</button>
+        <app-store-registration [owner]="owner" [ngClass]="storeRegistrationShown == true ? 'store-registration-shown' : 'store-registration-hidden'"></app-store-registration>
+</div>
+
 </div>

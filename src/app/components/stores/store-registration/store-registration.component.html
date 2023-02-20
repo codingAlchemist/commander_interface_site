@@ -1,1 +1,33 @@
-<p>store-registration works!</p>
+<div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="storeRegistrationForm">
+        <div class="form-group">
+            <label class="form-label" for="name">Store Name</label>
+            <input type="text" class="form-control" id="name" name="name" formControlName="name">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="street">Street</label>
+            <input type="text" class="form-control" name="street" id="street" formControlName="street">
+        </div>
+        <div>
+            <label class="form-label" for="city">City</label>
+            <input type="text" class="form-control" name="city" id="city" formControlName="city">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="state">State</label>
+            <input class="form-control" id="state" name="state" type="text" formControlName="state">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="zip">Zip</label>
+            <input class="form-control" type="text" id="zip" name="zip" formControlName="zip">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="logo">Logo (Optional)</label>
+            <input class="form-control" type="text" id="logo" name="logo" formControlName="logo">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="store_number">Store Number(Optional)</label>
+            <input class="form-control" type="text" id="store_number" name="store_number" formControlName="store_number">
+        </div>
+        <button type="submit" class="btn btn-primary mb-3">Add Store</button>
+    </form>
+</div>

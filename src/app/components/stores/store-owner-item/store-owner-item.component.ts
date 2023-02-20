@@ -36,7 +36,7 @@ export class StoreOwnerItemComponent implements OnInit {
     console.log("test");
     this.onSuccess();
     window.location.reload();
-    let updatedOwner = new Owner(this.owner?.id, this.owner?.username, this.owner?.pass,this.owner?.email, !this.owner.approved);
+    let updatedOwner = new Owner(this.owner?.id, this.owner?.username,this.owner?.firstname,this.owner?.lastname, this.owner?.pass,this.owner?.email, !this.owner.approved);
     this.service.approveOwner(updatedOwner).subscribe((result: Owner) => {
       this.owner = result;
       this._success.next(`${this.owner.username} is ${this.owner.approved ? "approved" : "unapproved"}`);

@@ -3,7 +3,8 @@ import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Owner } from 'src/app/models/owner';
 import { AchievementService } from 'src/app/service/achievement-service.service';
 import {CookieService} from 'ngx-cookie-service';
-
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/service/login.service';
 @Component({
   selector: 'app-login-screen',
   templateUrl: './login-screen.component.html',
@@ -16,7 +17,7 @@ export class LoginScreenComponent implements OnInit {
     password: ['',[Validators.required]]
   })
 
-  constructor( private formBuilder: FormBuilder, private achievementService: AchievementService, private cookieService: CookieService) { }
+  constructor( private formBuilder: FormBuilder, private achievementService: AchievementService, private cookieService: CookieService, private router: Router, private loginService: LoginService) { }
 
   ngOnInit(): void {
   }
@@ -26,9 +27,11 @@ export class LoginScreenComponent implements OnInit {
       console.log("Test");
     } else {
       console.log("Test");
-      let owner = new Owner(0, this.loginForm.value.username!, this.loginForm.value.password!, "", false);
+      let owner = new Owner(0, this.loginForm.value.username!,"","", this.loginForm.value.password!, "", false);
       this.achievementService.loginOwner(owner).subscribe( (owner) => {
         this.cookieService.set("ownerId",`${owner.id}`);
+        this.loginService.idEmitter.emit(this.cookieService.get("ownerId"));
+        this.router.navigate(['/app-store-owner-page']);
       })
     }
   }

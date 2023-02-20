@@ -61,7 +61,9 @@ export class AchievementService {
   createStoreOwner(owner: Owner): Observable<Owner> {
     return this.http.post<Owner>(`${url}/store/owner/create`,owner,this.options).pipe(catchError(this.handleError));
   }
-  
+  createStore(store: Store): Observable<Store> {
+    return this.http.post<Store>(`${url}/store/create`, store, this.options).pipe(catchError(this.handleError));
+  }
   getAllOwners(): Observable<Owner[]> {
     return this.http.get<Owner[]>(`${url}/store/owners`).pipe(catchError(this.handleError))
   }

@@ -10,9 +10,12 @@ import { Store } from 'src/app/models/store';
 })
 export class StoreOwnerPageComponent implements OnInit {
   owner:Owner;
+  storeRegistrationShown = false;
   stores: Store[] = [];
   constructor(private cookieService: CookieService, private achievmentService: AchievementService) { }
-
+  revealAddStorePage(){
+    this.storeRegistrationShown = !this.storeRegistrationShown
+  }
   ngOnInit(): void {
     var ownerId = this.cookieService.get("ownerId");
     this.achievmentService.getOwner(ownerId).subscribe((owner) => {

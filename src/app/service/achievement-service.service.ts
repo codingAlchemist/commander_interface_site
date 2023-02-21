@@ -9,7 +9,7 @@ import { Store } from '../models/store';
 import { ServiceResponse } from '.././models/service-response.model';
 import { Email } from '.././models/email';
 import { CookieService } from 'ngx-cookie-service';
-
+import { EventData } from '../models/event-data';
 enum URL{
     LOCAL = "http://localhost:3000",
     REMOTE = "http://137.184.49.209:3000"
@@ -52,7 +52,10 @@ export class AchievementService {
     console.log(`id to be deleted ${id}`);
     return this.http.delete<ServiceResponse>(`${url}/achievements/delete/${id}`,this.options).pipe(catchError(this.handleError));
   }
-
+  //Event
+  createEvent(eventData: EventData): Observable<Event> {
+    return this.http.post<Event>(`${url}/event/create`,eventData, this.options).pipe(catchError(this.handleError));
+  }
   //Store
   loginOwner(owner: Owner): Observable<Owner>{
     return this.http.post<Owner>(`${url}/store/owner/login`, owner, this.options).pipe(catchError(this.handleError));

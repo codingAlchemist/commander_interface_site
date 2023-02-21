@@ -1,42 +1,39 @@
-<div *ngIf="store" class="row">
-    <div class="form-check col-4">
-        <input type="checkbox" class="form-check-input" value="{{store.id}}" id="storeCheck">
-        <label for="storeCheck" class="form-check-label">Select</label>
+<div *ngIf="store">
+    <div class="row">
+        <div class="col-2">Store Number</div>
+        <div class="col-2">Store Name</div>
+        <div class="col-2">Street</div>
+        <div class="col-2">City</div>
+        <div class="col-2">State</div>
+        <div class="col-2">Zip</div>
     </div>
-    {{store.store_number}}
-    {{store.name}}
-    {{store.street}}
-    {{store.city}}
-    {{store.state}}
-    {{store.zip}}
-</div>
-<div class="accordian" id="eventAccordian">
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="eventEntryHeader">
-            <button *ngIf="dataBsTarget" class="accordion-button" type="button" 
-                aria-expanded="true" aria-controls="collapseOne" (click)="collapseEventSection()">
-                Store Event
-            </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" [ngClass]="{'in': isOpen, 'show' : isOpen}"
-            data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <div class="card text-center">
-                    <div class="card-header">
-                      Create Event
-                    </div>
-                    <div class="card-body">
-                        <form (ngSubmit)="submitEvent()"  [formGroup]="eventForm">
-                            <div class="form-group">
-                                <label class="form-label" for="eventCode">Event Code</label>
-                                <input type="text" class="form-control" id="eventCode" name="eventCode" required formControlName="eventCode">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="card-footer text-muted">
-                    </div>
-                  </div>
-            </div>
-        </div>
+    <div class="row">
+        <div class="col-2">{{store.store_number}}</div>
+        <div class="col-2">{{store.name}}</div>
+        <div class="col-2">{{store.street}}</div>
+        <div class="col-2">{{store.city}}</div>
+        <div class="col-2">{{store.state}}</div>
+        <div class="col-2">{{store.zip}}</div>
     </div>
 </div>
+<!-- put expansion panel here-->
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Event Create
+            </mat-panel-title>
+            <mat-panel-description>
+                Click here to generate or enter an event code.
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <form (ngSubmit)="submitEvent()" [formGroup]="eventForm">
+            <mat-form-field appearance="outline">
+                <mat-label>Event Code Entry</mat-label>
+                <input matInput type="text" matInput placeholder="Placeholder" id="eventCode" name="eventCode" required
+                    formControlName="eventCode">
+            </mat-form-field>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </mat-expansion-panel>
+</mat-accordion>

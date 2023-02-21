@@ -16,9 +16,13 @@ import { StoreRegistrationComponent } from './components/stores/store-registrati
 import { StoreListComponent } from './components/stores/store-list/store-list.component';
 import { StoreOwnerItemComponent } from './components/stores/store-owner-item/store-owner-item.component';
 import { CookieService } from 'ngx-cookie-service';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { StoreOwnerPageComponent } from './components/stores/store-owner-page/store-owner-page.component';
 import { StoreComponent } from './components/stores/store/store.component';
+import { EventPageComponent } from './event-page/event-page.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,7 @@ import { StoreComponent } from './components/stores/store/store.component';
     StoreOwnerItemComponent,
     StoreOwnerPageComponent,
     StoreComponent,
+    EventPageComponent,
     
   ],
   imports: [
@@ -44,8 +49,10 @@ import { StoreComponent } from './components/stores/store/store.component';
     NgbModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatSlideToggleModule
-    
+    MatSlideToggleModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

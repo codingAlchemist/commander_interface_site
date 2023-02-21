@@ -15,6 +15,7 @@ export class AppComponent implements OnInit{
   constructor(private cookieService: CookieService, private router: Router, private loginService: LoginService){}
 
   ngOnInit(): void {
+    this.ownerId = this.cookieService.get("ownerId");
     this.loginService.idEmitter.subscribe(ownerID => {
       this.ownerId = ownerID
       console.log(this.ownerId.length == 0); 

@@ -1,7 +1,24 @@
 .row{
+    text-align: center;
     background-color: lightgray;
+    border: 1px black solid;
 }
 
 .accordion-button{
     background-color: aqua;
+}
+
+mat-label{
+    width: 50%;
+}
+
+mat-expansion-panel{
+    background-color: rgb(232, 77, 30);
+}
+
+matInput{
+    border-color: black;
+}
+button[type=submit]{
+    margin-left: 20px;
 }

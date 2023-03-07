@@ -2,37 +2,52 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Owner } from 'src/app/models/owner';
 import { AchievementService } from 'src/app/service/achievement-service.service';
-import {CookieService} from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login.service';
+import { AppConstants } from 'src/app/app.constants';
 @Component({
   selector: 'app-login-screen',
   templateUrl: './login-screen.component.html',
-  styleUrls: ['./login-screen.component.scss']
+  styleUrls: ['./login-screen.component.scss'],
 })
 export class LoginScreenComponent implements OnInit {
   isAdminLogin = false;
   loginForm = this.formBuilder.group({
-    username:['',[Validators.required]],
-    password: ['',[Validators.required]]
-  })
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required]],
+  });
 
-  constructor( private formBuilder: FormBuilder, private achievementService: AchievementService, private cookieService: CookieService, private router: Router, private loginService: LoginService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private achievementService: AchievementService,
+    private cookieService: CookieService,
+    private router: Router,
+    private loginService: LoginService,
+    private appConstants: AppConstants
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  login(){
+  login() {
     if (this.isAdminLogin === true) {
-      console.log("Test");
+      console.log('Test');
     } else {
-      console.log("Test");
-      let owner = new Owner(0, this.loginForm.value.username!,"","", this.loginForm.value.password!, "", false);
-      this.achievementService.loginOwner(owner).subscribe( (owner) => {
-        this.cookieService.set("ownerId",`${owner.id}`);
-        this.loginService.idEmitter.emit(this.cookieService.get("ownerId"));
+      console.log('Test');
+      let owner = new Owner(
+        0,
+        this.loginForm.value.username!,
+        '',
+        '',
+        this.loginForm.value.password!,
+        '',
+        false
+      );
+      this.achievementService.loginOwner(owner).subscribe((owner) => {
+        this.cookieService.set(this.appConstants.OWNER_ID, `${owner.id}`);
+        this.loginService.idEmitter.emit(this.cookieService.get('ownerId'));
         this.router.navigate(['/app-store-owner-page']);
-      })
+      });
     }
   }
 }

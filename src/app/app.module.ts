@@ -20,10 +20,15 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { StoreOwnerPageComponent } from './components/stores/store-owner-page/store-owner-page.component';
 import { StoreComponent } from './components/stores/store/store.component';
-import { EventPageComponent } from './event-page/event-page.component';
-
+import { EventPageComponent } from './components/events/event-page/event-page.component';
+import { MatTableModule } from '@angular/material/table';
+import { EventsLobbyComponent } from './components/events/event-page/events-lobby.component';
+import { EventGamesComponent } from './components/events/event-games/event-games.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +44,8 @@ import { EventPageComponent } from './event-page/event-page.component';
     StoreOwnerPageComponent,
     StoreComponent,
     EventPageComponent,
+    EventsLobbyComponent,
+    EventGamesComponent,
     
   ],
   imports: [
@@ -52,7 +59,11 @@ import { EventPageComponent } from './event-page/event-page.component';
     MatSlideToggleModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule,
+    MatTabsModule,
+    MatSidenavModule,
+    DragDropModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

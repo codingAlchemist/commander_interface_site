@@ -8,7 +8,7 @@ import { StoreOwnerRegistrationComponent } from './components/stores/store-owner
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { StoreListComponent } from './components/stores/store-list/store-list.component';
 import { StoreOwnerPageComponent } from './components/stores/store-owner-page/store-owner-page.component';
-
+import { EventPageComponent } from './components/events/event-page/event-page.component';
 const routes: Routes = [
   {path:'app-achievement-entry', component: AchievementEntryComponent},
   {path:'app-achievment-list', component: AchievmentListComponent},
@@ -17,6 +17,7 @@ const routes: Routes = [
   {path:'app-store-owner', component: StoreOwnerRegistrationComponent},
   {path:'app-store-list', component: StoreListComponent},
   {path:'app-store-owner-page', component: StoreOwnerPageComponent},
+  {path:'app-event-page', component: EventPageComponent},
   {path:'', redirectTo: '/app-login-screen', pathMatch: 'full'}
 
 ];

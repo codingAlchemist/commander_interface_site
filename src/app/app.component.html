@@ -29,7 +29,9 @@
                 <li *ngIf="ownerId" class="nav-item">
                   <a class="nav-link" href="#" routerLink="/app-store-owner-page">Store Owner Page</a>
                 </li>
-
+                <li *ngIf="eventCode" class="nav-item">
+                  <a class="nav-link" href="#" routerLink="/app-event-page">Event Page</a>
+                </li>
             </ul>
           </div>
           <div *ngIf="ownerId">

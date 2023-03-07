@@ -56,6 +56,10 @@ export class AchievementService {
   createEvent(eventData: EventData): Observable<Event> {
     return this.http.post<Event>(`${url}/event/create`,eventData, this.options).pipe(catchError(this.handleError));
   }
+
+  getEventPlayers(event: EventData): Observable<Player[]>{
+    return this.http.get<Player[]>(`${url}/player/players?${event.event_code}`)
+  }
   //Store
   loginOwner(owner: Owner): Observable<Owner>{
     return this.http.post<Owner>(`${url}/store/owner/login`, owner, this.options).pipe(catchError(this.handleError));

@@ -1,0 +1,25 @@
+<div class="approved-container">
+    <h2>Approved For Event</h2> 
+    <div
+        cdkDropList
+        #approvedList="cdkDropList"
+        [cdkDropListData]="approved"
+        [cdkDropListConnectedTo]="[waitingList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of approved" cdkDrag>{{item}}</div>
+  </div>
+</div>
+
+<div class="approved-container">
+    <h2>Approved For Event</h2> 
+    <div
+        cdkDropList
+        #waitingList="cdkDropList"
+        [cdkDropListData]="approved"
+        [cdkDropListConnectedTo]="[approvedList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of waiting" cdkDrag>{{item}}</div>
+  </div>
+</div>

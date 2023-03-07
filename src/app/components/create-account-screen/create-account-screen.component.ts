@@ -19,7 +19,7 @@ export class CreateAccountScreenComponent implements OnInit {
   constructor(private service:AchievementService, private formBuilder: FormBuilder) { }
 
   createAccount(){
-    let player = new Player(
+    let player = new Player(0,
       this.createAccountForm.value.name!,
       this.createAccountForm.value.password!,
       this.createAccountForm.value.nickName!,

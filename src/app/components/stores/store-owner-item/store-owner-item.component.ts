@@ -21,7 +21,7 @@ export class StoreOwnerItemComponent implements OnInit {
   private _success = new Subject<string>();
   successMessage = '';
   constructor(private service: AchievementService, private router: AppRoutingModule) { }
-
+  
   ngOnInit(): void {
   }
   onSuccess(){
@@ -32,6 +32,7 @@ export class StoreOwnerItemComponent implements OnInit {
 			}
 		});
   }
+  
   onApproveClick(){
     console.log("test");
     this.onSuccess();

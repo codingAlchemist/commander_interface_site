@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import { Owner } from './models/owner';
 import { CookieService } from 'ngx-cookie-service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -9,13 +9,17 @@ import { AppConstants } from './app.constants';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, AfterViewInit{
   ownerId: string
   eventCode: string
   title = 'commander-site';
 
-  constructor(private cookieService: CookieService, private router: Router, private loginService: LoginService, private appConstants: AppConstants){}
-
+  constructor(private elementRef: ElementRef, private cookieService: CookieService, private router: Router, private loginService: LoginService, private appConstants: AppConstants){
+    
+  }
+  ngAfterViewInit(): void {
+      this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#e8eaf6';
+  }
   ngOnInit(): void {
     this.ownerId = this.cookieService.get(this.appConstants.OWNER_ID);
     this.eventCode = this.cookieService.get(this.appConstants.EVENT_CODE);

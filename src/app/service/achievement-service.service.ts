@@ -84,7 +84,9 @@ export class AchievementService {
   getOwner(ownerid: string): Observable<Owner>{
     return this.http.get<Owner>(`${url}/store/owner/${ownerid}`).pipe(catchError(this.handleError))
   }
-
+  updateOwner(owner: Owner): Observable<Owner> {
+    return this.http.put<Owner>(`${url}/store/owner/${owner.id}/update`, owner, this.options).pipe(catchError(this.handleError));
+  }
   getStoresByOwner(owner: string): Observable<Store[]> {
       return this.http.get<Store[]>(`${url}/store/stores/${owner}`).pipe(catchError(this.handleError))
   }

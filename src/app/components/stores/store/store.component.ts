@@ -30,7 +30,6 @@ export class StoreComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.achievementService.
     const SavedEventData = this.cookieService.get(this.appConstants.EVENT_DATA)
     if (SavedEventData != null){
       this.eventData = JSON.parse(SavedEventData);
@@ -57,7 +56,7 @@ export class StoreComponent implements OnInit {
   }
 
   submitEvent() {
-    if (this.eventData.event_code != null && this.eventData.event_code == this.store.store_number){
+    if (this.eventData != null && this.eventData.event_code == this.store.store_number){
       this.router.navigate(['/app-event-page']);
     }else{
       var eventData = new EventData(

@@ -1,11 +1,77 @@
 <div *ngIf="owner">
-    <h1>{{owner.username}}</h1>
-    <div *ngFor="let store of stores">
-        <app-store [store]="store"></app-store>
-    </div>
-    <div class="row spacing-top">
-        <button class="btn btn-primary" (click)="revealAddStorePage()">{{storeRegistrationShown ? 'Hide Form' : 'Add Store'}}</button>
-        <app-store-registration [owner]="owner" [ngClass]="storeRegistrationShown == true ? 'store-registration-shown' : 'store-registration-hidden'"></app-store-registration>
+    <button (click)="revealEditAccountDetails()" [ngClass]="editAccountDetailsShown == true ? 'btn btn-primary edit-account-details-shown' : 'btn btn-primary edit-account-details-hidden'">Edit Account Details</button>
+    <form (ngSubmit)="onUpdateDetails()" [formGroup]="ownerDetailsForm">
+        <div [ngClass]="editAccountDetailsShown == true ? 'edit-account-details-shown' : 'edit-account-details-hidden'">
+            <div class="row">
+                <div class="col-6">User Name</div>
+                <div class="col-6">{{owner.username}}</div>
+            </div>
+        </div>
+        <div [ngClass]="editAccountDetailsShown == true ? 'form-group edit-account-details-hidden' : 'form-group edit-account-details-shown'">
+            <label class="form-label" for="username">User Name</label>
+            <input type="text" name="username" class="form-control" placeholder="{{owner.username}}" formControlName="username">
+        </div>
+        <!-- <div [ngClass]="editAccountDetailsShown == true ? 'form-group edit-account-details-hidden' : 'form-group edit-account-details-shown'">
+            <label class="form-label" for="oldpassword">Password</label>
+            <input type="text" name="oldpassword" class="form-control" formControlName="password" placeholder="Type orriginal password">
+
+            <label class="form-label" for="newpassword1">Password</label>
+            <input type="text" name="newpassword1" class="form-control" formControlName="password" placeholder="Type new password again">
+
+            <label class="form-label" for="newpassword2">Password</label>
+            <input type="text" name="newpassword2" class="form-control" formControlName="password" placeholder="Type new password again">
+        </div> -->
+
+        <div [ngClass]="editAccountDetailsShown == true ? 'edit-account-details-shown' : 'edit-account-details-hidden'">
+            <div class="row">
+                <div class="col-6">Email</div>
+                <div class="col-6"> {{owner.email}}</div>
+            </div>
+        </div>
+        <div [ngClass]="editAccountDetailsShown == true ? 'form-group edit-account-details-hidden' : 'form-group edit-account-details-shown'">
+            <label class="form-label" for="email">Email</label>
+            <input type="text" name="email" class="form-control" placeholder="{{owner.email}}" formControlName="email">
+        </div>
+
+        <div [ngClass]="editAccountDetailsShown == true ? 'edit-account-details-shown' : 'edit-account-details-hidden'">
+            <div class="row">
+                <div class="col-6">First Name</div>
+                <div class="col-6">{{owner.firstname}}</div>
+            </div>
+        </div>
+        <div [ngClass]="editAccountDetailsShown == true ? 'form-group edit-account-details-hidden' : 'form-group edit-account-details-shown'">
+            <label for="firstname" class="form-label">First Name</label>
+            <input type="text" name="firstname" class="form-control" placeholder="{{owner.firstname}}" formControlName="firstname">
+        </div>
+        <div [ngClass]="editAccountDetailsShown == true ? 'edit-account-details-shown' : 'edit-account-details-hidden'">
+            <div class="row">
+                <div class="col-6">Last Name</div>
+                <div class="col-6">{{owner.lastname}}</div>
+            </div>
+        </div>
+        <div [ngClass]="editAccountDetailsShown == true ? 'form-group edit-account-details-hidden' : 'form-group edit-account-details-shown'">
+            <label for="lastname" class="form-label">Last Name</label>
+            <input type="text" name="lastname" class="form-control" placeholder="{{owner.lastname}}" formControlName="lastname">
+        </div>
+        <div [ngClass]="editAccountDetailsShown == true ? 'edit-account-details-hidden' : 'edit-account-details-shown'">
+            <div class="row mt-5 mb-5">
+                <button type="submit" class="col-4 btn btn-success">Submit</button>
+                <div class="col-4"></div>
+                <button class="col-4 btn btn-primary" (click)="revealEditAccountDetails()">Done</button>
+            </div>
+        </div>
+        
+    </form>
+    
+
+<div *ngFor="let store of stores">
+    <app-store [store]="store"></app-store>
+</div>
+<div class="row spacing-top">
+    <button class="btn btn-primary" (click)="revealAddStorePage()">{{storeRegistrationShown ? 'Hide Form' : 'Add
+        Store'}}</button>
+    <app-store-registration [owner]="owner"
+        [ngClass]="storeRegistrationShown == true ? 'store-registration-shown' : 'store-registration-hidden'"></app-store-registration>
 </div>
 
 </div>

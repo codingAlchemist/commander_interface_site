@@ -5,4 +5,5 @@ import { Injectable } from "@angular/core";
 export class AppConstants{
     public OWNER_ID = "ownerId";
     public EVENT_CODE = "event_code";
+    public EVENT_DATA = "event_data";
 }

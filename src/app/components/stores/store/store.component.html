@@ -18,7 +18,7 @@
 </div>
 <!-- put expansion panel here-->
 <mat-accordion>
-    <mat-expansion-panel hideToggle>
+    <mat-expansion-panel  [expanded]="this.eventData != null && this.store.store_number == this.eventData.store_number">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 Event Create
@@ -29,11 +29,11 @@
         </mat-expansion-panel-header>
         <form (ngSubmit)="submitEvent()" [formGroup]="eventForm">
             <mat-form-field appearance="outline">
-                <mat-label>Event Code Entry</mat-label>
+                <mat-label>{{this.eventData != null ? this.eventData.event_code : "Event Code Entry"}}</mat-label>
                 <input matInput type="text" matInput placeholder="Placeholder" id="eventCode" name="eventCode" required
                     formControlName="eventCode">
             </mat-form-field>
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success">{{this.eventData != null ? "Show Event" : "Submit"}}</button>
         </form>
     </mat-expansion-panel>
 </mat-accordion>

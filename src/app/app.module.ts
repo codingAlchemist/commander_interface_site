@@ -29,6 +29,7 @@ import { MatTableModule } from '@angular/material/table';
 import { EventsLobbyComponent } from './components/events/event-page/events-lobby.component';
 import { EventGamesComponent } from './components/events/event-games/event-games.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +64,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatTableModule,
     MatTabsModule,
     MatSidenavModule,
-    DragDropModule
+    DragDropModule,
+    CdkAccordionModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

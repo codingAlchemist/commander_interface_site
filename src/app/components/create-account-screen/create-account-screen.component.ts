@@ -28,7 +28,7 @@ export class CreateAccountScreenComponent implements OnInit {
     );
     this.service.createPlayer(
       player
-    ).subscribe(player => console.log(player.name))
+    ).subscribe(player => console.log(player.username))
     console.log("player create")
   }
   ngOnInit(): void {

@@ -57,13 +57,15 @@ export class AchievementService {
     return this.http.post<Event>(`${url}/event/create`,eventData, this.options).pipe(catchError(this.handleError));
   }
 
-  getEventPlayers(event: EventData): Observable<Player[]>{
-    return this.http.get<Player[]>(`${url}/player/players?${event.event_code}`)
+  getEventPlayers(event_code: string, approved: boolean): Observable<Player[]>{
+    return this.http.get<Player[]>(`${url}/player/${event_code}/players?approved=${approved}`).pipe(catchError(this.handleError));
   }
 
   approvePlayerForEvent(player: Player): Observable<ServiceResponse>{
-    return this.http.put<ServiceResponse>(`${url}/player/${player.id}/event/approve`, this.options).pipe(catchError(this.handleError))
+    return this.http.put<ServiceResponse>(`${url}/player/${player.id}/event/approve`,this.options).pipe(catchError(this.handleError))
   }
+
+
   //Store
   loginOwner(owner: Owner): Observable<Owner>{
     return this.http.post<Owner>(`${url}/store/owner/login`, owner, this.options).pipe(catchError(this.handleError));

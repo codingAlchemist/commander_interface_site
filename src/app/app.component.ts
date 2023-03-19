@@ -13,7 +13,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   ownerId: string
   eventCode: string
   title = 'commander-site';
-
+  readonly VAPID_PUBLIC_KEY = "BDarFN67c27h5MiPa_lO_fF3mdthYlji50ASTKMYkHeBpPbYqG-h8L4Ymfh9Ub5iaOT3CCAqm-W2JlcNZ-GuWkg";
   constructor(private elementRef: ElementRef, private cookieService: CookieService, private router: Router, private loginService: LoginService, private appConstants: AppConstants){
     
   }

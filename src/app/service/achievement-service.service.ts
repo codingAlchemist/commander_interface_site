@@ -59,8 +59,8 @@ export class AchievementService {
     return this.http.post<Event>(`${url}/events/create`,eventData, this.options).pipe(catchError(this.handleError));
   }
 
-  getEventPlayers(event_code: string, approved: boolean): Observable<Player[]>{
-    return this.http.get<Player[]>(`${url}/player/${event_code}/players?approved=${approved}`).pipe(catchError(this.handleError));
+  getEventPlayers(event_code: string): Observable<Player[]>{
+    return this.http.get<Player[]>(`${url}/players/event/${event_code}`).pipe(catchError(this.handleError));
   }
 
   approvePlayerForEvent(player: Player): Observable<ServiceResponse>{

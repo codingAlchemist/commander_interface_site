@@ -24,18 +24,13 @@ export class EventsLobbyComponent implements OnInit {
     const event_code = this.cookieService.get(this.appConstants.EVENT_CODE);
     this.eventData = JSON.parse(SavedEventData);
     console.log(this.eventData.event_code);
-    this.achievementService.getEventPlayers(this.eventData.event_code, false).subscribe((players: Player[]) => {
+    this.achievementService.getEventPlayers(this.eventData.event_code).subscribe((players: Player[]) => {
       console.log(JSON.stringify(players))
       players.forEach( (item: Player) => {
         this.waiting.push(item);
       })
     })
-    this.achievementService.getEventPlayers(this.eventData.event_code, true).subscribe((players: Player[]) => {
-      console.log(JSON.stringify(players))
-      players.forEach( (item: Player) => {
-        this.approved.push(item);
-      })
-    })
+    console.log(`Players count ${this.waiting.length}`)
   }
 
   drop(event: CdkDragDrop<Player[]>) {

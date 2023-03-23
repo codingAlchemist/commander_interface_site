@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login.service';
 import { AppConstants } from 'src/app/app.constants';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-login-screen',
   templateUrl: './login-screen.component.html',
@@ -47,6 +48,8 @@ export class LoginScreenComponent implements OnInit {
         this.cookieService.set(this.appConstants.OWNER_ID, `${owner.id}`);
         this.loginService.idEmitter.emit(this.cookieService.get('ownerId'));
         this.router.navigate(['/app-store-owner-page']);
+      }, (error: HttpErrorResponse) => {
+          alert(`Error: ${error.message}`)
       });
     }
   }

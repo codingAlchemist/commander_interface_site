@@ -5,7 +5,9 @@ import { catchError, retry } from 'rxjs/operators';
 import { Achievement } from '.././models/achievement';
 import { Player } from '.././models/player';
 import { Owner } from '.././models/owner';
+import { Game } from '../models/game';
 import { Store } from '../models/store';
+import { PlayerAchievement } from '../models/player_achievement';
 import { ServiceResponse } from '.././models/service-response.model';
 import { Email } from '.././models/email';
 import { CookieService } from 'ngx-cookie-service';
@@ -54,7 +56,7 @@ export class AchievementService {
   }
   //Event
   createEvent(eventData: EventData): Observable<Event> {
-    return this.http.post<Event>(`${url}/event/create`,eventData, this.options).pipe(catchError(this.handleError));
+    return this.http.post<Event>(`${url}/events/create`,eventData, this.options).pipe(catchError(this.handleError));
   }
 
   getEventPlayers(event_code: string, approved: boolean): Observable<Player[]>{
@@ -65,33 +67,41 @@ export class AchievementService {
     return this.http.put<ServiceResponse>(`${url}/player/${player.id}/event/approve`,this.options).pipe(catchError(this.handleError))
   }
 
-
+  //Game
+  getAllGames(eventCode: string): Observable<Game[]> {
+    return this.http.get<Game[]>(`${url}/games/${eventCode}`).pipe(catchError(this.handleError))
+  }
+  getAllPlayersForGame(gameCode: string): Observable<Player[]> {
+    return this.http.get<Player[]>(`${url}/games/${gameCode}`).pipe(catchError(this.handleError));
+  }
+  getAllAchievementsForPlayer(player: Player): Observable<PlayerAchievement[]>{
+    return this.http.get<PlayerAchievement[]>(`${url}/players/${player.id}/achievements`).pipe(catchError(this.handleError));
+  }
   //Store
   loginOwner(owner: Owner): Observable<Owner>{
-    return this.http.post<Owner>(`${url}/store/owner/login`, owner, this.options).pipe(catchError(this.handleError));
+    return this.http.post<Owner>(`${url}/stores/owner/login`, owner, this.options).pipe(catchError(this.handleError));
   }
   
   createStoreOwner(owner: Owner): Observable<Owner> {
-    return this.http.post<Owner>(`${url}/store/owner/create`,owner,this.options).pipe(catchError(this.handleError));
+    return this.http.post<Owner>(`${url}/stores/owner/create`,owner,this.options).pipe(catchError(this.handleError));
   }
   createStore(store: Store): Observable<Store> {
-    return this.http.post<Store>(`${url}/store/create`, store, this.options).pipe(catchError(this.handleError));
+    return this.http.post<Store>(`${url}/stores/create`, store, this.options).pipe(catchError(this.handleError));
   }
   getAllOwners(): Observable<Owner[]> {
-    return this.http.get<Owner[]>(`${url}/store/owners`).pipe(catchError(this.handleError))
+    return this.http.get<Owner[]>(`${url}/stores/owners`).pipe(catchError(this.handleError))
   }
-
   getOwner(ownerid: string): Observable<Owner>{
-    return this.http.get<Owner>(`${url}/store/owner/${ownerid}`).pipe(catchError(this.handleError))
+    return this.http.get<Owner>(`${url}/stores/owner/${ownerid}`).pipe(catchError(this.handleError))
   }
   updateOwner(owner: Owner): Observable<Owner> {
-    return this.http.put<Owner>(`${url}/store/owner/${owner.id}/update`, owner, this.options).pipe(catchError(this.handleError));
+    return this.http.put<Owner>(`${url}/stores/owner/${owner.id}/update`, owner, this.options).pipe(catchError(this.handleError));
   }
   getStoresByOwner(owner: string): Observable<Store[]> {
-      return this.http.get<Store[]>(`${url}/store/stores/${owner}`).pipe(catchError(this.handleError))
+      return this.http.get<Store[]>(`${url}/stores/${owner}`).pipe(catchError(this.handleError))
   }
   approveOwner(owner: Owner) : Observable<Owner> {
-    return this.http.put<Owner>(`${url}/store/owner/${owner.id}/update`, owner, this.options).pipe(catchError(this.handleError));
+    return this.http.put<Owner>(`${url}/stores/owner/${owner.id}/update`, owner, this.options).pipe(catchError(this.handleError));
   }
 
   emailUser(email: Email): Observable<Email> {

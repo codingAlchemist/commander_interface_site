@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +30,8 @@ import { EventsLobbyComponent } from './components/events/event-page/events-lobb
 import { EventGamesComponent } from './components/events/event-games/event-games.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { GameComponent } from './components/events/game/game.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +49,7 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
     EventPageComponent,
     EventsLobbyComponent,
     EventGamesComponent,
+    GameComponent,
     
   ],
   imports: [
@@ -65,7 +68,13 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
     MatTabsModule,
     MatSidenavModule,
     DragDropModule,
-    CdkAccordionModule
+    CdkAccordionModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

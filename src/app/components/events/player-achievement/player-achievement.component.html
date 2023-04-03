@@ -1,0 +1,6 @@
+<div *ngFor="let achievement of achievements">
+  <div class="row" *ngClass="achievement.completed ? 'row achievement-completed' : 'row achievement-not-completed' ">
+    <div class="col-3">{{achievement.achievement.points}}</div>
+    <div class="col-6">{{achievement.achievement.name}}</div>
+  </div>
+</div>

@@ -11,7 +11,7 @@ import { AchievementService } from 'src/app/service/achievement-service.service'
 export class GameComponent implements OnInit {
 
   @Input() gameCode: string;
-  
+
   players: Player[] = [];
   playerAchievements: Achievement[]
   selectedPlayer: Player
@@ -22,10 +22,13 @@ export class GameComponent implements OnInit {
       results.forEach( (player: Player) => {
         this.players.push(player);
       });
+      this.selectedPlayer = this.players[0];
+
     });
   }
 
   showAchievementsForPlayer(player: Player){
     console.log(player.nickname)
+    this.selectedPlayer = player;
   }
 }

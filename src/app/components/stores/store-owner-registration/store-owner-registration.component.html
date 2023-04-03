@@ -1,5 +1,5 @@
 <div class="col-xs-1" align="center">
-    <h1>Store And Owner Registration</h1>
+    <h1>Account Registration</h1>
     <form (ngSubmit)="onSubmit()" [formGroup]="storeOwnerForm">
         <div class="form-group">
             <label class="form-label" for="username">User Name</label>
@@ -7,15 +7,15 @@
                     formControlName="username">
         </div>
         <div class="form-group">
-            <label class="form-label" for="fistname">Owner First Name</label>
+            <label class="form-label" for="fistname">First Name</label>
             <input type="text" class="form-control" id="fistname" name="fistname" required formControlName="fistname">
         </div>
         <div class="form-group">
-            <label class="form-label" for="lastname">Owner Last Name</label>
+            <label class="form-label" for="lastname">Last Name</label>
             <input type="text" class="form-control" id="lastname" name="lastname" required formControlName="lastname">
         </div>
         <div class="form-group">
-            <label class="form-label" for="pass">Owner Password</label>
+            <label class="form-label" for="pass">Password</label>
             <input type="text" class="form-control" id="pass" name="pass" required formControlName="pass">
         </div>
         <div class="form-group">

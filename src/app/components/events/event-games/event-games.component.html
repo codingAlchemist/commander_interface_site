@@ -1,1 +1,8 @@
-
+<div *ngFor="let game of games">
+  <mat-card>
+    <mat-card-content>Game {{game.gameCode}}</mat-card-content>
+  </mat-card>
+</div>
+<div *ngIf="games.length == 0">
+  <h1>No Games Have Been Created Yet</h1>
+</div>

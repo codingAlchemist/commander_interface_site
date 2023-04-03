@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { Owner } from 'src/app/models/owner';
+import { Venue_Admin } from 'src/app/models/venue_admin';
 import { AchievementService } from 'src/app/service/achievement-service.service';
 import { NgbAlert, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConnectableObservable, Subject } from 'rxjs';
@@ -15,7 +15,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 
 export class StoreOwnerItemComponent implements OnInit {
 
-  @Input() owner:Owner
+  @Input() admin:Venue_Admin
   @ViewChild('selfClosingAlert', { static: false }) selfClosingAlert: NgbAlert;
 
   private _success = new Subject<string>();
@@ -37,10 +37,10 @@ export class StoreOwnerItemComponent implements OnInit {
     console.log("test");
     this.onSuccess();
     window.location.reload();
-    let updatedOwner = new Owner(this.owner?.id, this.owner?.username,this.owner?.firstname,this.owner?.lastname, this.owner?.pass,this.owner?.email, !this.owner.approved);
-    this.service.approveOwner(updatedOwner).subscribe((result: Owner) => {
-      this.owner = result;
-      this._success.next(`${this.owner.username} is ${this.owner.approved ? "approved" : "unapproved"}`);
+    let updatedOwner = new Venue_Admin(this.admin?.id, this.admin?.username,this.admin?.firstname,this.admin?.lastname, this.admin?.pass,this.admin?.email, !this.admin.approved, []);
+    this.service.approveAdminAccount(updatedOwner).subscribe((result: Venue_Admin) => {
+      this.admin = result;
+      this._success.next(`${this.admin.username} is ${this.admin.approved ? "approved" : "unapproved"}`);
     },
       (error) => { console.error(error); });
   }

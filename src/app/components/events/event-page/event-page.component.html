@@ -1,5 +1,5 @@
 
-<mat-tab-group animationDuration="0ms" [backgroundColor]="'primary'" [color]="'warn'">
-    <mat-tab label="Games"><app-event-games></app-event-games></mat-tab>
-    <mat-tab label="Lobby"><app-events-lobby></app-events-lobby></mat-tab>
+<mat-tab-group *ngIf="event" dynamicHeight="true" animationDuration="0ms" [backgroundColor]="'primary'" [color]="'warn'" mat-stretch-tabs="false">
+    <mat-tab label="Games"><app-event-games [event_id]="event.id"></app-event-games></mat-tab>
+    <mat-tab label="Lobby"><app-events-lobby [event_id]="event.id"></app-events-lobby></mat-tab>
 </mat-tab-group>

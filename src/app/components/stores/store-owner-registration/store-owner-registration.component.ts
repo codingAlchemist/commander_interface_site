@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { AchievementService } from '../../../service/achievement-service.service';
-import { Owner } from 'src/app//models/owner';
+import { Venue_Admin } from 'src/app/models/venue_admin';
 import { Email } from 'src/app/models/email';
 
 @Component({
@@ -26,8 +26,8 @@ export class StoreOwnerRegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-    var owner = new Owner(0, this.storeOwnerForm.value.username!,this.storeOwnerForm.value.firstname!,this.storeOwnerForm.value.lastname!, this.storeOwnerForm.value.pass!, this.storeOwnerForm.value.email!, false)
-    this.service.createStoreOwner(owner).subscribe(owner => {
+    var owner = new Venue_Admin(0, this.storeOwnerForm.value.username!,this.storeOwnerForm.value.firstname!,this.storeOwnerForm.value.lastname!, this.storeOwnerForm.value.pass!, this.storeOwnerForm.value.email!, false, [])
+    this.service.createAccount(owner).subscribe(owner => {
       console.log(JSON.stringify(owner));
       var email = new Email(owner.email, "Applicant",`${owner.username} has requested to join commander achievements`);
       this.service.emailUser(email).subscribe(email => {

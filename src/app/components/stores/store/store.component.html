@@ -1,4 +1,4 @@
-<div *ngIf="store">
+<div *ngIf="venue">
     <div class="row">
         <div class="col-2">Store Number</div>
         <div class="col-2">Store Name</div>
@@ -8,17 +8,17 @@
         <div class="col-2">Zip</div>
     </div>
     <div class="row">
-        <div class="col-2">{{store.store_number}}</div>
-        <div class="col-2">{{store.name}}</div>
-        <div class="col-2">{{store.street}}</div>
-        <div class="col-2">{{store.city}}</div>
-        <div class="col-2">{{store.state}}</div>
-        <div class="col-2">{{store.zip}}</div>
+        <div class="col-2">{{venue.venue_number}}</div>
+        <div class="col-2">{{venue.name}}</div>
+        <div class="col-2">{{venue.street}}</div>
+        <div class="col-2">{{venue.city}}</div>
+        <div class="col-2">{{venue.state}}</div>
+        <div class="col-2">{{venue.zip}}</div>
     </div>
 </div>
 <!-- put expansion panel here-->
 <mat-accordion>
-    <mat-expansion-panel  [expanded]="this.eventData != null && this.store.store_number == this.eventData.store_number">
+    <mat-expansion-panel  [expanded]="this.venue.events[0] != null">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 Event Create
@@ -29,11 +29,11 @@
         </mat-expansion-panel-header>
         <form (ngSubmit)="submitEvent()" [formGroup]="eventForm">
             <mat-form-field appearance="outline">
-                <mat-label>{{this.eventData != null ? this.eventData.event_code : "Event Code Entry"}}</mat-label>
+                <mat-label>{{this.venue.events[0] != null ? this.venue.events[0].eventCode : "Event Code Entry"}}</mat-label>
                 <input matInput type="text" matInput placeholder="Placeholder" id="eventCode" name="eventCode" required
                     formControlName="eventCode">
             </mat-form-field>
-            <button type="submit" class="btn btn-success">{{this.eventData != null ? "Show Event" : "Submit"}}</button>
+            <button type="submit" class="btn btn-success">{{this.venue.events[0] != null ? "Show Event" : "Submit"}}</button>
         </form>
     </mat-expansion-panel>
 </mat-accordion>

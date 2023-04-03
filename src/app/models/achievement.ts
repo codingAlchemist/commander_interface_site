@@ -1,9 +1,9 @@
 export class Achievement {
   constructor(
-    public id: number,
-    public name:string,
-    public desc:string,
-    public points:number
+    public id: number = 0,
+    public name:string = "",
+    public desc:string = "",
+    public points:number = 0
   ){ }
 
   data = {

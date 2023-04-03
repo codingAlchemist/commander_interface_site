@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Owner } from 'src/app/models/owner';
+import { Venue_Admin } from 'src/app/models/venue_admin';
 import { AchievementService } from 'src/app/service/achievement-service.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
@@ -35,16 +35,16 @@ export class LoginScreenComponent implements OnInit {
       console.log('Test');
     } else {
       console.log('Test');
-      let owner = new Owner(
+      let owner = new Venue_Admin(
         0,
         this.loginForm.value.username!,
         '',
         '',
         this.loginForm.value.password!,
         '',
-        false
+        false, []
       );
-      this.achievementService.loginOwner(owner).subscribe((owner) => {
+      this.achievementService.login(owner).subscribe((owner) => {
         this.cookieService.set(this.appConstants.OWNER_ID, `${owner.id}`);
         this.loginService.idEmitter.emit(this.cookieService.get('ownerId'));
         this.router.navigate(['/app-store-owner-page']);

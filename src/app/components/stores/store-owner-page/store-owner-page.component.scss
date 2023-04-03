@@ -17,3 +17,15 @@
 .edit-account-details-hidden{
     display: block;
 }
+form div:first-child .row{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+form .row:nth-child(5){
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.row{
+    background-color: azure;
+    border: 1px black solid;
+}

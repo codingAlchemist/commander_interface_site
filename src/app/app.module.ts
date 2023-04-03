@@ -10,7 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AchievementItemComponent } from './components/achievements/achievement-item/achievement-item.component';
 import { AchievmentListComponent } from './components/achievements/achievment-list/achievement-list.component'
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
-import { CreateAccountScreenComponent } from './components/create-account-screen/create-account-screen.component';
 import { StoreOwnerRegistrationComponent } from './components/stores/store-owner-registration/store-owner-registration.component';
 import { StoreRegistrationComponent } from './components/stores/store-registration/store-registration.component';
 import { StoreListComponent } from './components/stores/store-list/store-list.component';
@@ -21,7 +20,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCardModule } from '@angular/material/card'
 import { StoreOwnerPageComponent } from './components/stores/store-owner-page/store-owner-page.component';
 import { StoreComponent } from './components/stores/store/store.component';
 import { EventPageComponent } from './components/events/event-page/event-page.component';
@@ -29,9 +30,11 @@ import { MatTableModule } from '@angular/material/table';
 import { EventsLobbyComponent } from './components/events/event-page/events-lobby.component';
 import { EventGamesComponent } from './components/events/event-games/event-games.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { GameComponent } from './components/events/game/game.component';
+import { PlayerAchievementComponent } from './components/events/player-achievement/player-achievement.component';
+import { PlayerHomeScreenComponent } from './components/player/player-home-screen/player-home-screen.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +42,6 @@ import { GameComponent } from './components/events/game/game.component';
     AchievementItemComponent,
     AchievmentListComponent,
     LoginScreenComponent,
-    CreateAccountScreenComponent,
     StoreOwnerRegistrationComponent,
     StoreRegistrationComponent,
     StoreListComponent,
@@ -50,7 +52,9 @@ import { GameComponent } from './components/events/game/game.component';
     EventsLobbyComponent,
     EventGamesComponent,
     GameComponent,
-    
+    PlayerAchievementComponent,
+    PlayerHomeScreenComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -64,9 +68,11 @@ import { GameComponent } from './components/events/game/game.component';
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
+    MatButtonModule,
     MatTableModule,
     MatTabsModule,
     MatSidenavModule,
+    MatCardModule,
     DragDropModule,
     CdkAccordionModule,
     ServiceWorkerModule.register('ngsw-worker.js', {

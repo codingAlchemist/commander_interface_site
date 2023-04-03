@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute, Params } from '@angular/router';
+import { AchievementService } from 'src/app/service/achievement-service.service';
+import { Event } from 'src/app/models/event';
 @Component({
   selector: 'app-event-page',
   templateUrl: './event-page.component.html',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventPageComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private route: ActivatedRoute, private service: AchievementService) { }
+  eventCode: string;
+  event?:Event
   ngOnInit(): void {
+    this.route.params.subscribe( (params: Params) => this.eventCode = params["event_code"]);
+    this.service.getEvent(this.eventCode).subscribe((event) => {
+      this.event = event
+    })
   }
 
 }

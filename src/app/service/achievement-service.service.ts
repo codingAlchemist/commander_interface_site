@@ -4,9 +4,10 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Achievement } from '.././models/achievement';
 import { Player } from '.././models/player';
-import { Owner } from '.././models/owner';
+import { Venue_Admin } from '../models/venue_admin';
 import { Game } from '../models/game';
-import { Store } from '../models/store';
+import { Event } from '../models/event';
+import { Venue } from '../models/venue';
 import { PlayerAchievement } from '../models/player_achievement';
 import { ServiceResponse } from '.././models/service-response.model';
 import { Email } from '.././models/email';
@@ -31,18 +32,9 @@ export class AchievementService {
 
   constructor(private http:HttpClient) { }
 
-  //Player
-  loginPlayer(player:Player):Observable<Player> {
-    return this.http.post<Player>(`${url}/player/login`,player,this.options).pipe(catchError(this.handleError));
-  }
-
-  createPlayer(player: Player):Observable<Player> {
-    return this.http.post<Player>(`${url}/player/create`, player, this.options).pipe(catchError(this.handleError));
-  }
-
   //Achievement
   getAllAchievements():Observable<Achievement[]> {
-    return this.http.get<Achievement[]>(`${url}/achievements`).pipe(catchError(this.handleError))
+    return this.http.get<Achievement[]>(`${url}/achievements`, this.options).pipe(catchError(this.handleError))
   }
 
   createAchievement(achievement: Achievement):Observable<Achievement> {
@@ -54,56 +46,71 @@ export class AchievementService {
     console.log(`id to be deleted ${id}`);
     return this.http.delete<ServiceResponse>(`${url}/achievements/delete/${id}`,this.options).pipe(catchError(this.handleError));
   }
+
   //Event
   createEvent(eventData: EventData): Observable<Event> {
     return this.http.post<Event>(`${url}/events/create`,eventData, this.options).pipe(catchError(this.handleError));
   }
 
-  getEventPlayers(event_code: string): Observable<Player[]>{
-    return this.http.get<Player[]>(`${url}/players/event/${event_code}`).pipe(catchError(this.handleError));
+  getEventPlayers(eventCode: number): Observable<Event>{
+    return this.http.get<Event>(`${url}/players/event/${eventCode}`, this.options).pipe(catchError(this.handleError));
   }
 
-  approvePlayerForEvent(player: Player): Observable<ServiceResponse>{
-    return this.http.put<ServiceResponse>(`${url}/player/${player.id}/event/approve`,this.options).pipe(catchError(this.handleError))
+  getEvent(eventCode: string):Observable<Event> {
+    return this.http.get<Event>(`${url}/events/${eventCode}`, this.options).pipe(catchError(this.handleError));
+  }
+
+  approvePlayerForEvent(queryString: string): Observable<ServiceResponse>{
+    return this.http.put<ServiceResponse>(`${url}/players/approve${queryString}`,this.options).pipe(catchError(this.handleError))
+  }
+  getAllEventsByVenue(venue: Venue): Observable<Venue> {
+    return this.http.get<Venue>(`${url}events/?id=${venue.id}`, this.options).pipe(catchError(this.handleError));
   }
 
   //Game
-  getAllGames(eventCode: string): Observable<Game[]> {
-    return this.http.get<Game[]>(`${url}/games/${eventCode}`).pipe(catchError(this.handleError))
+  getAllGames(event_id: number): Observable<Game[]> {
+    return this.http.get<Game[]>(`${url}/games/${event_id}`, this.options).pipe(catchError(this.handleError))
   }
   getAllPlayersForGame(gameCode: string): Observable<Player[]> {
-    return this.http.get<Player[]>(`${url}/games/${gameCode}`).pipe(catchError(this.handleError));
+    return this.http.get<Player[]>(`${url}/games/${gameCode}`,this.options).pipe(catchError(this.handleError));
   }
   getAllAchievementsForPlayer(player: Player): Observable<PlayerAchievement[]>{
-    return this.http.get<PlayerAchievement[]>(`${url}/players/${player.id}/achievements`).pipe(catchError(this.handleError));
-  }
-  //Store
-  loginOwner(owner: Owner): Observable<Owner>{
-    return this.http.post<Owner>(`${url}/stores/owner/login`, owner, this.options).pipe(catchError(this.handleError));
-  }
-  
-  createStoreOwner(owner: Owner): Observable<Owner> {
-    return this.http.post<Owner>(`${url}/stores/owner/create`,owner,this.options).pipe(catchError(this.handleError));
-  }
-  createStore(store: Store): Observable<Store> {
-    return this.http.post<Store>(`${url}/stores/create`, store, this.options).pipe(catchError(this.handleError));
-  }
-  getAllOwners(): Observable<Owner[]> {
-    return this.http.get<Owner[]>(`${url}/stores/owners`).pipe(catchError(this.handleError))
-  }
-  getOwner(ownerid: string): Observable<Owner>{
-    return this.http.get<Owner>(`${url}/stores/owner/${ownerid}`).pipe(catchError(this.handleError))
-  }
-  updateOwner(owner: Owner): Observable<Owner> {
-    return this.http.put<Owner>(`${url}/stores/owner/${owner.id}/update`, owner, this.options).pipe(catchError(this.handleError));
-  }
-  getStoresByOwner(owner: string): Observable<Store[]> {
-      return this.http.get<Store[]>(`${url}/stores/${owner}`).pipe(catchError(this.handleError))
-  }
-  approveOwner(owner: Owner) : Observable<Owner> {
-    return this.http.put<Owner>(`${url}/stores/owner/${owner.id}/update`, owner, this.options).pipe(catchError(this.handleError));
+    return this.http.get<PlayerAchievement[]>(`${url}/players/${player.id}/achievements`,this.options).pipe(catchError(this.handleError));
   }
 
+  createGameWithAchievements(event_id: string): Observable<Game>{
+    return this.http.post<Game>(`${url}/games/create`, event_id,this.options).pipe(catchError(this.handleError));
+  }
+
+  getGameWithAchievements(gameCode: string): Observable<Game> {
+    return this.http.get<Game>(`${url}/games/${gameCode}/game`,this.options).pipe(catchError(this.handleError));
+  }
+
+  //Venue
+  login(owner: Venue_Admin): Observable<Venue_Admin>{
+    return this.http.post<Venue_Admin>(`${url}/venue/admin/login`, owner, this.options).pipe(catchError(this.handleError));
+  }
+  createAccount(owner: Venue_Admin): Observable<Venue_Admin> {
+    return this.http.post<Venue_Admin>(`${url}/venue/admin/create`,owner,this.options).pipe(catchError(this.handleError));
+  }
+  createVenue(venue: Venue): Observable<Venue> {
+    return this.http.post<Venue>(`${url}/venue/create`, venue, this.options).pipe(catchError(this.handleError));
+  }
+  getAllAdmins(): Observable<Venue_Admin[]> {
+    return this.http.get<Venue_Admin[]>(`${url}/venue/admins`).pipe(catchError(this.handleError))
+  }
+  getAdminById(admin_id: string): Observable<Venue_Admin>{
+    return this.http.get<Venue_Admin>(`${url}/venue/admin/${admin_id}`).pipe(catchError(this.handleError))
+  }
+  updateAdminAccount(admin: Venue_Admin): Observable<Venue_Admin> {
+    return this.http.put<Venue_Admin>(`${url}/venue/admin/${admin.id}/update`, admin, this.options).pipe(catchError(this.handleError));
+  }
+  getVenuesByAdminAccount(admin_id: string): Observable<Venue[]> {
+      return this.http.get<Venue[]>(`${url}/venue/${admin_id}`, this.options).pipe(catchError(this.handleError))
+  }
+  approveAdminAccount(owner: Venue_Admin) : Observable<Venue_Admin> {
+    return this.http.put<Venue_Admin>(`${url}/venue/owner/${owner.id}/update`, owner, this.options).pipe(catchError(this.handleError));
+  }
   emailUser(email: Email): Observable<Email> {
     return this.http.post<Email>(`${url}/email`, email, this.options).pipe(catchError(this.handleError));
   }

@@ -1,8 +1,8 @@
 <div class="container">
-    <h1>Welcome to the achievements registration</h1>
+    <h1>Welcome to the Event Achievements Registration</h1>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Commander Achievements</a>
+          <a class="navbar-brand" href="#">Achievements Menu</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -12,7 +12,7 @@
                     <a class="nav-link active aria-current" href="#" routerLink="/app-login-screen">Login</a>
                 </li>
                 <li *ngIf="!ownerId" class="nav-item">
-                    <a class="nav-link" href="#" routerLink="/app-create-account-screen">Sign Up</a>
+                    <a class="nav-link" href="#" routerLink="/app-store-owner">Sign Up</a>
                 </li>
                 <li *ngIf="ownerId === '5'" class="nav-item">
                   <a class="nav-link" href="#" routerLink="/app-achievement-entry">Create Achievements</a>
@@ -28,6 +28,9 @@
                 </li>
                 <li *ngIf="ownerId" class="nav-item">
                   <a class="nav-link" href="#" routerLink="/app-store-owner-page">Store Owner Page</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="#" routerLink="/app-player-home-screen">Player Home Screen</a>
                 </li>
                 <li *ngIf="eventCode" class="nav-item">
                   <a class="nav-link" href="#" routerLink="/app-event-page">Event Page</a>

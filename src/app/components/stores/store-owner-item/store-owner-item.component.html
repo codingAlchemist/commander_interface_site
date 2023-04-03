@@ -1,11 +1,11 @@
-<div *ngIf="owner">
+<div *ngIf="admin">
     <div class="card" style="width: auto;">
         <img src="" class="card-image-top" alt="">
         <div class="card-body">
-            <h5 class="card-title">{{owner.username}}</h5>
-            <p class="card-text">{{owner.email}}</p>
-            <button type="submit" [ngClass]="owner.approved ? 'btn btn-danger' : 'btn btn-success'"
-                (click)="onApproveClick()">{{owner.approved ? 'UnApprove' : 'Approve'}}</button>
+            <h5 class="card-title">{{admin.username}}</h5>
+            <p class="card-text">{{admin.email}}</p>
+            <button type="submit" [ngClass]="admin.approved ? 'btn btn-danger' : 'btn btn-success'"
+                (click)="onApproveClick()">{{admin.approved ? 'UnApprove' : 'Approve'}}</button>
         </div>
     </div>
 </div>

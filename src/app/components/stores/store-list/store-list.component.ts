@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Owner } from 'src/app/models/owner';
+import { Venue_Admin } from 'src/app/models/venue_admin';
 import { AchievementService } from '../../../service/achievement-service.service';
 
 
@@ -9,14 +9,14 @@ import { AchievementService } from '../../../service/achievement-service.service
   styleUrls: ['./store-list.component.scss']
 })
 export class StoreListComponent implements OnInit {
-  owners:Owner[] = [];
+  admins:Venue_Admin[] = [];
   constructor(private service:AchievementService) { }
 
   ngOnInit(): void {
-    this.owners = [];
-    this.service.getAllOwners().subscribe((result: Owner[]) => {
-      result.forEach( (item: Owner) => {
-        this.owners.push(item);
+    this.admins = [];
+    this.service.getAllAdmins().subscribe((result: Venue_Admin[]) => {
+      result.forEach( (item: Venue_Admin) => {
+        this.admins.push(item);
       });
     });
   }

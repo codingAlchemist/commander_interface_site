@@ -10,7 +10,7 @@ import { Email } from 'src/app/models/email';
   styleUrls: ['./store-owner-registration.component.scss']
 })
 export class StoreOwnerRegistrationComponent implements OnInit {
-  
+
   storeOwnerForm = this.formBuilder.group({
     username: ['',[Validators.required, Validators.minLength(3)]],
     firstname: ['',[Validators.required, Validators.minLength(3)]],
@@ -22,8 +22,13 @@ export class StoreOwnerRegistrationComponent implements OnInit {
   constructor(private service:AchievementService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-  
+
   }
+
+  get registrationFormControls() {
+    return this.storeOwnerForm.controls;
+  }
+
 
   onSubmit() {
     var owner = new Venue_Admin(0, this.storeOwnerForm.value.username!,this.storeOwnerForm.value.firstname!,this.storeOwnerForm.value.lastname!, this.storeOwnerForm.value.pass!, this.storeOwnerForm.value.email!, false, [])
@@ -31,7 +36,7 @@ export class StoreOwnerRegistrationComponent implements OnInit {
       console.log(JSON.stringify(owner));
       var email = new Email(owner.email, "Applicant",`${owner.username} has requested to join commander achievements`);
       this.service.emailUser(email).subscribe(email => {
-        
+
       })
     });
   }

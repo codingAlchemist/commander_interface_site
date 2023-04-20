@@ -1,17 +1,17 @@
-<div class="approved-container">
-    <h2>Waiting To Be Approved</h2> 
+<div class="waiting-container">
+    <h2>Waiting To Be Approved</h2>
     <div
         cdkDropList
         #waitingList="cdkDropList"
         [cdkDropListData]="waiting"
         [cdkDropListConnectedTo]="[approvedList]"
         class="example-list">
-    <div class="example-box" *ngFor="let player of waiting" cdkDrag>{{player.nickname}}</div>
+    <div class="example-box" *ngFor="let player of waiting" cdkDrag>{{player.username}}</div>
   </div>
 </div>
 
 <div class="approved-container">
-    <h2>Approved For Event</h2> 
+    <h2>Approved For Event, Waiting To Be Grouped</h2>
     <div
         cdkDropList
         #approvedList="cdkDropList"
@@ -19,6 +19,9 @@
         [cdkDropListConnectedTo]="[waitingList]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let player of approved" cdkDrag [cdkDragDisabled]="true">{{player.nickname}}</div>
+    <div class="example-box" *ngFor="let player of approved" cdkDrag [cdkDragDisabled]="true">{{player.username}}</div>
   </div>
+  <button class="mx-auto mt-3 group-button" mat-raised-button color="primary" (click)="groupPlayersIntoGames()">Group Players Into Games</button>
 </div>
+
+

@@ -17,7 +17,7 @@ import {MatAccordion} from '@angular/material/expansion';
 export class StoreComponent implements OnInit {
   @Input() venue: Venue;
   eventForm = this.formBuilder.group({
-    eventCode: ['', Validators.required],
+    eventCode: ['', [Validators.required, Validators.minLength(6)]],
   });
   @ViewChild(MatAccordion) accordion: MatAccordion;
   eventData: EventData
@@ -45,20 +45,36 @@ export class StoreComponent implements OnInit {
     }
     return result;
   }
-
+  generateEventCode(){
+    var eventCode = this.makeId(6);
+    this.eventForm.controls['eventCode'].setValue(eventCode);
+  }
+  endEvent() {
+    var eventCode = this.eventForm.get('eventCode')?.value;
+    console.log(`event code ${eventCode}`);
+    // this.achievementService.endEvent(this.eventForm.value.eventCode!).subscribe((response) => {
+    //   console.log(response.result);
+    // })
+  }
   submitEvent() {
     if (this.venue.events[0] != null){
       this.router.navigate(['/app-event-page', this.venue.events[0].eventCode]);
     }else{
-      var eventData = new EventData(
-        this.venue.venue_number,
-        this.eventForm.value.eventCode!
-      );
-      this.achievementService.createEvent(eventData).subscribe((event) => {
-        this.cookieService.set(this.appConstants.EVENT_CODE, this.eventForm.value.eventCode!)
-        this.cookieService.set(this.appConstants.EVENT_DATA, JSON.stringify(eventData));
-        this.router.navigate(['/app-event-page', event.eventCode]);
-      });
+      if (this.eventForm.get('eventCode')?.value != null){
+        var eventData = new EventData(
+          this.venue.id,
+          this.eventForm.value.eventCode!
+        );
+        console.log(`venue ${this.venue.id} eventCode ${this.eventForm.get('eventCode')?.value}`)
+        this.achievementService.createEvent(eventData).subscribe((event) => {
+          this.cookieService.set(this.appConstants.EVENT_CODE, this.eventForm.value.eventCode!)
+          this.cookieService.set(this.appConstants.EVENT_DATA, JSON.stringify(eventData));
+          this.router.navigate(['/app-event-page', event.eventCode]);
+        });
+      } else {
+        alert("Please enter a event code");
+      }
+
     }
   }
 }

@@ -1,3 +1,3 @@
 export class EventData{
-    constructor(public venue_number:string, public event_code:string){}
+    constructor(public venue: number, public eventCode: string){}
 }

@@ -22,14 +22,15 @@ export class EventsLobbyComponent implements OnInit {
     this.achievementService.getEventPlayers(this.event_id).subscribe((item: Event) => {
       console.log(`Event ${item.venue}`)
       item.players.forEach( (player: Player) => {
-        if (player.isEventApproved){
+        if (player.isEventApproved && player.isLookingForGame){
           this.approved.push(player);
         } else {
           this.waiting.push(player);
         }
       })
     })
-    console.log(`Players count ${this.waiting.length}`)
+    console.log(`Players count ${this.approved.length}`)
+
   }
 
   drop(event: CdkDragDrop<Player[]>) {
@@ -60,5 +61,9 @@ export class EventsLobbyComponent implements OnInit {
     queryString = ids.join('&')
     queryString = `?${queryString}`
     return queryString;
+  }
+
+  groupPlayersIntoGames(){
+
   }
 }

@@ -1,28 +1,43 @@
 <div class="col-xs-1" align="center">
-    <h1>Account Registration</h1>
-    <form (ngSubmit)="onSubmit()" [formGroup]="storeOwnerForm">
-        <div class="form-group">
-            <label class="form-label" for="username">User Name</label>
-                <input type="text" class="form-control" id="username" name="username" required
-                    formControlName="username">
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="fistname">First Name</label>
-            <input type="text" class="form-control" id="fistname" name="fistname" required formControlName="fistname">
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="lastname">Last Name</label>
-            <input type="text" class="form-control" id="lastname" name="lastname" required formControlName="lastname">
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="pass">Password</label>
-            <input type="text" class="form-control" id="pass" name="pass" required formControlName="pass">
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="email">Email</label>
-            <input type="text" class="form-control" id="email" name="email" required formControlName="email">
-        </div>
+  <h1>Account Registration</h1>
+  <form (ngSubmit)="onSubmit()" [formGroup]="storeOwnerForm">
+    <div class="form-group">
+      <label class="form-label" for="username">User Name</label>
+      <input type="text" class="form-control" id="username" name="username" required formControlName="username">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="firstname">First Name</label>
+      <input type="text" class="form-control" id="firstname" name="firstname" required formControlName="firstname">
+      <div class="field-invalid"
+        *ngIf="(registrationFormControls.firstname.touched && registrationFormControls.firstname.errors)">
+        Required
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="lastname">Last Name</label>
+      <input type="text" class="form-control" id="lastname" name="lastname" required formControlName="lastname">
+      <div class="field-invalid"
+        *ngIf="(registrationFormControls.lastname.touched && registrationFormControls.lastname.errors)">
+        Required
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="pass">Password</label>
+      <input type="text" class="form-control" id="pass" name="pass" required formControlName="pass">
+      <div class="field-invalid"
+        *ngIf="(registrationFormControls.pass.touched && registrationFormControls.pass.errors)">
+        Password must be at least 8 characters.
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="email">Email</label>
+      <input type="text" class="form-control" id="email" name="email" required formControlName="email">
+      <div class="field-invalid"
+        *ngIf="(registrationFormControls.email.touched && registrationFormControls.email.errors)">
+        Please enter a valid email
+      </div>
+    </div>
 
-        <button type="submit" class="btn btn-primary mb-3" [disabled]="!storeOwnerForm.valid">Submit</button>
-    </form>
+    <button type="submit" class="btn btn-primary mb-3" [disabled]="!storeOwnerForm.valid">Submit</button>
+  </form>
 </div>

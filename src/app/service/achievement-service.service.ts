@@ -13,11 +13,12 @@ import { ServiceResponse } from '.././models/service-response.model';
 import { Email } from '.././models/email';
 import { CookieService } from 'ngx-cookie-service';
 import { EventData } from '../models/event-data';
+import { LoginData } from '../models/login-data';
 enum URL{
     LOCAL = "http://localhost:3000",
     REMOTE = "http://137.184.49.209:3000"
 }
-let url = URL.LOCAL
+let url = URL.REMOTE
 
 @Injectable({
   providedIn: 'root'
@@ -52,21 +53,25 @@ export class AchievementService {
     return this.http.post<Event>(`${url}/events/create`,eventData, this.options).pipe(catchError(this.handleError));
   }
 
-  getEventPlayers(eventCode: number): Observable<Event>{
-    return this.http.get<Event>(`${url}/players/event/${eventCode}`, this.options).pipe(catchError(this.handleError));
+  getEventPlayers(event_id: number): Observable<Event>{
+    return this.http.get<Event>(`${url}/players/event/${event_id}`, this.options).pipe(catchError(this.handleError));
   }
 
   getEvent(eventCode: string):Observable<Event> {
     return this.http.get<Event>(`${url}/events/${eventCode}`, this.options).pipe(catchError(this.handleError));
   }
-
+  endEvent(eventCode: string):Observable<ServiceResponse> {
+    return this.http.put<ServiceResponse>(`${url}/events/${eventCode}/end`, this.options).pipe(catchError(this.handleError));
+  }
   approvePlayerForEvent(queryString: string): Observable<ServiceResponse>{
     return this.http.put<ServiceResponse>(`${url}/players/approve${queryString}`,this.options).pipe(catchError(this.handleError))
   }
   getAllEventsByVenue(venue: Venue): Observable<Venue> {
     return this.http.get<Venue>(`${url}events/?id=${venue.id}`, this.options).pipe(catchError(this.handleError));
   }
-
+  addPlayerToEvent(player: Player, evenCode: string): Observable<ServiceResponse> {
+    return this.http.put<ServiceResponse>(`${url}/players/${player.id}/event/add`, evenCode, this.options).pipe(catchError(this.handleError));
+  }
   //Game
   getAllGames(event_id: number): Observable<Game[]> {
     return this.http.get<Game[]>(`${url}/games/${event_id}`, this.options).pipe(catchError(this.handleError))
@@ -113,6 +118,11 @@ export class AchievementService {
   }
   emailUser(email: Email): Observable<Email> {
     return this.http.post<Email>(`${url}/email`, email, this.options).pipe(catchError(this.handleError));
+  }
+
+  //Player
+  loginPlayer(loginData: LoginData): Observable<Player> {
+    return this.http.post<Player>(`${url}/players/login`, loginData, this.options).pipe(catchError(this.handleError));
   }
 
   //Error Handling

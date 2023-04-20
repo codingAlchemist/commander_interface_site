@@ -1,39 +1,47 @@
 <div *ngIf="venue">
-    <div class="row">
-        <div class="col-2">Store Number</div>
-        <div class="col-2">Store Name</div>
-        <div class="col-2">Street</div>
-        <div class="col-2">City</div>
-        <div class="col-2">State</div>
-        <div class="col-2">Zip</div>
-    </div>
-    <div class="row">
-        <div class="col-2">{{venue.venue_number}}</div>
-        <div class="col-2">{{venue.name}}</div>
-        <div class="col-2">{{venue.street}}</div>
-        <div class="col-2">{{venue.city}}</div>
-        <div class="col-2">{{venue.state}}</div>
-        <div class="col-2">{{venue.zip}}</div>
-    </div>
+  <div class="row">
+    <div class="col-2">Store Number</div>
+    <div class="col-2">Store Name</div>
+    <div class="col-2">Street</div>
+    <div class="col-2">City</div>
+    <div class="col-2">State</div>
+    <div class="col-2">Zip</div>
+  </div>
+  <div class="row">
+    <div class="col-2">{{venue.venue_number}}</div>
+    <div class="col-2">{{venue.name}}</div>
+    <div class="col-2">{{venue.street}}</div>
+    <div class="col-2">{{venue.city}}</div>
+    <div class="col-2">{{venue.state}}</div>
+    <div class="col-2">{{venue.zip}}</div>
+  </div>
 </div>
 <!-- put expansion panel here-->
 <mat-accordion>
-    <mat-expansion-panel  [expanded]="this.venue.events[0] != null">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Event Create
-            </mat-panel-title>
-            <mat-panel-description>
-                Click here to generate or enter an event code.
-            </mat-panel-description>
-        </mat-expansion-panel-header>
-        <form (ngSubmit)="submitEvent()" [formGroup]="eventForm">
-            <mat-form-field appearance="outline">
-                <mat-label>{{this.venue.events[0] != null ? this.venue.events[0].eventCode : "Event Code Entry"}}</mat-label>
-                <input matInput type="text" matInput placeholder="Placeholder" id="eventCode" name="eventCode" required
-                    formControlName="eventCode">
-            </mat-form-field>
-            <button type="submit" class="btn btn-success">{{this.venue.events[0] != null ? "Show Event" : "Submit"}}</button>
-        </form>
-    </mat-expansion-panel>
+  <mat-expansion-panel [expanded]="this.venue.events[0] != null">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Event Create
+      </mat-panel-title>
+      <mat-panel-description>
+        Click here to generate or enter an event code.
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form (ngSubmit)="submitEvent()" [formGroup]="eventForm">
+      <mat-form-field appearance="standard" [hideRequiredMarker]="true">
+        <mat-label>{{this.venue.events[0] != null ? this.venue.events[0].eventCode : "Event Code Entry"}}</mat-label>
+        <input matInput type="text"
+        matInput placeholder="Placeholder"
+         formControlName="eventCode">
+
+      </mat-form-field>
+      <div class="row pt-2 pb-2">
+        <button type="submit" class="btn btn-success col-3" [disabled]="!eventForm.valid">{{this.venue.events[0] != null ? "Show Event" :
+          "Submit"}}</button>
+          <div class="col-5"></div>
+        <button (click)="endEvent()" *ngIf="this.venue.events[0] != null" type="button" class="btn btn-success col-3">Conclude Event</button>
+      </div>
+
+    </form>
+  </mat-expansion-panel>
 </mat-accordion>

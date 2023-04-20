@@ -8,25 +8,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { AchievementItemComponent } from './components/achievements/achievement-item/achievement-item.component';
-import { AchievmentListComponent } from './components/achievements/achievment-list/achievement-list.component'
+import { AchievementListComponent } from './components/achievements/achievement-list/achievement-list.component';
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
 import { StoreOwnerRegistrationComponent } from './components/stores/store-owner-registration/store-owner-registration.component';
 import { StoreRegistrationComponent } from './components/stores/store-registration/store-registration.component';
 import { StoreListComponent } from './components/stores/store-list/store-list.component';
 import { StoreOwnerItemComponent } from './components/stores/store-owner-item/store-owner-item.component';
 import { CookieService } from 'ngx-cookie-service';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatCardModule } from '@angular/material/card'
 import { StoreOwnerPageComponent } from './components/stores/store-owner-page/store-owner-page.component';
 import { StoreComponent } from './components/stores/store/store.component';
 import { EventPageComponent } from './components/events/event-page/event-page.component';
-import { MatTableModule } from '@angular/material/table';
 import { EventsLobbyComponent } from './components/events/event-page/events-lobby.component';
 import { EventGamesComponent } from './components/events/event-games/event-games.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -35,12 +26,22 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { GameComponent } from './components/events/game/game.component';
 import { PlayerAchievementComponent } from './components/events/player-achievement/player-achievement.component';
 import { PlayerHomeScreenComponent } from './components/player/player-home-screen/player-home-screen.component';
+import { MaterialModule } from './material/material.module';
+import { PlayerHomeScreenDialogComponent } from './components/player/player-home-screen-dialog/player-home-screen-dialog.component';
+import { PasswordValidatorDirective } from 'src/directives/passwordValidatorDirective';
+import { PasswordsMatchDirective } from 'src/directives/passwordsMatchDirective';
+import { PlayerGameScreenComponent } from './components/player/player-game-screen/player-game-screen.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { PlayerEnterEventScreenComponent } from './components/player/player-enter-event-screen/player-enter-event-screen.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     AchievementEntryComponent,
     AchievementItemComponent,
-    AchievmentListComponent,
+    AchievementListComponent,
     LoginScreenComponent,
     StoreOwnerRegistrationComponent,
     StoreRegistrationComponent,
@@ -54,7 +55,11 @@ import { PlayerHomeScreenComponent } from './components/player/player-home-scree
     GameComponent,
     PlayerAchievementComponent,
     PlayerHomeScreenComponent,
-
+    PlayerHomeScreenDialogComponent,
+    PasswordValidatorDirective,
+    PasswordsMatchDirective,
+    PlayerGameScreenComponent,
+    PlayerEnterEventScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -64,15 +69,6 @@ import { PlayerHomeScreenComponent } from './components/player/player-home-scree
     NgbModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatSlideToggleModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatTableModule,
-    MatTabsModule,
-    MatSidenavModule,
-    MatCardModule,
     DragDropModule,
     CdkAccordionModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -80,7 +76,11 @@ import { PlayerHomeScreenComponent } from './components/player/player-home-scree
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    MaterialModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

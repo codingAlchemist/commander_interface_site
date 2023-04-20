@@ -88,7 +88,6 @@ $player-theme: mat.define-dark-theme((
   color:mat.get-color-from-palette($blue-palette, 700) !important;
 }
 
-
 input{
   color: mat.get-color-from-palette($blue-palette, 700) !important;
 }
@@ -101,4 +100,7 @@ input{
  }
  ::ng-deep .mat-form-field-label{
   color:mat.get-color-from-palette($blue-palette, 700) !important;
+}
+.player-form{
+  width: 450px;
 }

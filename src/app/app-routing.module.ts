@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AchievementEntryComponent } from './components/achievements/achievement-entry/achievement-entry.component';
-import { AchievmentListComponent } from './components/achievements/achievment-list/achievement-list.component';
+import { AchievementListComponent } from './components/achievements/achievement-list/achievement-list.component';
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
 import { StoreOwnerRegistrationComponent } from './components/stores/store-owner-registration/store-owner-registration.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -11,7 +11,7 @@ import { EventPageComponent } from './components/events/event-page/event-page.co
 import { PlayerHomeScreenComponent } from './components/player/player-home-screen/player-home-screen.component';
 const routes: Routes = [
   {path:'app-achievement-entry', component: AchievementEntryComponent},
-  {path:'app-achievment-list', component: AchievmentListComponent},
+  {path:'app-achievement-list', component: AchievementListComponent},
   {path:'app-login-screen', component: LoginScreenComponent},
   {path:'app-store-owner', component: StoreOwnerRegistrationComponent},
   {path:'app-store-list', component: StoreListComponent},

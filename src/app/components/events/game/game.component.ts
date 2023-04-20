@@ -28,7 +28,7 @@ export class GameComponent implements OnInit {
   }
 
   showAchievementsForPlayer(player: Player){
-    console.log(player.nickname)
+    console.log(player.username)
     this.selectedPlayer = player;
   }
 }

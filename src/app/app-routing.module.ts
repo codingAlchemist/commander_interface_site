@@ -8,7 +8,6 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { StoreListComponent } from './components/stores/store-list/store-list.component';
 import { StoreOwnerPageComponent } from './components/stores/store-owner-page/store-owner-page.component';
 import { EventPageComponent } from './components/events/event-page/event-page.component';
-import { PlayerHomeScreenComponent } from './components/player/player-home-screen/player-home-screen.component';
 const routes: Routes = [
   {path:'app-achievement-entry', component: AchievementEntryComponent},
   {path:'app-achievement-list', component: AchievementListComponent},
@@ -17,7 +16,6 @@ const routes: Routes = [
   {path:'app-store-list', component: StoreListComponent},
   {path:'app-store-owner-page', component: StoreOwnerPageComponent},
   {path:'app-event-page/:event_code', component: EventPageComponent},
-  {path:'app-player-home-screen', component: PlayerHomeScreenComponent},
   {path:'', redirectTo: '/app-login-screen', pathMatch: 'full'}
 
 ];

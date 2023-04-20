@@ -25,16 +25,12 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { GameComponent } from './components/events/game/game.component';
 import { PlayerAchievementComponent } from './components/events/player-achievement/player-achievement.component';
-import { PlayerHomeScreenComponent } from './components/player/player-home-screen/player-home-screen.component';
 import { MaterialModule } from './material/material.module';
-import { PlayerHomeScreenDialogComponent } from './components/player/player-home-screen-dialog/player-home-screen-dialog.component';
 import { PasswordValidatorDirective } from 'src/directives/passwordValidatorDirective';
 import { PasswordsMatchDirective } from 'src/directives/passwordsMatchDirective';
-import { PlayerGameScreenComponent } from './components/player/player-game-screen/player-game-screen.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { PlayerEnterEventScreenComponent } from './components/player/player-enter-event-screen/player-enter-event-screen.component';
 
 @NgModule({
   declarations: [
@@ -54,12 +50,8 @@ import { PlayerEnterEventScreenComponent } from './components/player/player-ente
     EventGamesComponent,
     GameComponent,
     PlayerAchievementComponent,
-    PlayerHomeScreenComponent,
-    PlayerHomeScreenDialogComponent,
     PasswordValidatorDirective,
     PasswordsMatchDirective,
-    PlayerGameScreenComponent,
-    PlayerEnterEventScreenComponent
   ],
   imports: [
     BrowserModule,

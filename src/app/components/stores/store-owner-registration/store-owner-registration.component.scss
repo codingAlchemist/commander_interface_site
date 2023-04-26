@@ -4,3 +4,33 @@ button{
 field-invalid{
   color: red;
 }
+form{
+  margin-bottom: 20px;
+  padding-top: 20px;
+  width: 100%;
+  background-image: url("../../../../assets/azynoriin_by_ondrejhrdina_d5gor9v.jpg") ;
+  background-size: 100%;
+  background-origin: 0 0;
+  background-position: 0%;
+  background-repeat: no-repeat;
+  padding: 10%;
+  border: 1px solid black;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+}
+
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: red;
+}
+input::-moz-placeholder { /* Firefox 19+ */
+  color: red;
+}
+input:-ms-input-placeholder { /* IE 10+ */
+  color: red;
+}
+input:-moz-placeholder { /* Firefox 18- */
+  color: red;
+}

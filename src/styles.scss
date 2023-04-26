@@ -3,10 +3,12 @@
 @include mat.core();
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  width: 100%;
+  background: rgb(2,0,36) !important;
+  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(0,0,15,1) 55%, rgba(13,110,130,1) 100%) !important;
+}
 
 /* Importing Bootstrap SCSS file. */
-
-
 

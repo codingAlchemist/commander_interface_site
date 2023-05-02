@@ -1,33 +1,48 @@
-<div>
-    <form (ngSubmit)="onSubmit()" [formGroup]="storeRegistrationForm">
-        <div class="form-group">
-            <label class="form-label" for="name">Venue Name</label>
-            <input type="text" class="form-control" id="name" name="name" formControlName="name">
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="street">Street</label>
-            <input type="text" class="form-control" name="street" id="street" formControlName="street">
-        </div>
-        <div>
-            <label class="form-label" for="city">City</label>
-            <input type="text" class="form-control" name="city" id="city" formControlName="city">
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="state">State</label>
-            <input class="form-control" id="state" name="state" type="text" formControlName="state">
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="zip">Zip</label>
-            <input class="form-control" type="text" id="zip" name="zip" formControlName="zip">
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="logo">Logo (Optional)</label>
-            <input class="form-control" type="text" id="logo" name="logo" formControlName="logo">
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="venue_number">Venue Number(Optional)</label>
-            <input class="form-control" type="text" id="venue_number" name="venue_number" formControlName="venue_number">
-        </div>
-        <button type="submit" class="btn btn-primary mb-3">Add Store</button>
-    </form>
+<div class="mt-4">
+  <form (ngSubmit)="onSubmit()" [formGroup]="storeRegistrationForm">
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label for="name">Venue Name</mat-label>
+        <input matInput type="text" id="name" name="name" formControlName="name" placeholder="Store Name">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label for="street">Street</mat-label>
+        <input matInput type="text" name="street" id="street" formControlName="street" placeholder="Street">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label for="city">City</mat-label>
+        <input matInput type="text" name="city" id="city" formControlName="city" placeholder="City">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label for="state">State</mat-label>
+        <input matInput id="state" name="state" type="text" formControlName="state" placeholder="State">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label for="zip">Zip</mat-label>
+        <input matInput type="text" id="zip" name="zip" formControlName="zip" placeholder="Zip">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label for="logo">Logo (Optional)</mat-label>
+        <input matInput type="text" id="logo" name="logo" formControlName="logo" placeholder="Logo">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label for="venue_number">Venue Number(Optional)</mat-label>
+        <input matInput type="text" id="venue_number" name="venue_number" formControlName="venue_number"
+          placeholder="Venue Number">
+      </mat-form-field>
+    </div>
+    <button mat-raised-button type="submit" class="mb-3">Add Store</button>
+  </form>
 </div>

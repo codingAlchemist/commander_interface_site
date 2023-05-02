@@ -1,3 +1,126 @@
+@use '@angular/material' as mat;
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-mcgpalette0: (
+    50 : #e3f0fc,
+    100 : #b9daf7,
+    200 : #8bc1f1,
+    300 : #5ca8eb,
+    400 : #3995e7,
+    500 : #1682e3,
+    600 : #137ae0,
+    700 : #106fdc,
+    800 : #0c65d8,
+    900 : #0652d0,
+    A100 : #f9fbff,
+    A200 : #c6d9ff,
+    A400 : #93b6ff,
+    A700 : #7aa5ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
+$my-palette: mat.define-palette($md-mcgpalette0);
+
 button{
     margin-top: 10px;
+}
+
+
+
+
+// mat-icon-stepper selected color change
+::ng-deep .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+  background-color: red!important;
+}
+
+//input outline color
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: red!important;
+  // opacity: 1!important;
+}
+
+//mat-input focused color
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: red!important;
+}
+
+// mat-input error outline color
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick{
+  color: red!important;
+  opacity: 0.8!important;
+}
+
+// mat-input carent color
+::ng-deep .mat-input-element {
+  caret-color: red!important;
+}
+
+// mat-input error carent color
+::ng-deep .mat-form-field-invalid .mat-input-element, .mat-warn .mat-input-element {
+  caret-color: red!important;
+}
+
+// mat-label normal state style
+::ng-deep .mat-form-field-label {
+  color: rgba(0,0,0,.6)!important;
+  // color: $mainColor!important;
+}
+
+// mat-label focused style
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: red!important;
+}
+
+// mat-label error style
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: red!important;
+}
+
+::ng-deep .mat-input-element::placeholder{
+  color: red;
+}
+input {
+  display: block;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  color: #333333;
+  --placeHolder-color: #959595;
+}
+
+input::placeholder {
+  color: var(--placeHolder-color);
+}
+
+input::-webkit-input-placeholder { /* Edge */
+  color: var(--placeHolder-color);
+}
+
+input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: var(--placeHolder-color);
+}
+
+input:-moz-placeholder {
+  color: var(--placeHolder-color);
+}
+
+input::-moz-placeholder {
+  color: var(--placeHolder-color);
 }

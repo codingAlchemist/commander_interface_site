@@ -14,35 +14,3 @@ body{
   background-color: black !important;
 }
 
-::ng-deep .mat-form-field{
-  .mat-input-element{
-    color: black;
-  }
-  .mat-form-field-label {
-    color: white;
-  }
-  .mat-form-field-ripple {
-    background-color: slategray;
-  }
-  .mat-form-field-required-marker {
-    color: red;
-  }
-}
-::ng-deep .mat-form-field.mat-focused {
-  .mat-form-field-label {
-      color: red;
-  }
-  .mat-form-field-ripple {
-      background-color: red;
-  }
-  .mat-form-field-required-marker {
-      color: slategray;
-  }
-  .mat-input-element {
-      color: white;
-  }
-}
-
-.spacer {
-  flex: 1 1 auto;
-}

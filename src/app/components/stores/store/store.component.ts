@@ -1,39 +1,45 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { Venue } from 'src/app/models/venue';
-import { EventData } from 'src/app/models/event-data';
-import { FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
+import { MatAccordion } from '@angular/material/expansion';
+import { Params, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { AchievementService } from 'src/app/service/achievement-service.service';
 import { AppConstants } from 'src/app/app.constants';
-import { Router, Params } from '@angular/router';
-import {MatAccordion} from '@angular/material/expansion';
-
+import { EventData } from 'src/app/models/event-data';
+import { Venue } from 'src/app/models/venue';
+import { AchievementService } from 'src/app/service/achievement-service.service';
+import { StoreEventDialogComponent } from '../store-event-dialog/store-event-dialog.component';
 @Component({
   selector: 'app-store',
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.scss'],
 })
-
 export class StoreComponent implements OnInit {
   @Input() venue: Venue;
   eventForm = this.formBuilder.group({
     eventCode: ['', [Validators.required, Validators.minLength(6)]],
   });
   @ViewChild(MatAccordion) accordion: MatAccordion;
-  eventData: EventData
+  eventData: EventData;
+
   constructor(
     private formBuilder: FormBuilder,
-    private achievementService: AchievementService,
-    private cookieService: CookieService,
+    private dialog: MatDialog,
+    private router: Router,
     private appConstants: AppConstants,
-    private router: Router
+    private service: AchievementService,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
-
+    console.log(`id ${this.venue.id}`);
   }
 
-  makeId(length:number) {
+  makeId(length: number) {
     let result = '';
     const characters =
       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -45,7 +51,7 @@ export class StoreComponent implements OnInit {
     }
     return result;
   }
-  generateEventCode(){
+  generateEventCode() {
     var eventCode = this.makeId(6);
     this.eventForm.controls['eventCode'].setValue(eventCode);
   }
@@ -56,25 +62,39 @@ export class StoreComponent implements OnInit {
     //   console.log(response.result);
     // })
   }
-  submitEvent() {
-    if (this.venue.events[0] != null){
-      this.router.navigate(['/app-event-page', this.venue.events[0].eventCode]);
-    }else{
-      if (this.eventForm.get('eventCode')?.value != null){
-        var eventData = new EventData(
-          this.venue.id,
-          this.eventForm.value.eventCode!
-        );
-        console.log(`venue ${this.venue.id} eventCode ${this.eventForm.get('eventCode')?.value}`)
-        this.achievementService.createEvent(eventData).subscribe((event) => {
-          this.cookieService.set(this.appConstants.EVENT_CODE, this.eventForm.value.eventCode!)
-          this.cookieService.set(this.appConstants.EVENT_DATA, JSON.stringify(eventData));
-          this.router.navigate(['/app-event-page', event.eventCode]);
-        });
-      } else {
-        alert("Please enter a event code");
-      }
+  goToEventPage() {
+    this.router.navigate(['/app-event-page', this.venue.events[0].eventCode]);
+  }
 
+  eventButtonTapped(): void {
+    if (this.venue.events[0] != null) {
+      this.router.navigate(['/app-event-page', this.venue.events[0].eventCode]);
+    } else {
+      console.log();
+      const dialogRef = this.dialog.open(StoreEventDialogComponent, {
+        data: { venue: this.venue },
+        height: '300px',
+        width: '400px',
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result != 'no code') {
+          console.log(result);
+          var eventData = new EventData(this.venue.id, result);
+          this.service.createEvent(eventData).subscribe((event) => {
+            this.cookieService.set(
+              this.appConstants.EVENT_CODE,
+              this.eventForm.value.eventCode!
+            );
+            this.cookieService.set(
+              this.appConstants.EVENT_DATA,
+              JSON.stringify(eventData)
+            );
+          });
+          console.log(`result ${result}`);
+
+          this.router.navigate(['/app-event-page', result]);
+        }
+      });
     }
   }
 }

@@ -28,12 +28,8 @@ import { PlayerAchievementComponent } from './components/events/player-achieveme
 import { MaterialModule } from './material/material.module';
 import { PasswordValidatorDirective } from 'src/directives/passwordValidatorDirective';
 import { PasswordsMatchDirective } from 'src/directives/passwordsMatchDirective';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
+import { StoreEventDialogComponent } from './components/stores/store-event-dialog/store-event-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +50,7 @@ import { MatIconModule } from '@angular/material/icon';
     PlayerAchievementComponent,
     PasswordValidatorDirective,
     PasswordsMatchDirective,
+    StoreEventDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,12 +69,6 @@ import { MatIconModule } from '@angular/material/icon';
       registrationStrategy: 'registerWhenStable:30000',
     }),
     MaterialModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatIconModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

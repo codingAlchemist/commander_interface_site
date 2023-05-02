@@ -1,81 +1,64 @@
 <div *ngIf="admin">
-  <button (click)="revealEditAccountDetails()"
-    [ngClass]="editAccountDetailsShown == true ? 'btn btn-primary edit-account-details-shown' : 'btn btn-primary mt-3 mb-3 edit-account-details-hidden'">Edit
-    Account Details</button>
-  <form (ngSubmit)="onUpdateDetails()" [formGroup]="ownerDetailsForm" class="mb-3">
-    <div [ngClass]="editAccountDetailsShown == true ? 'edit-account-details-shown' : 'edit-account-details-hidden'">
-      <div class="row">
-        <div class="col-6">User Name</div>
-        <div class="col-6">{{admin.username}}</div>
-      </div>
-    </div>
-    <div
-      [ngClass]="editAccountDetailsShown == true ? 'form-group edit-account-details-hidden' : 'form-group edit-account-details-shown'">
-      <mat-form-field>
-        <mat-label for="username">User Name</mat-label>
-        <input matInput type="text" name="username" placeholder="{{admin.username}}" formControlName="username">
-      </mat-form-field>
+  <mat-grid-list cols="4">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card>
+        <mat-card-header>
+          <div mat-card-avatar><mat-icon>person</mat-icon></div>
+          <mat-card-title>
+            Account Information
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div>{{admin.username}}</div>
+          <div> {{admin.email}}</div>
+          <div>{{admin.firstname}} {{admin.lastname}}</div>
 
-    </div>
-    <!-- <div [ngClass]="editAccountDetailsShown == true ? 'form-group edit-account-details-hidden' : 'form-group edit-account-details-shown'">
-            <label class="form-label" for="oldpassword">Password</label>
-            <input type="text" name="oldpassword" class="form-control" formControlName="password" placeholder="Type orriginal password">
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button (click)="revealEditAccountDetails()">{{editAccountDetailsShown == true ? 'Cancel' :
+            'Edit'}}</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="1">
+      <mat-card
+        [ngClass]="editAccountDetailsShown == true ? 'form-group edit-account-details-hidden' : 'form-group edit-account-details-shown'">
+        <mat-card-header></mat-card-header>
+        <mat-card-content>
+          <form (ngSubmit)="onUpdateDetails()" [formGroup]="ownerDetailsForm" class="mb-3">
+            <div>
+              <mat-form-field>
+                <mat-label for="username">User Name</mat-label>
+                <input matInput type="text" name="username" placeholder="{{admin.username}}" formControlName="username">
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="legacy" class="me-1">
+                <mat-label for="firstname">First Name</mat-label>
+                <input matInput type="text" name="firstname" placeholder="{{admin.firstname}}"
+                  formControlName="firstname">
+              </mat-form-field>
+              <mat-form-field appearance="legacy">
+                <mat-label for="firstname">Last Name</mat-label>
+                <input matInput type="text" name="lastname" placeholder="{{admin.lastname}}" formControlName="lastname">
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="legacy">
+                <mat-label class="form-label" for="email">Email</mat-label>
+                <input matInput type="text" name="email" placeholder="{{admin.email}}" formControlName="email">
+              </mat-form-field>
+            </div>
+            <button mat-raised-button type="submit">Submit</button>
+          </form>
+        </mat-card-content>
 
-            <label class="form-label" for="newpassword1">Password</label>
-            <input type="text" name="newpassword1" class="form-control" formControlName="password" placeholder="Type new password again">
+      </mat-card>
 
-            <label class="form-label" for="newpassword2">Password</label>
-            <input type="text" name="newpassword2" class="form-control" formControlName="password" placeholder="Type new password again">
-        </div> -->
+    </mat-grid-tile>
+  </mat-grid-list>
 
-    <div [ngClass]="editAccountDetailsShown == true ? 'edit-account-details-shown' : 'edit-account-details-hidden'">
-      <div class="row">
-        <div class="col-6">Email</div>
-        <div class="col-6"> {{admin.email}}</div>
-      </div>
-    </div>
-    <div
-      [ngClass]="editAccountDetailsShown == true ? 'form-group edit-account-details-hidden' : 'form-group edit-account-details-shown'">
-      <mat-form-field appearance="legacy">
 
-      </mat-form-field>
-      <label class="form-label" for="email">Email</label>
-      <input type="text" name="email" class="form-control" placeholder="{{admin.email}}" formControlName="email">
-    </div>
-
-    <div [ngClass]="editAccountDetailsShown == true ? 'edit-account-details-shown' : 'edit-account-details-hidden'">
-      <div class="row">
-        <div class="col-6">First Name</div>
-        <div class="col-6">{{admin.firstname}}</div>
-      </div>
-    </div>
-    <div
-      [ngClass]="editAccountDetailsShown == true ? 'form-group edit-account-details-hidden' : 'form-group edit-account-details-shown'">
-      <label for="firstname" class="form-label">First Name</label>
-      <input type="text" name="firstname" class="form-control" placeholder="{{admin.firstname}}"
-        formControlName="firstname">
-    </div>
-    <div [ngClass]="editAccountDetailsShown == true ? 'edit-account-details-shown' : 'edit-account-details-hidden'">
-      <div class="row">
-        <div class="col-6">Last Name</div>
-        <div class="col-6">{{admin.lastname}}</div>
-      </div>
-    </div>
-    <div
-      [ngClass]="editAccountDetailsShown == true ? 'form-group edit-account-details-hidden' : 'form-group edit-account-details-shown'">
-      <label for="lastname" class="form-label">Last Name</label>
-      <input type="text" name="lastname" class="form-control" placeholder="{{admin.lastname}}"
-        formControlName="lastname">
-    </div>
-    <div [ngClass]="editAccountDetailsShown == true ? 'edit-account-details-hidden' : 'edit-account-details-shown'">
-      <div class="row mt-5 mb-5">
-        <button type="submit" class="col-4 btn btn-success">Submit</button>
-        <div class="col-4"></div>
-        <button class="col-4 btn btn-primary" (click)="revealEditAccountDetails()">Done</button>
-      </div>
-    </div>
-
-  </form>
 
 
   <div *ngFor="let venue of admin.venues">

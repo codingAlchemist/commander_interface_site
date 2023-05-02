@@ -1,14 +1,91 @@
 @use "@angular/material" as mat;
-
 @include mat.core();
 /* You can add global styles to this file, and also import other style files */
 
+
+$indigo: (
+  50: #E8EAF6,
+  100: #C5CAE9,
+  200: #9FA8DA,
+  300: #7986CB,
+  400: #5C6BC0,
+  500: #3F51B5,
+  600: #3949AB,
+  700: #303F9F,
+  800: #283593,
+  900: #1A237E,
+  A100: #8C9EFF,
+  A200: #536DFE,
+  A400: #3D5AFE,
+  A700: #304FFE,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  )
+);
+
+$teal: (
+  50: #e0f8f7,
+  100: #b3ecec,
+  200: #83e0e1,
+  300: #53d2d6,
+  400: #30c9ce,
+  500: #12bfc9,
+  600: #12afb7,
+  700: #13999e,
+  800: #138587,
+  900:#11625e,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  )
+);
+
+$achievement-primary: mat.define-palette($indigo, 50, 300, 900);
+$achievement-accent: mat.define-palette($teal);
+$achievement-warn: mat.define-palette(mat.$red-palette);
+
+$achievement-theme: mat.define-light-theme((
+  color: (
+    primary: $achievement-primary,
+    accent: $achievement-accent,
+    warn: $achievement-warn
+  )
+));
+@include mat.all-component-themes($achievement-theme);
+
 html, body {
-  height: 100%;
+  height: 3000px;
   width: 100%;
   background: rgb(2,0,36) !important;
-  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(0,0,15,1) 55%, rgba(13,110,130,1) 100%) !important;
+  background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,0,15,1) 55%, rgba(13,110,130,1) 100%) no-repeat !important;
 }
 
-/* Importing Bootstrap SCSS file. */
-
+.container {
+  height: 100%;
+  width: 100%;
+}

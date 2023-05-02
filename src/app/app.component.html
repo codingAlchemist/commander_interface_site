@@ -1,6 +1,7 @@
 <div class="container">
   <mat-toolbar class="mt=3">
-    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+    <button mat-button [matMenuTriggerFor]="menu" *ngIf="!ownerId"><mat-icon>menu</mat-icon></button>
+    <span class="me-2" *ngIf="ownerId"><mat-icon>person</mat-icon></span>
     <span>Event Achievements</span>
     <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="loginSelected()">Login</button>

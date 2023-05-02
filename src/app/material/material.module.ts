@@ -7,10 +7,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatCardModule } from '@angular/material/card'
+import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [],
   imports: [
@@ -24,7 +29,14 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTabsModule,
     MatSidenavModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatGridListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule,
   ],
   exports: [
     MatSlideToggleModule,
@@ -36,7 +48,14 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTabsModule,
     MatSidenavModule,
     MatCardModule,
-    MatDialogModule
-  ]
+    MatDialogModule,
+    MatGridListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule,
+  ],
 })
-export class MaterialModule { }
+export class MaterialModule {}

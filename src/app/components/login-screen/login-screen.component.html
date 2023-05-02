@@ -14,14 +14,14 @@
           </mat-form-field>
         </div>
         <div>
-          <mat-form-field class="mb-3">
-            <mat-label class="form-label" for="password">Password</mat-label>
+          <mat-form-field appearance="legacy" class="mb-3">
+            <mat-label for="password">Password</mat-label>
             <input matInput type="password" id="password" name="password" required formControlName="password"
               placeholder="Password">
           </mat-form-field>
         </div>
 
-        <button mat-button class="mb-3" type="submit" [disabled]="!loginForm.valid">Login</button>
+        <button mat-raised-button class="mb-3" type="submit" color="accent" [disabled]="!loginForm.valid">Login</button>
 
       </div>
 

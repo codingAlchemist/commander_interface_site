@@ -8,21 +8,27 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { StoreListComponent } from './components/stores/store-list/store-list.component';
 import { StoreOwnerPageComponent } from './components/stores/store-owner-page/store-owner-page.component';
 import { EventPageComponent } from './components/events/event-page/event-page.component';
+import { EventGamesComponent } from './components/events/event-games/event-games.component';
 const routes: Routes = [
-  {path:'app-achievement-entry', component: AchievementEntryComponent},
-  {path:'app-achievement-list', component: AchievementListComponent},
-  {path:'app-login-screen', component: LoginScreenComponent},
-  {path:'app-store-owner', component: StoreOwnerRegistrationComponent},
-  {path:'app-store-list', component: StoreListComponent},
-  {path:'app-store-owner-page', component: StoreOwnerPageComponent},
-  {path:'app-event-page/:event_code', component: EventPageComponent},
-  {path:'', redirectTo: '/app-login-screen', pathMatch: 'full'}
-
+  { path: 'app-achievement-entry', component: AchievementEntryComponent },
+  { path: 'app-achievement-list', component: AchievementListComponent },
+  { path: 'app-login-screen', component: LoginScreenComponent },
+  { path: 'app-store-owner', component: StoreOwnerRegistrationComponent },
+  { path: 'app-store-list', component: StoreListComponent },
+  { path: 'app-store-owner-page', component: StoreOwnerPageComponent },
+  { path: 'app-event-page/:event_code', component: EventPageComponent },
+  { path: 'app-event-games/:event_code', component: EventGamesComponent },
+  { path: '', redirectTo: '/app-login-screen', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload', useHash: true})],
+  imports: [
+    RouterModule.forRoot(routes, {
+      onSameUrlNavigation: 'reload',
+      useHash: true,
+    }),
+  ],
   exports: [RouterModule],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}]
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

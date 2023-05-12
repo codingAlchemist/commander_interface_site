@@ -1,7 +1,7 @@
 @use "@angular/material" as mat;
 @include mat.core();
 /* You can add global styles to this file, and also import other style files */
-
+@import '@angular/material/theming';
 
 $indigo: (
   50: #E8EAF6,
@@ -36,7 +36,7 @@ $indigo: (
   )
 );
 
-$teal: (
+$ice-blue: (
   50: #e0f8f7,
   100: #b3ecec,
   200: #83e0e1,
@@ -65,9 +65,43 @@ $teal: (
   )
 );
 
-$achievement-primary: mat.define-palette($indigo, 50, 300, 900);
-$achievement-accent: mat.define-palette($teal);
+$light-sky: (
+    50 : #e3f0fc,
+    100 : #b9daf7,
+    200 : #8bc1f1,
+    300 : #5ca8eb,
+    400 : #3995e7,
+    500 : #1682e3,
+    600 : #137ae0,
+    700 : #106fdc,
+    800 : #0c65d8,
+    900 : #0652d0,
+    A100 : #f9fbff,
+    A200 : #c6d9ff,
+    A400 : #93b6ff,
+    A700 : #7aa5ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$achievement-primary: mat.define-palette($ice-blue, 50, 300, 900);
+$achievement-accent: mat.define-palette($indigo);
 $achievement-warn: mat.define-palette(mat.$red-palette);
+$achievement-alt: mat.define-palette($light-sky);
 
 $achievement-theme: mat.define-light-theme((
   color: (
@@ -78,13 +112,25 @@ $achievement-theme: mat.define-light-theme((
 ));
 @include mat.all-component-themes($achievement-theme);
 
-html, body {
-  height: 3000px;
+body {
+  height: 100%;
   width: 100%;
+  margin: 0;
+  padding: 0;
   background: rgb(2,0,36) !important;
   background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,0,15,1) 55%, rgba(13,110,130,1) 100%) no-repeat !important;
+  background-size: cover;
+  background-position: center;
 }
+@mixin input-theme($theme) {
+  $_background: map-get($map: $theme, $key: background);
+  $app_background_color: mat-color($_background, background);
 
+  .mat-label{
+    color: $app_background_color;
+  }
+}
+//@include input-theme($achievement-theme);
 .container {
   height: 100%;
   width: 100%;

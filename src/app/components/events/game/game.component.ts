@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Achievement } from 'src/app/models/achievement';
+import { Game } from 'src/app/models/game';
 import { Player } from 'src/app/models/player';
+import { PlayerAchievement } from 'src/app/models/player_achievement';
 import { AchievementService } from 'src/app/service/achievement-service.service';
 
 @Component({
@@ -9,26 +11,29 @@ import { AchievementService } from 'src/app/service/achievement-service.service'
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
-
-  @Input() gameCode: string;
-
+  @Input() game: Game;
   players: Player[] = [];
-  playerAchievements: Achievement[]
-  selectedPlayer: Player
+  playerAchievements: PlayerAchievement[];
+  displayedColumns: string[] = [
+    'level',
+    'name',
+    'points',
+    'achievementsButton',
+  ];
+  selectedPlayer: Player;
+
   constructor(private achievementService: AchievementService) {}
 
-  ngOnInit(): void {
-    this.achievementService.getAllPlayersForGame(this.gameCode).subscribe((results) => {
-      results.forEach( (player: Player) => {
-        this.players.push(player);
-      });
-      this.selectedPlayer = this.players[0];
+  ngOnInit(): void {}
 
-    });
-  }
-
-  showAchievementsForPlayer(player: Player){
-    console.log(player.username)
+  showAchievementsForPlayer(player: Player) {
+    console.log(player.username);
     this.selectedPlayer = player;
+    this.achievementService
+      .getAllAchievementsForPlayer(player)
+      .subscribe((achievements) => {
+        this.playerAchievements = achievements;
+        console.log(JSON.stringify(this.playerAchievements));
+      });
   }
 }

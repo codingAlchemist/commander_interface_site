@@ -1,3 +1,3 @@
 export class Error {
-  constructor(public message: string, public code: int) {}
+  constructor(public message: string, public code: number) {}
 }

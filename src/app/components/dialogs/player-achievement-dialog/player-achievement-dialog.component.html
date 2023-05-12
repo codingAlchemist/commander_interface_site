@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>
+  <mat-toolbar>
+    <span>Create Event</span>
+    <span class="spacer"></span>
+    <button mat-icon-button type="button" (click)="closeDialog()" aria-label="button with x for close">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar>
+
+</h1>
+<div mat-dialog-content>
+  <app-player-achievement [player]="player"></app-player-achievement>
+</div>

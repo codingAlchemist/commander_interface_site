@@ -1,7 +1,12 @@
-<div class="mt-4">
-  <form (ngSubmit)="onSubmit()" [formGroup]="storeRegistrationForm">
+<form (ngSubmit)="onSubmit()" [formGroup]="storeRegistrationForm" class="mt-5">
+  <div class="mx-auto store-registration-form">
+    <div class="form-label-container">
+      <div class="form-label">
+        Store Registration
+      </div>
+    </div>
     <div>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" color="primary">
         <mat-label for="name">Venue Name</mat-label>
         <input matInput type="text" id="name" name="name" formControlName="name" placeholder="Store Name">
       </mat-form-field>
@@ -44,5 +49,6 @@
       </mat-form-field>
     </div>
     <button mat-raised-button type="submit" class="mb-3">Add Store</button>
-  </form>
-</div>
+  </div>
+
+</form>

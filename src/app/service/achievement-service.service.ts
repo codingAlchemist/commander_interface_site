@@ -115,9 +115,9 @@ export class AchievementService {
       .get<Game[]>(`${url}/games/${event_id}`, this.options)
       .pipe(catchError(this.handleError));
   }
-  getAllPlayersForGame(gameCode: string): Observable<Player[]> {
+  getAllGamesAndPlayers(evenCode: string): Observable<Game[]> {
     return this.http
-      .get<Player[]>(`${url}/games/${gameCode}`, this.options)
+      .get<Game[]>(`${url}/games/${evenCode}/players`, this.options)
       .pipe(catchError(this.handleError));
   }
   getAllAchievementsForPlayer(player: Player): Observable<PlayerAchievement[]> {
@@ -140,7 +140,15 @@ export class AchievementService {
       .get<Game>(`${url}/games/${gameCode}/game`, this.options)
       .pipe(catchError(this.handleError));
   }
-
+  groupPlayersIntoGames(event_id: number): Observable<ServiceResponse> {
+    return this.http
+      .post<ServiceResponse>(
+        `${url}/games/players/group`,
+        { event_id: event_id },
+        this.options
+      )
+      .pipe(catchError(this.handleError));
+  }
   //Venue
   login(owner: Venue_Admin): Observable<Venue_Admin> {
     return this.http

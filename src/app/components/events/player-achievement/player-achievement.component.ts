@@ -5,18 +5,19 @@ import { PlayerAchievement } from 'src/app/models/player_achievement';
 @Component({
   selector: 'app-player-achievement',
   templateUrl: './player-achievement.component.html',
-  styleUrls: ['./player-achievement.component.scss']
+  styleUrls: ['./player-achievement.component.scss'],
 })
-export class PlayerAchievementComponent implements OnInit{
-  @Input() player: Player
+export class PlayerAchievementComponent implements OnInit {
+  @Input() player: Player;
   achievements: PlayerAchievement[] = [];
-  constructor(private achievementsService: AchievementService){
-
-  }
+  constructor(private achievementsService: AchievementService) {}
 
   ngOnInit(): void {
-      this.achievementsService.getAllAchievementsForPlayer(this.player).subscribe((results) => {
+    this.achievementsService
+      .getAllAchievementsForPlayer(this.player)
+      .subscribe((results) => {
         this.achievements = results;
-      })
+        //console.log(JSON.stringify(this.achievements));
+      });
   }
 }

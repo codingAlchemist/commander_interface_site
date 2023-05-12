@@ -1,5 +1,5 @@
 <div *ngIf="admin">
-  <mat-grid-list cols="4">
+  <mat-grid-list cols="3">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
       <mat-card>
         <mat-card-header>
@@ -17,10 +17,12 @@
         <mat-card-actions>
           <button mat-raised-button (click)="revealEditAccountDetails()">{{editAccountDetailsShown == true ? 'Cancel' :
             'Edit'}}</button>
+          <button mat-raised-button (click)="revealAddStorePage()">{{storeRegistrationShown ? 'Hide Form' : 'Add
+            Store'}}</button>
         </mat-card-actions>
       </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="1">
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
       <mat-card
         [ngClass]="editAccountDetailsShown == true ? 'form-group edit-account-details-hidden' : 'form-group edit-account-details-shown'">
         <mat-card-header></mat-card-header>
@@ -54,19 +56,17 @@
         </mat-card-content>
 
       </mat-card>
-
     </mat-grid-tile>
   </mat-grid-list>
-
-
-
-
-  <div *ngFor="let venue of admin.venues">
-    <app-store [venue]="venue"></app-store>
-  </div>
+  <mat-grid-list cols="2" rowHeight="2:1"
+    [ngClass]="storeRegistrationShown == true ? 'store-registration-hidden' : 'store-registration-shown'">
+    <div *ngFor="let venue of admin.venues">
+      <mat-grid-tile>
+        <app-store [venue]="venue"></app-store>
+      </mat-grid-tile>
+    </div>
+  </mat-grid-list>
   <div class="row spacing-top mb-5">
-    <button class="btn btn-primary" (click)="revealAddStorePage()">{{storeRegistrationShown ? 'Hide Form' : 'Add
-      Store'}}</button>
     <app-store-registration [admin]="admin"
       [ngClass]="storeRegistrationShown == true ? 'store-registration-shown' : 'store-registration-hidden'"></app-store-registration>
   </div>

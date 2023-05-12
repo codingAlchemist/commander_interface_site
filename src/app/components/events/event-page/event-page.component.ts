@@ -5,18 +5,23 @@ import { Event } from 'src/app/models/event';
 @Component({
   selector: 'app-event-page',
   templateUrl: './event-page.component.html',
-  styleUrls: ['./event-page.component.scss']
+  styleUrls: ['./event-page.component.scss'],
 })
 export class EventPageComponent implements OnInit {
-
-  constructor(private route: ActivatedRoute, private service: AchievementService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private service: AchievementService
+  ) {}
   eventCode: string;
-  event?:Event
+  event?: Event;
   ngOnInit(): void {
-    this.route.params.subscribe( (params: Params) => this.eventCode = params["event_code"]);
+    this.route.params.subscribe(
+      (params: Params) => (this.eventCode = params['event_code'])
+    );
+    console.log(this.event?.id + 'Event id');
     this.service.getEvent(this.eventCode).subscribe((event) => {
-      this.event = event
-    })
+      this.event = event;
+      console.log(this.event?.id + 'Event id');
+    });
   }
-
 }

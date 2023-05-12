@@ -5,6 +5,7 @@ import {
   MatDialog,
   MatDialogRef,
 } from '@angular/material/dialog';
+import { Event } from 'src/app/models/event';
 import { MatAccordion } from '@angular/material/expansion';
 import { Params, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -12,7 +13,7 @@ import { AppConstants } from 'src/app/app.constants';
 import { EventData } from 'src/app/models/event-data';
 import { Venue } from 'src/app/models/venue';
 import { AchievementService } from 'src/app/service/achievement-service.service';
-import { StoreEventDialogComponent } from '../store-event-dialog/store-event-dialog.component';
+import { StoreEventDialogComponent } from '../../dialogs/store-event-dialog/store-event-dialog.component';
 @Component({
   selector: 'app-store',
   templateUrl: './store.component.html',
@@ -80,7 +81,7 @@ export class StoreComponent implements OnInit {
         if (result != 'no code') {
           console.log(result);
           var eventData = new EventData(this.venue.id, result);
-          this.service.createEvent(eventData).subscribe((event) => {
+          this.service.createEvent(eventData).subscribe((event: Event) => {
             this.cookieService.set(
               this.appConstants.EVENT_CODE,
               this.eventForm.value.eventCode!
@@ -89,10 +90,10 @@ export class StoreComponent implements OnInit {
               this.appConstants.EVENT_DATA,
               JSON.stringify(eventData)
             );
+            this.cookieService.set(this.appConstants.EVENT_ID, `${event.id}`);
+            this.router.navigate(['/app-event-page', event.id]);
           });
           console.log(`result ${result}`);
-
-          this.router.navigate(['/app-event-page', result]);
         }
       });
     }

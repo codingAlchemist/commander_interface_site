@@ -1,15 +1,15 @@
 <div class="lobby">
   <div class="lobby-container">
-    <h2>Waiting To Be Approved</h2>
+    <h2 class="text-center">Waiting To Be Approved</h2>
     <div cdkDropList #waitingList="cdkDropList" [cdkDropListData]="waiting" [cdkDropListConnectedTo]="[approvedList]"
       class="example-list">
-      <div *ngIf="waiting.length == 0">no players waiting currently</div>
+      <div *ngIf="waiting.length == 0" class="text-center">no players waiting currently</div>
       <div [ngClass]="'player-item-not-approved'" *ngFor="let player of waiting" cdkDrag>{{player.username}}</div>
     </div>
   </div>
 
   <div class="lobby-container">
-    <h2>Approved For Event, Waiting To Be Grouped</h2>
+    <h2 class="text-center">Approved For Event, Waiting To Be Grouped</h2>
     <div cdkDropList #approvedList="cdkDropList" [cdkDropListData]="approved" [cdkDropListConnectedTo]="[waitingList]"
       class="example-list" (cdkDropListDropped)="drop($event)">
       <div [ngClass]="player.isLookingForGame ? 'player-item-approved' : 'player-item-in-game'"

@@ -25,6 +25,7 @@ export class StoreComponent implements OnInit {
     eventCode: ['', [Validators.required, Validators.minLength(6)]],
   });
   @ViewChild(MatAccordion) accordion: MatAccordion;
+  event: Event;
   eventData: EventData;
 
   constructor(
@@ -38,6 +39,12 @@ export class StoreComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(`id ${this.venue.id}`);
+    this.service.getAllEventsByVenue(this.venue).subscribe((venue) => {
+      let ongoing = venue.events.filter((event) => {
+        event.completed == false;
+      });
+      this.event = ongoing[ongoing.length - 1];
+    });
   }
 
   makeId(length: number) {
@@ -57,16 +64,15 @@ export class StoreComponent implements OnInit {
     this.eventForm.controls['eventCode'].setValue(eventCode);
   }
   endEvent() {
-    var eventCode = this.eventForm.get('eventCode')?.value;
+    var eventCode = this.event.eventCode;
     console.log(`event code ${eventCode}`);
-    this.service
-      .endEvent(this.eventForm.value.eventCode!)
-      .subscribe((response) => {
-        console.log(response.result);
-      });
+    this.service.endEvent(eventCode).subscribe((response) => {
+      console.log(response.result);
+    });
   }
   goToEventPage() {
-    this.router.navigate(['/app-event-page', this.venue.events[0].eventCode]);
+    console.log(`event id ${this.event.id} eventCode ${this.event.eventCode}`);
+    //this.router.navigate(['/app-event-page', this.event.eventCode]);
   }
 
   eventButtonTapped(): void {

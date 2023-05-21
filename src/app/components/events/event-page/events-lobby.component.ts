@@ -32,10 +32,13 @@ export class EventsLobbyComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(`event id: ${this.event_id}`);
+    console.log(`event id lobby: ${this.event_id}`);
     this.messagingService.currentMessage.subscribe((result) => {
-      console.log('received message');
-      this.router.navigate(['./app-events-lobby']);
+      if (result != null) {
+        console.log(`received message ${result}`);
+        this.router.navigate([`./app-events-lobby/${this.event_id}`]);
+      }
+      //
     });
     this.achievementService
       .getEventPlayers(this.event_id)

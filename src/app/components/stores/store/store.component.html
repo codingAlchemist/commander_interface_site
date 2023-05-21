@@ -34,16 +34,18 @@
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <mat-grid-list class="pt-2 pb-2" [rowHeight]="30" [cols]="4">
-          <mat-grid-tile [colspan]="2">
-            <button mat-raised-button (click)="eventButtonTapped()">{{this.venue.events[0]!=null ? "Go To
-              Event" : "Create Event"}}</button>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2">
-            <button mat-raised-button (click)="endEvent()" *ngIf="this.venue.events[0] != null" type="button">Conclude
-              Event</button>
-          </mat-grid-tile>
-        </mat-grid-list>
+        <div *ngFor="let event of this.venue.events">
+          <mat-grid-list class="pt-2 pb-2" [rowHeight]="30" [cols]="4">
+            <mat-grid-tile [colspan]="2">
+              <button mat-raised-button (click)="eventButtonTapped()">{{this.venue.events[0]!=null ? "Go To
+                Event" : "Create Event"}}</button>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2">
+              <button mat-raised-button (click)="endEvent()" *ngIf="this.venue.events[0] != null" type="button">Conclude
+                Event</button>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
       </mat-card-content>
 
     </mat-card>

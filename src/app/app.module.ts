@@ -31,8 +31,15 @@ import { PasswordsMatchDirective } from 'src/directives/passwordsMatchDirective'
 import { StoreEventDialogComponent } from './components/dialogs/store-event-dialog/store-event-dialog.component';
 import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
 import { PlayerItemComponent } from './components/events/player-item/player-item.component';
-import { CommonModule, DatePipe } from '@angular/common';
+import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
 import { PlayerAchievementDialogComponent } from './components/dialogs/player-achievement-dialog/player-achievement-dialog.component';
+//Firebase
+import { AngularFireMessaging } from '@angular/fire/compat/messaging';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
+import { MessagingService } from './service/messaging.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,15 +76,18 @@ import { PlayerAchievementDialogComponent } from './components/dialogs/player-ac
     DragDropModule,
     CdkAccordionModule,
     CommonModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase),
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
+      enabled: false,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000',
+      registrationStrategy: 'registerWhenStable:300',
     }),
     MaterialModule,
   ],
-  providers: [CookieService, DatePipe],
+  providers: [CookieService, DatePipe, MessagingService, AsyncPipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

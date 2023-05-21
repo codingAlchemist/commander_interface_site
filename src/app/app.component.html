@@ -9,6 +9,10 @@
     </mat-menu>
     <span class="spacer"></span>
     <button mat-icon-button class="example-icon" *ngIf="ownerId" aria-label="Example icon-button with share icon"
+      (click)="goHome()">
+      <mat-icon>home</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" *ngIf="ownerId" aria-label="Example icon-button with share icon"
       (click)="logout()">
       <mat-icon>logout</mat-icon>
     </button>

@@ -9,6 +9,7 @@ import { StoreListComponent } from './components/stores/store-list/store-list.co
 import { StoreOwnerPageComponent } from './components/stores/store-owner-page/store-owner-page.component';
 import { EventPageComponent } from './components/events/event-page/event-page.component';
 import { EventGamesComponent } from './components/events/event-games/event-games.component';
+import { EventsLobbyComponent } from './components/events/event-page/events-lobby.component';
 const routes: Routes = [
   { path: 'app-achievement-entry', component: AchievementEntryComponent },
   { path: 'app-achievement-list', component: AchievementListComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'app-store-owner-page', component: StoreOwnerPageComponent },
   { path: 'app-event-page/:event_code', component: EventPageComponent },
   { path: 'app-event-games/:event_code', component: EventGamesComponent },
+  { path: 'app-events-lobby', component: EventsLobbyComponent },
   { path: '', redirectTo: '/app-login-screen', pathMatch: 'full' },
 ];
 

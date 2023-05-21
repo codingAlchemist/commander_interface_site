@@ -11,6 +11,7 @@ import { AppConstants } from 'src/app/app.constants';
 import { Event } from 'src/app/models/event';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { error } from 'console';
+import { MessagingService } from 'src/app/service/messaging.service';
 @Component({
   selector: 'app-events-lobby',
   templateUrl: './events-lobby.component.html',
@@ -26,10 +27,16 @@ export class EventsLobbyComponent implements OnInit {
     private cookieService: CookieService,
     private route: ActivatedRoute,
     private router: Router,
-    private appConstants: AppConstants
+    private appConstants: AppConstants,
+    private messagingService: MessagingService
   ) {}
 
   ngOnInit(): void {
+    console.log(`event id: ${this.event_id}`);
+    this.messagingService.currentMessage.subscribe((result) => {
+      console.log('received message');
+      this.router.navigate(['./app-events-lobby']);
+    });
     this.achievementService
       .getEventPlayers(this.event_id)
       .subscribe((item: Event) => {

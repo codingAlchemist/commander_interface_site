@@ -59,9 +59,11 @@ export class StoreComponent implements OnInit {
   endEvent() {
     var eventCode = this.eventForm.get('eventCode')?.value;
     console.log(`event code ${eventCode}`);
-    // this.achievementService.endEvent(this.eventForm.value.eventCode!).subscribe((response) => {
-    //   console.log(response.result);
-    // })
+    this.service
+      .endEvent(this.eventForm.value.eventCode!)
+      .subscribe((response) => {
+        console.log(response.result);
+      });
   }
   goToEventPage() {
     this.router.navigate(['/app-event-page', this.venue.events[0].eventCode]);

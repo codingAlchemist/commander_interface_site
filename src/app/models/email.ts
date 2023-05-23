@@ -1,5 +1,8 @@
-export class Email{
-    constructor(public to:string, public subject:string, public text:string){
-        
-    }
+export class Email {
+  constructor(
+    public to: string,
+    public subject: string,
+    public text: string,
+    public email: string
+  ) {}
 }

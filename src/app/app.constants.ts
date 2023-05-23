@@ -7,4 +7,5 @@ export class AppConstants {
   public EVENT_CODE = 'event_code';
   public EVENT_DATA = 'event_data';
   public EVENT_ID = 'event_id';
+  static ACHIEVEMENTS_BUTTON_VISIBLE: Boolean = true;
 }

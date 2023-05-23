@@ -1,22 +1,29 @@
-import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
-import { Venue_Admin } from './models/venue_admin';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { LoginService } from './service/login.service';
 import { AppConstants } from './app.constants';
 import { SwPush } from '@angular/service-worker';
-import { Subscription } from './models/subscription';
 import { MessagingService } from './service/messaging.service';
+import { MatButton } from '@angular/material/button';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   ownerId: string;
   eventCode: string;
   title = 'commander-site';
+  @ViewChild('achievementsButton') achievementButton: ElementRef;
   message: any;
+  buttonVisibility: Boolean = true;
   readonly VAPID_PUBLIC_KEY =
     'BK3KToV7oLbAIlPdImiSHw-UAcT_9cN33kxj3JR2iU447P8AUZNf2QQH6UFD85JCAGksRVgTTACyBP-bDma2qYw';
   constructor(
@@ -28,16 +35,11 @@ export class AppComponent implements OnInit, AfterViewInit {
     private swPush: SwPush,
     private messagingService: MessagingService
   ) {}
-  ngAfterViewInit(): void {
-    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor =
-      '#e8eaf6';
-  }
   ngOnInit(): void {
-    //this.requestSubscription();
+    this.buttonVisibility = AppConstants.ACHIEVEMENTS_BUTTON_VISIBLE;
     this.messagingService.requestPermission();
     this.messagingService.receiveMessaging();
     this.message = this.messagingService.currentMessage;
-
     this.ownerId = this.cookieService.get(this.appConstants.OWNER_ID);
     this.eventCode = this.cookieService.get(this.appConstants.EVENT_CODE);
     this.loginService.idEmitter.subscribe((ownerID) => {
@@ -58,6 +60,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
   goHome() {
     this.router.navigate(['./app-store-owner-page']);
+  }
+  goToAchievements() {
+    this.router.navigate(['./app-achievement-list']);
   }
   requestSubscription() {
     this.swPush

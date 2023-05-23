@@ -3,6 +3,13 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { AchievementService } from '../../../service/achievement-service.service';
 import { Venue_Admin } from 'src/app/models/venue_admin';
 import { Email } from 'src/app/models/email';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  ConfirmData,
+  ConfirmDialogComponent,
+} from '../../dialogs/confirm-dialog/confirm-dialog.component';
+import { Router } from '@angular/router';
+import { title } from 'process';
 
 @Component({
   selector: 'app-store-owner',
@@ -20,7 +27,9 @@ export class StoreOwnerRegistrationComponent implements OnInit {
 
   constructor(
     private service: AchievementService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -45,9 +54,35 @@ export class StoreOwnerRegistrationComponent implements OnInit {
       var email = new Email(
         owner.email,
         'Applicant',
-        `${owner.username} has requested to join commander achievements`
+        `${owner.username} has requested to join commander achievements`,
+        owner.email
       );
-      this.service.emailUser(email).subscribe((email) => {});
+      this.service.emailUser(email).subscribe(
+        (email) => {
+          var dialogRef = this.dialog.open(ConfirmDialogComponent, {
+            data: {
+              title: 'Registration',
+              message: 'Registration sent! Check back soon.',
+              buttonTitle: 'Ok',
+            },
+            height: '200px',
+            width: '400px',
+          });
+          dialogRef.afterClosed().subscribe((data) => {
+            this.router.navigate(['./app-login-screen']);
+          });
+        },
+        (error) => {
+          this.dialog.open(ConfirmDialogComponent, {
+            data: {
+              title: 'Error',
+              message: 'Something went wrong, try again later.',
+            },
+            height: '300px',
+            width: '400px',
+          });
+        }
+      );
     });
   }
 }

@@ -1,11 +1,11 @@
 .line{
     width: 100%;
     height: 1px;
-    background-color: black;
+    background-color: white;
 }
 
 .achievement{
-    border: 1px black solid;
+    border: 1px white solid;
     width: 100%;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -14,6 +14,7 @@
     border-radius: 5px;
     margin: 5px;
     padding: 5px;
+    color: white;
 }
 
 .input-group{
@@ -26,4 +27,7 @@
 
 .hideEdit{
     display: none;
+}
+.mat-grid-tile{
+  color: white;
 }

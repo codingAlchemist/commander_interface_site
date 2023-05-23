@@ -1,31 +1,32 @@
 <div *ngIf="achievement" class="achievement">
-    <div [ngClass]="showEdit ? 'hideEdit' : 'showEdit'">
-        <div>Achievement Title: {{achievement.name}}</div>
-        <div>Description: {{achievement.desc}}</div>
-        <div>Point Value: {{achievement.points}}</div>
-        <input class="btn btn-danger" (click)="onAchievementClick(achievement.id)" value="Delete"/>
-        <input class="btn btn-warning float-end" (click)="showEditAchievement()" value="Edit"/>
+  <div [ngClass]="showEdit ? 'hideEdit' : 'showEdit'">
+    <div>Achievement Title: {{achievement.name}}</div>
+    <div>Description: {{achievement.desc}}</div>
+    <div>Point Value: {{achievement.points}}</div>
+    <button mat-icon-button (click)="onAchievementClick(achievement.id)"
+      value="Delete"><mat-icon>delete</mat-icon></button>
+    <button mat-icon-button (click)="showEditAchievement()" value="Edit"><mat-icon>edit</mat-icon></button>
+  </div>
+  <form (ngSubmit)="onUpdate(achievement)" [ngClass]="showEdit ? 'showEdit' : 'hideEdit'">
+    <div class="input-group mb-12">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Name</span>
+      </div>
+      <input type="text" class="form-control" value="{{achievement.name}}" aria-label="name">
     </div>
-    <form (ngSubmit)="onUpdate(achievement)" [ngClass]="showEdit ? 'showEdit' : 'hideEdit'">
-        <div class="input-group mb-12">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Name</span>
-              </div>
-            <input type="text" class="form-control" value="{{achievement.name}}" aria-label="name">
-        </div>
-        <div class="input-group mb-12">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Desc</span>
-            </div>
-            <input type="text" class="form-control" value="{{achievement.desc}}" aria-label="desc">
-        </div>
-        <div class="input-group mb-12">
-            <div class="input-group-prepend" >
-                <span class="input-group-text" id="basic-addon1">Points</span>
-            </div>
-            <input type="text" class="form-control" value="{{achievement.points}}" aria-label="points">
-        </div>
-        <input class="btn btn-success float-end" type="submit" value="Update"/>
-        <input class="btn btn-danger" (click)="showEditAchievement()" value="Cancel" aria-label="cancel"/>
-    </form>
+    <div class="input-group mb-12">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Desc</span>
+      </div>
+      <input type="text" class="form-control" value="{{achievement.desc}}" aria-label="desc">
+    </div>
+    <div class="input-group mb-12">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Points</span>
+      </div>
+      <input type="text" class="form-control" value="{{achievement.points}}" aria-label="points">
+    </div>
+    <input class="btn btn-success float-end" type="submit" value="Update" />
+    <input class="btn btn-danger" (click)="showEditAchievement()" value="Cancel" aria-label="cancel" />
+  </form>
 </div>

@@ -16,11 +16,10 @@ export class AchievementEntryComponent implements OnInit {
 
   @ViewChild('selfClosingAlert', { static: false }) selfClosingAlert: NgbAlert;
 
-  
   achievements: Achievement[] = [];
   name = new FormControl('');
   achievement = {} as Achievement;
-	successMessage = '';
+  successMessage = '';
 
   constructor(
     private service: AchievementService,
@@ -44,13 +43,13 @@ export class AchievementEntryComponent implements OnInit {
     });
   }
 
-  onSuccess(){
+  onSuccess() {
     this._success.subscribe((message) => (this.successMessage = message));
-		this._success.pipe(debounceTime(5000)).subscribe(() => {
-			if (this.selfClosingAlert) {
-				this.selfClosingAlert.close();
-			}
-		});
+    this._success.pipe(debounceTime(5000)).subscribe(() => {
+      if (this.selfClosingAlert) {
+        this.selfClosingAlert.close();
+      }
+    });
   }
   onSubmit() {
     console.log('Submit pressed' + this.achievementForm.value);
@@ -64,7 +63,7 @@ export class AchievementEntryComponent implements OnInit {
     this.service.createAchievement(newAchievement).subscribe(
       (achievement) => {
         this.achievements.push(achievement);
-        this._success.next("Achievement Successfully created!")
+        this._success.next('Achievement Successfully created!');
         this.onSuccess();
       },
       (error) => {}

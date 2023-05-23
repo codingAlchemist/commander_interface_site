@@ -23,7 +23,7 @@ enum URL {
   LOCAL = 'http://ocalhost:3000/api',
   REMOTE = 'http://137.184.49.209:3000',
 }
-let url = URL.LOCAL;
+let url = URL.REMOTE;
 
 @Injectable({
   providedIn: 'root',

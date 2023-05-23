@@ -29,6 +29,7 @@ export class LoginScreenComponent implements OnInit {
     private appConstants: AppConstants,
     private messagingService: MessagingService
   ) {}
+  hide = true;
 
   ngOnInit(): void {}
 

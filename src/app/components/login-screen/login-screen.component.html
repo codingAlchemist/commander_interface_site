@@ -16,8 +16,10 @@
         <div>
           <mat-form-field appearance="legacy" class="mb-3">
             <mat-label for="password">Password</mat-label>
-            <input matInput type="password" id="password" name="password" required formControlName="password"
-              placeholder="Password">
+            <input matInput [type]="hide ? 'password' : 'text'" type="password" id="password" name="password" required
+              formControlName="password" placeholder="Password">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
           </mat-form-field>
         </div>
 

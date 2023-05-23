@@ -31,7 +31,7 @@ export class StoreOwnerRegistrationComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router
   ) {}
-
+  hide = true;
   ngOnInit(): void {}
 
   get registrationFormControls() {

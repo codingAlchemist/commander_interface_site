@@ -1,0 +1,54 @@
+<div *ngIf="venue">
+  <div class="row">
+    <div class="col-2">Store Number</div>
+    <div class="col-2">Store Name</div>
+    <div class="col-2">Street</div>
+    <div class="col-2">City</div>
+    <div class="col-2">State</div>
+    <div class="col-2">Zip</div>
+  </div>
+  <div class="row">
+    <div class="col-2">{{venue.venue_number}}</div>
+    <div class="col-2">{{venue.name}}</div>
+    <div class="col-2">{{venue.street}}</div>
+    <div class="col-2">{{venue.city}}</div>
+    <div class="col-2">{{venue.state}}</div>
+    <div class="col-2">{{venue.zip}}</div>
+  </div>
+</div>
+<!-- put expansion panel here-->
+<mat-accordion>
+  <mat-expansion-panel [expanded]="this.venue.events[0] != null">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Event Create
+      </mat-panel-title>
+      <mat-panel-description>
+        Click here to generate or enter an event code.
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          Event/s <h5>(You can only have on ongoing per store currently)</h5>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngFor="let event of this.venue.events">
+          <mat-grid-list class="pt-2 pb-2" [rowHeight]="30" [cols]="4">
+            <mat-grid-tile [colspan]="2">
+              <button mat-raised-button (click)="eventButtonTapped()">{{this.venue.events[0]!=null ? "Go To
+                Event" : "Create Event"}}</button>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2">
+              <button mat-raised-button (click)="endEvent()" *ngIf="this.venue.events[0] != null" type="button">Conclude
+                Event</button>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </mat-card-content>
+
+    </mat-card>
+
+  </mat-expansion-panel>
+</mat-accordion>

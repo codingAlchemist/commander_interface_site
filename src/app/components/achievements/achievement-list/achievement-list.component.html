@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="achievement-title">
+    <mat-grid-list [cols]="4" [rowHeight]="30">
+      <mat-grid-tile [colspan]="1">
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1">
+        <h1>Achievements</h1>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1">
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1">
+        <button mat-raised-button (click)="goToAddNew()">Add New</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+  </div>
+  <div *ngFor="let achievement of achievements">
+    <app-achievement-item [achievement]="achievement"></app-achievement-item>
+  </div>
+
+</div>

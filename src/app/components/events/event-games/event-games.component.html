@@ -1,0 +1,47 @@
+<div class="games-container">
+  <table mat-table [dataSource]="games" multiTemplateDataRows class="mat-elevation-z8">
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef>Code</th>
+      <td mat-cell *matCellDef="let game">{{game.gameCode}}</td>
+    </ng-container>
+    <ng-container matColumnDef="players">
+      <th mat-header-cell *matHeaderCellDef>Players</th>
+      <td mat-cell *matCellDef="let game">{{game.playerCount}}</td>
+    </ng-container>
+    <ng-container matColumnDef="time started">
+      <th mat-header-cell *matHeaderCellDef>Time Started</th>
+      <td mat-cell *matCellDef="let game">{{formatDate(game.datePlayed)}}</td>
+    </ng-container>
+    <ng-container matColumnDef="time ended">
+      <th mat-header-cell *matHeaderCellDef>Time Started</th>
+      <td mat-cell *matCellDef="let game">{{formatDate(game.timeEnded)}}</td>
+    </ng-container>
+    <ng-container matColumnDef="expand">
+      <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+      <td mat-cell *matCellDef="let game">
+        <button mat-icon-button aria-label="expand row"
+          (click)="(expandedGame = expandedGame === game ? null : game); $event.stopPropagation();">
+          <mat-icon *ngIf="expandedGame !== game">keyboard_arrow_down</mat-icon>
+          <mat-icon *ngIf="expandedGame === game">keyboard_arrow_up</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let game" [attr.colspan]="columnsToDisplayWithExpand.length">
+        <div class="example-element-detail" [@detailExpand]="game == expandedGame ? 'expanded' : 'collapsed'">
+          <app-game class="players-table-container" [game]="game"></app-game>
+        </div>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+    <tr mat-row *matRowDef="let game; columns: columnsToDisplayWithExpand;" class="example-element-row"
+      [class.example-expanded-row]="expandedGame === game"
+      (click)="(expandedGame = expandedGame === game ? null : game);">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+  </table>
+  <div *ngIf="games.length == 0">
+    <h2>No Games Have Been Created Yet</h2>
+  </div>
+</div>

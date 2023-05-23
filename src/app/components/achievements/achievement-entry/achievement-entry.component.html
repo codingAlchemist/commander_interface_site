@@ -1,0 +1,19 @@
+<h1>Add Achievement</h1>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="achievementForm">
+    <div class="form-group">
+      <label for="name">Achievement Title</label>
+      <input type="text" class="form-control" id="name" name="name" required formControlName="name">
+      <div [hidden]="name.valid || name.pristine">Name is required</div>
+
+      <label for="desc">Description</label>
+      <input type="text" class="form-control" id="desc" name="desc" required formControlName="desc">
+
+      <label for="points">Points</label>
+      <input type="text" class="form-control" id="points" name="points" required formControlName="points">
+
+      <input class="btn btn-primary mb-3" type="submit">
+    </div>
+  </form>
+
+<ngb-alert #selfClosingAlert *ngIf="successMessage" type="success" (closed)="successMessage = ''">{{achievement.name}} Successfully Created</ngb-alert>

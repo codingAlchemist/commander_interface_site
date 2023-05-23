@@ -1,0 +1,16 @@
+<button mat-icon-button class="float-end" [mat-dialog-close]="true">
+  <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<h1 mat-dialog-title>
+  <span>{{data.title}}</span>
+</h1>
+<div mat-dialog-content>
+  <div *ngIf="data.message">
+    {{data.message}}
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button type="button" (click)="closeDialog()" aria-label="button with x for close"
+    class="float-end fixed-bottom">{{data.buttonTitle}}</button>
+</div>

@@ -1,0 +1,6 @@
+<h2>Event: {{eventCode}}</h2>
+<mat-tab-group *ngIf="event" dynamicHeight="true" animationDuration="0ms" [backgroundColor]="'primary'" [color]="'warn'"
+  mat-stretch-tabs="false">
+  <mat-tab label="Lobby"><app-events-lobby [event_id]="event.id"></app-events-lobby></mat-tab>
+  <mat-tab label="Games"><app-event-games [eventCode]="event.eventCode"></app-event-games></mat-tab>
+</mat-tab-group>

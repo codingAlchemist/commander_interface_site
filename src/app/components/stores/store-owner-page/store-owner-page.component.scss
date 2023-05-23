@@ -1,0 +1,29 @@
+.store-registration-hidden{
+    display: none;
+}
+
+.store-registration-shown {
+    display: block;
+}
+
+.spacing-top{
+    margin-top: 10px;
+}
+
+.edit-account-details-shown{
+    display: none;
+}
+
+.edit-account-details-hidden{
+    display: block;
+}
+form div:first-child .row{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+form .row:nth-child(5){
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+

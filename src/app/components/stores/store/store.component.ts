@@ -14,6 +14,8 @@ import { EventData } from 'src/app/models/event-data';
 import { Venue } from 'src/app/models/venue';
 import { AchievementService } from 'src/app/service/achievement-service.service';
 import { StoreEventDialogComponent } from '../../dialogs/store-event-dialog/store-event-dialog.component';
+import { ConfirmDialogComponent } from '../../dialogs/confirm-dialog/confirm-dialog.component';
+import { ReloadService } from 'src/app/service/reload.service';
 @Component({
   selector: 'app-store',
   templateUrl: './store.component.html',
@@ -32,19 +34,16 @@ export class StoreComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
     private router: Router,
-    private appConstants: AppConstants,
     private service: AchievementService,
-    private cookieService: CookieService
+    private reloadService: ReloadService
   ) {}
 
   ngOnInit(): void {
-    console.log(`id ${this.venue.id}`);
-    this.service.getAllEventsByVenue(this.venue).subscribe((venue) => {
-      let ongoing = venue.events.filter((event) => {
-        event.completed == false;
-      });
-      this.event = ongoing[ongoing.length - 1];
-    });
+    console.log(`Venue data ${JSON.stringify(this.venue)}`);
+    if (this.venue.events != null) {
+      this.event = this.venue.events[0];
+      console.log(`event code ${JSON.stringify(this.event)}`);
+    }
   }
 
   makeId(length: number) {
@@ -59,25 +58,37 @@ export class StoreComponent implements OnInit {
     }
     return result;
   }
+
   generateEventCode() {
     var eventCode = this.makeId(6);
     this.eventForm.controls['eventCode'].setValue(eventCode);
   }
+
   endEvent() {
     var eventCode = this.event.eventCode;
-    console.log(`event code ${eventCode}`);
-    this.service.endEvent(eventCode).subscribe((response) => {
-      console.log(response.result);
+    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Conclude Event',
+        message: `Are you sure you want to conclude event ${eventCode}`,
+        buttonTitle: 'Ok',
+      },
+    });
+    dialogRef.afterClosed().subscribe((ok) => {
+      if (ok) {
+        this.service.endEvent(eventCode).subscribe((response) => {
+          console.log(response.result);
+          this.reloadService.shouldReloadEmitter.emit(true);
+        });
+      }
     });
   }
 
+  goToEventPage() {}
+
   eventButtonTapped(): void {
-    if (this.venue.events[0] != null) {
-      this.router.navigate(['/app-event-page', this.venue.events[0].eventCode]);
-      this.cookieService.set(
-        this.appConstants.EVENT_ID,
-        `${this.venue.events[0].id}`
-      );
+    console.log(`Venue ID: ${this.venue.id} `);
+    if (this.event != null && this.event.completed == false) {
+      this.router.navigate(['/app-event-page', this.event.eventCode]);
     } else {
       console.log();
       const dialogRef = this.dialog.open(StoreEventDialogComponent, {
@@ -87,21 +98,10 @@ export class StoreComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe((result) => {
         if (result != 'no code') {
-          console.log(result);
           var eventData = new EventData(this.venue.id, result);
           this.service.createEvent(eventData).subscribe((event: Event) => {
-            this.cookieService.set(
-              this.appConstants.EVENT_CODE,
-              this.eventForm.value.eventCode!
-            );
-            this.cookieService.set(
-              this.appConstants.EVENT_DATA,
-              JSON.stringify(eventData)
-            );
-            this.cookieService.set(this.appConstants.EVENT_ID, `${event.id}`);
-            this.router.navigate(['/app-event-page', event.id]);
+            this.router.navigate(['./app-event-page', event.eventCode]);
           });
-          console.log(`result ${result}`);
         }
       });
     }

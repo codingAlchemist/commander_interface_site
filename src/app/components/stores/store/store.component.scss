@@ -1,3 +1,6 @@
+event-button{
+  width: 100%;
+}
 .row{
     text-align: center;
     background-color: lightgray;
@@ -19,6 +22,7 @@ mat-expansion-panel{
 matInput{
     border-color: black;
 }
+
 button[type=submit]{
     margin-left: 20px;
 }

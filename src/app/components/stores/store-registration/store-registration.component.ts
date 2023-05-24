@@ -5,6 +5,7 @@ import { Venue_Admin } from 'src/app/models/venue_admin';
 import { Venue } from 'src/app/models/venue';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../dialogs/confirm-dialog/confirm-dialog.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-store-registration',
   templateUrl: './store-registration.component.html',
@@ -24,7 +25,8 @@ export class StoreRegistrationComponent implements OnInit {
   constructor(
     private service: AchievementService,
     private formBuilder: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   @Input() admin: Venue_Admin;
@@ -44,10 +46,13 @@ export class StoreRegistrationComponent implements OnInit {
     );
     this.service.createVenue(admin).subscribe((admin) => {
       console.log(JSON.stringify(admin));
-      this.dialog.open(ConfirmDialogComponent, {
+      var dialogRef = this.dialog.open(ConfirmDialogComponent, {
         data: { message: 'Venue added successfully' },
         height: '300px',
         width: '400px',
+      });
+      dialogRef.afterClosed().subscribe((_) => {
+        location.reload();
       });
     });
   }

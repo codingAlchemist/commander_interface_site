@@ -15,11 +15,13 @@ export class EventPageComponent implements OnInit {
   eventCode: string;
   event?: Event;
   ngOnInit(): void {
-    this.route.params.subscribe(
-      (params: Params) => (this.eventCode = params['event_code'])
-    );
-    this.service.getEvent(this.eventCode).subscribe((event) => {
-      this.event = event;
+    this.route.params.subscribe((params: Params) => {
+      this.eventCode = params['event_code'];
+      console.log(`event code ${this.eventCode}`);
+      this.service.getEvent(this.eventCode).subscribe((event) => {
+        this.event = event;
+        console.log(`event : ${JSON.stringify(this.event)}`);
+      });
     });
   }
 }

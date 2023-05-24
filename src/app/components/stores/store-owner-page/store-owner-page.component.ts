@@ -5,9 +5,10 @@ import { Venue_Admin } from 'src/app/models/venue_admin';
 import { Venue } from 'src/app/models/venue';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ReloadService } from 'src/app/service/reload.service';
 
 @Component({
-  selector: '',
+  selector: 'app-store-owner-page',
   templateUrl: './store-owner-page.component.html',
   styleUrls: ['./store-owner-page.component.scss'],
 })
@@ -20,7 +21,8 @@ export class StoreOwnerPageComponent implements OnInit {
     private cookieService: CookieService,
     private achievmentService: AchievementService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private reloadService: ReloadService
   ) {}
 
   revealAddStorePage() {
@@ -45,6 +47,10 @@ export class StoreOwnerPageComponent implements OnInit {
       this.admin = admin;
       console.log(JSON.stringify(admin));
       console.log(`Store count ${this.admin.venues.length}`);
+    });
+    this.reloadService.shouldReloadEmitter.subscribe((shouldReload) => {
+      console.log(`getting reload message ${shouldReload}`);
+      this.router.navigate([this.router.url]);
     });
   }
   isEmpty(str: string) {

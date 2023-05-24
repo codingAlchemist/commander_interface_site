@@ -48,18 +48,19 @@ export class LoginScreenComponent implements OnInit {
         false,
         []
       );
-      this.achievementService.login(owner).subscribe(
-        (owner) => {
+      this.achievementService.login(owner).subscribe({
+        next: (owner) => {
           this.cookieService.set(this.appConstants.OWNER_ID, `${owner.id}`);
           this.loginService.idEmitter.emit(this.cookieService.get('ownerId'));
           this.messagingService.requestPermission();
           this.messagingService.receiveMessaging();
           this.router.navigate(['/app-store-owner-page']);
         },
-        (error: HttpErrorResponse) => {
-          alert(`Error: ${error.message}`);
-        }
-      );
+        complete: () => {},
+        error: (e) => {
+          alert(`Error: ${e.message}`);
+        },
+      });
     }
   }
 }

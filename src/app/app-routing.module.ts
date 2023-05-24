@@ -10,6 +10,7 @@ import { StoreOwnerPageComponent } from './components/stores/store-owner-page/st
 import { EventPageComponent } from './components/events/event-page/event-page.component';
 import { EventGamesComponent } from './components/events/event-games/event-games.component';
 import { EventsLobbyComponent } from './components/events/event-page/events-lobby.component';
+
 const routes: Routes = [
   { path: 'app-achievement-entry', component: AchievementEntryComponent },
   { path: 'app-achievement-list', component: AchievementListComponent },

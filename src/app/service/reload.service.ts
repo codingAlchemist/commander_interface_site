@@ -3,7 +3,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService {
-  idEmitter: EventEmitter<string> = new EventEmitter<string>();
+export class ReloadService {
+  shouldReloadEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor() {}
 }

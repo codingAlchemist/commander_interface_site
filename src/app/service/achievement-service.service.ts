@@ -18,11 +18,12 @@ import { Email } from '.././models/email';
 import { CookieService } from 'ngx-cookie-service';
 import { EventData } from '../models/event-data';
 import { LoginData } from '../models/login-data';
+import { environment } from 'src/environments/environment';
 enum URL {
   LOCAL = 'http://localhost:3000',
   REMOTE = 'http://137.184.49.209:3000',
 }
-let url = URL.LOCAL;
+let url = environment.production ? URL.REMOTE : URL.LOCAL;
 
 @Injectable({
   providedIn: 'root',

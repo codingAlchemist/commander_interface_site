@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'app-store-owner-page', component: StoreOwnerPageComponent },
   { path: 'app-event-page/:event_code', component: EventPageComponent },
   { path: 'app-event-games/:event_code', component: EventGamesComponent },
-  { path: 'app-events-lobby/:event_id', component: EventsLobbyComponent },
+  { path: 'app-events-lobby', component: EventsLobbyComponent },
   { path: '', redirectTo: '/app-login-screen', pathMatch: 'full' },
 ];
 

@@ -70,14 +70,14 @@ export class StoreComponent implements OnInit {
       console.log(response.result);
     });
   }
-  goToEventPage() {
-    console.log(`event id ${this.event.id} eventCode ${this.event.eventCode}`);
-    //this.router.navigate(['/app-event-page', this.event.eventCode]);
-  }
 
   eventButtonTapped(): void {
     if (this.venue.events[0] != null) {
       this.router.navigate(['/app-event-page', this.venue.events[0].eventCode]);
+      this.cookieService.set(
+        this.appConstants.EVENT_ID,
+        `${this.venue.events[0].id}`
+      );
     } else {
       console.log();
       const dialogRef = this.dialog.open(StoreEventDialogComponent, {

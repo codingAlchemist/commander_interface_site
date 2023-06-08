@@ -9,4 +9,11 @@ export class UtilityService {
   reloadPage() {
     this.router.navigate([this.router.url]);
   }
+
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
 }

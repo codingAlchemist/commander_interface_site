@@ -14,12 +14,7 @@ export class GameComponent implements OnInit {
   @Input() game: Game;
   players: Player[] = [];
   playerAchievements: PlayerAchievement[];
-  displayedColumns: string[] = [
-    'level',
-    'name',
-    'points',
-    'achievementsButton',
-  ];
+  displayedColumns: string[] = ['level', 'name', 'points'];
   selectedPlayer: Player;
 
   constructor(private achievementService: AchievementService) {}

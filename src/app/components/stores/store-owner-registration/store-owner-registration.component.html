@@ -1,11 +1,8 @@
 <div align="left">
-  <mat-card>
-    <mat-card-header>
-      <div mat-card-avatar><mat-icon>person</mat-icon></div>
-      <mat-card-title>Account Registration</mat-card-title>
-    </mat-card-header>
+  <mat-card class="card-background">
     <mat-card-content>
       <form (ngSubmit)="onSubmit()" [formGroup]="storeOwnerForm">
+        <h2>Account Registration</h2>
         <div>
           <mat-form-field appearance="legacy">
             <mat-label for="username">User Name</mat-label>

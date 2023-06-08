@@ -3,7 +3,7 @@ form{
   padding-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  background-color: aqua;
+  background-color: rgb(10, 255, 255);
   width: 30em;
   height: 100%;
   padding: 10%;
@@ -17,4 +17,13 @@ form{
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
   border-radius: 10px;
+  box-shadow: 3px 3px rgba(3, 254, 254, 0.276);
 }
+
+.card-background{
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-size: cover;
+  background-image: url('../../../assets/dragon_valley_by_88grzes_daxiyfw.jpg');
+}
+

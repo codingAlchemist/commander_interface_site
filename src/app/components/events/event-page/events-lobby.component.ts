@@ -41,9 +41,10 @@ export class EventsLobbyComponent implements OnInit {
       );
     }
     this.messagingService.currentMessage.subscribe((result) => {
-      console.log('Received event notification');
-      this.utilityService.reloadCurrentRoute();
-      //
+      if (result != null) {
+        console.log('Received event notification');
+        this.utilityService.reloadCurrentRoute();
+      }
     });
     this.achievementService
       .getEventPlayers(this.event_id)

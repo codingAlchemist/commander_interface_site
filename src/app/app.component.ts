@@ -32,14 +32,10 @@ export class AppComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private appConstants: AppConstants,
-    private swPush: SwPush,
-    private messagingService: MessagingService
+    private swPush: SwPush
   ) {}
   ngOnInit(): void {
     this.buttonVisibility = AppConstants.ACHIEVEMENTS_BUTTON_VISIBLE;
-    this.messagingService.requestPermission();
-    this.messagingService.receiveMessaging();
-    this.message = this.messagingService.currentMessage;
     this.ownerId = this.cookieService.get(this.appConstants.OWNER_ID);
     this.eventCode = this.cookieService.get(this.appConstants.EVENT_CODE);
     this.loginService.idEmitter.subscribe((ownerID) => {

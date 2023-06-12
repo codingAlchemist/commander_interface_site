@@ -13,7 +13,7 @@ firebase.initializeApp({
 
 
 const messaging = firebase.messaging();
-
+console.log("service worker", messaging);
 messaging.onBackgroundMessage(function (payload) {
   console.log('Received background message ', payload);
 

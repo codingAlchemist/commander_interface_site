@@ -20,10 +20,10 @@ import { EventData } from '../models/event-data';
 import { LoginData } from '../models/login-data';
 import { environment } from 'src/environments/environment';
 enum URL {
-  LOCAL = 'http://localhost:3000',
+  LOCAL = 'http://ocalhost:3000/api',
   REMOTE = 'http://137.184.49.209:3000',
 }
-let url = environment.production ? URL.REMOTE : URL.LOCAL;
+let url = URL.LOCAL;
 
 @Injectable({
   providedIn: 'root',

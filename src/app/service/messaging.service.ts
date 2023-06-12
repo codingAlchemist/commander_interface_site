@@ -9,6 +9,7 @@ export class MessagingService {
   constructor(private angularFireMessaging: AngularFireMessaging) {}
 
   requestPermission() {
+    console.log('requesting permission');
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
         console.log(token);

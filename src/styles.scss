@@ -112,11 +112,11 @@ $achievement-theme: mat.define-light-theme((
 ));
 @include mat.all-component-themes($achievement-theme);
 
-body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+body, html {
+  // height: 100% !important;
+  // width: 100%;
+  // margin: 0;
+  // padding: 0;
   background: rgb(2,0,36) !important;
   background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,0,15,1) 55%, rgba(13,110,130,1) 100%) no-repeat !important;
   background-size: cover;
@@ -132,6 +132,6 @@ body {
 }
 //@include input-theme($achievement-theme);
 .container {
-  height: 100%;
+  height: 100% !important;
   width: 100%;
 }

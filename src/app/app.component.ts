@@ -102,4 +102,21 @@ export class AppComponent implements OnInit, OnDestroy {
       behavior: 'smooth',
     });
   }
+
+  getIsOnAchievements(): boolean {
+    if (this.router.url === '/app-achievement-list') return true;
+    return false;
+  }
+
+  goToAchievementEntry() {
+    this.router.navigate(['./app-achievement-entry']);
+  }
+
+  getButtonTitle(): string {
+    if (this.getIsOnAchievements()) {
+      return 'Add New';
+    } else {
+      return 'Achievements';
+    }
+  }
 }

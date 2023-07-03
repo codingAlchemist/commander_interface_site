@@ -1,6 +1,6 @@
 <div *ngIf="admin">
-  <mat-grid-list cols="3">
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
+  <div class="row account-info">
+    <div [ngClass]="editAccountDetailsShown ? 'col-sm-4' : 'col-sm-12'">
       <mat-card>
         <mat-card-header>
           <div mat-card-avatar><mat-icon>person</mat-icon></div>
@@ -12,7 +12,6 @@
           <div>{{admin.username}}</div>
           <div> {{admin.email}}</div>
           <div>{{admin.firstname}} {{admin.lastname}}</div>
-
         </mat-card-content>
         <mat-card-actions>
           <button mat-raised-button (click)="revealEditAccountDetails()">{{editAccountDetailsShown == true ? 'Cancel' :
@@ -21,8 +20,8 @@
             Store'}}</button>
         </mat-card-actions>
       </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
+    </div>
+    <div [ngClass]="editAccountDetailsShown ? 'col-sm-8' : 'col-sm-0'">
       <mat-card
         [ngClass]="editAccountDetailsShown == true ? 'form-group edit-account-details-hidden' : 'form-group edit-account-details-shown'">
         <mat-card-header></mat-card-header>
@@ -56,16 +55,16 @@
         </mat-card-content>
 
       </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-  <mat-grid-list cols="2" rowHeight="2:1"
+    </div>
+  </div>
+  <div class="row"
     [ngClass]="storeRegistrationShown == true ? 'store-registration-hidden' : 'store-registration-shown'">
     <div *ngFor="let venue of admin.venues">
-      <mat-grid-tile>
+      <div class="col-xl-12 mt-3">
         <app-store [venue]="venue"></app-store>
-      </mat-grid-tile>
+      </div>
     </div>
-  </mat-grid-list>
+  </div>
   <div class="row spacing-top mb-5">
     <app-store-registration [admin]="admin"
       [ngClass]="storeRegistrationShown == true ? 'store-registration-shown' : 'store-registration-hidden'"></app-store-registration>

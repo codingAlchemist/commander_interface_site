@@ -1,3 +1,4 @@
+
 event-button{
   width: 100%;
 }
@@ -5,6 +6,7 @@ event-button{
     text-align: center;
     background-color: lightgray;
     border: 1px black solid;
+
 }
 
 .accordion-button{
@@ -25,4 +27,12 @@ matInput{
 
 button[type=submit]{
     margin-left: 20px;
+}
+.row {
+  margin: 0px 5px 0px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.venue {
+  margin: 0px 10px 0px;
 }

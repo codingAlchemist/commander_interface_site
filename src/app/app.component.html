@@ -1,25 +1,21 @@
-<div class="container">
-  <mat-toolbar class="mt=3">
-    <button mat-button [matMenuTriggerFor]="menu" *ngIf="!ownerId"><mat-icon>menu</mat-icon></button>
-    <span>Game Achievements</span>
-    <div class="text-center" *ngIf="ownerId">Store Home</div>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="loginSelected()">Login</button>
-      <button mat-menu-item (click)="signUpSelected()">Sign Up</button>
-    </mat-menu>
-    <span class="spacer"></span>
-    <button id="achievementsButton" mat-raised-button class="example-icon" *ngIf="ownerId"
-      aria-label="Example icon-button with share icon" (click)="goToAchievements()">
-      Achievements
-    </button>
-    <button mat-icon-button class="example-icon" *ngIf="ownerId" aria-label="Example icon-button with share icon"
-      (click)="goHome()">
-      <mat-icon>home</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" *ngIf="ownerId" aria-label="Example icon-button with share icon"
-      (click)="logout()">
-      <mat-icon>logout</mat-icon>
-    </button>
-  </mat-toolbar>
-  <router-outlet (activate)="onActivate($event)"></router-outlet>
-</div>
+<mat-toolbar class="toolbar">
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="!ownerId"><mat-icon>menu</mat-icon></button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="loginSelected()">Login</button>
+    <button mat-menu-item (click)="signUpSelected()">Sign Up</button>
+  </mat-menu>
+  <span class="spacer"></span>
+  <button id="achievementsButton" mat-raised-button *ngIf="ownerId" aria-label="Example icon-button with share icon"
+    (click)="getIsOnAchievements() ? goToAchievementEntry() : goToAchievements()">
+    <span>{{getButtonTitle()}}</span>
+  </button>
+  <button mat-icon-button class="example-icon" *ngIf="ownerId" aria-label="Example icon-button with share icon"
+    (click)="goHome()">
+    <mat-icon>home</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" *ngIf="ownerId" aria-label="Example icon-button with share icon"
+    (click)="logout()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+<router-outlet (activate)="onActivate($event)"></router-outlet>

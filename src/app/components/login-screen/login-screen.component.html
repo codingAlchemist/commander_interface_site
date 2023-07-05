@@ -9,6 +9,7 @@
             <mat-label for="username">Username</mat-label>
             <input matInput type="text" id="username" name="username" required formControlName="username"
               placeholder="Username">
+            <mat-icon matSuffix>supervisor_account</mat-icon>
           </mat-form-field>
         </div>
         <div>
@@ -20,8 +21,15 @@
 
           </mat-form-field>
         </div>
-
-        <button mat-raised-button class="mb-3" type="submit" color="accent" [disabled]="!loginForm.valid">Login</button>
+        <mat-grid-list cols="2" rowHeight="2:1">
+          <mat-grid-tile colspan="2">
+            <button mat-raised-button class="mb-3" type="submit" color="accent"
+              [disabled]="!loginForm.valid">Login</button>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="2">
+            <button mat-button class="mb-3" type="button" color="accent" (click)="signUpSelected()">Sign Up</button>
+          </mat-grid-tile>
+        </mat-grid-list>
 
       </div>
 

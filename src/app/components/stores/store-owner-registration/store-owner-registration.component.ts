@@ -38,6 +38,10 @@ export class StoreOwnerRegistrationComponent implements OnInit {
     return this.storeOwnerForm.controls;
   }
 
+  loginSelected() {
+    this.router.navigate(['/app-login-screen']);
+  }
+
   onSubmit() {
     var owner = new Venue_Admin(
       0,

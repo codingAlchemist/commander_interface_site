@@ -37,7 +37,7 @@
             <mat-label for="pass">Password</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'" id="pass" name="pass" required formControlName="pass"
               placeholder="Password (at least 8 chars)">
-            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
             <div class="field-invalid"
               *ngIf="(registrationFormControls.pass.touched && registrationFormControls.pass.errors)">
               Password must be at least 8 characters.
@@ -55,8 +55,8 @@
             </div>
           </mat-form-field>
         </div>
-        <button mat-raised-button type="submit" class="btn btn-primary mb-3"
-          [disabled]="!storeOwnerForm.valid">Submit</button>
+        <button mat-raised-button type="submit" class="mb-3" [disabled]="!storeOwnerForm.valid">Submit</button>
+        <button mat-button type="button" (click)="loginSelected()">Login</button>
       </form>
     </mat-card-content>
 

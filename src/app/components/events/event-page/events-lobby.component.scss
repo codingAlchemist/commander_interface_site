@@ -1,6 +1,8 @@
   h2{
     color: white;
   }
+
+
   .lobby-container {
     width: 100%;
     max-width: 100%;
@@ -17,6 +19,7 @@
     overflow: hidden;
     display: block;
   }
+
   .player-item {
     padding: 20px 10px;
     border-bottom: solid 1px #ccc;
@@ -98,3 +101,4 @@
   .group-button{
     width: 300px;
   }
+

@@ -32,14 +32,11 @@ export class AppComponent implements OnInit, OnDestroy {
   buttonVisibility: Boolean = true;
   mySubscription;
 
-  readonly VAPID_PUBLIC_KEY =
-    'BK3KToV7oLbAIlPdImiSHw-UAcT_9cN33kxj3JR2iU447P8AUZNf2QQH6UFD85JCAGksRVgTTACyBP-bDma2qYw';
   constructor(
     private cookieService: CookieService,
     private router: Router,
     private loginService: LoginService,
     private appConstants: AppConstants,
-    private swPush: SwPush,
     private messagingService: MessagingService,
     private activatedRoute: ActivatedRoute
   ) {
@@ -83,18 +80,7 @@ export class AppComponent implements OnInit, OnDestroy {
   goToAchievements() {
     this.router.navigate(['./app-achievement-list']);
   }
-  requestSubscription() {
-    this.swPush
-      .requestSubscription({
-        serverPublicKey: this.VAPID_PUBLIC_KEY,
-      })
-      .then((sub) => {
-        console.log(JSON.stringify(sub));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+
   onActivate(event: any) {
     window.scroll({
       top: 0,

@@ -33,6 +33,10 @@ export class LoginScreenComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  signUpSelected() {
+    this.router.navigate(['/app-store-owner']);
+  }
+
   login() {
     if (this.isAdminLogin === true) {
       console.log('Test');

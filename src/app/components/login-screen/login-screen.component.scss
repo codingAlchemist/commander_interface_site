@@ -1,25 +1,17 @@
 form{
-  margin-bottom: 20px;
-  padding-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  background-color: rgb(10, 255, 255);
-  width: 75%;
+  background-color: rgb(240, 236, 233);
+  width: 30em;
+  height: 30em;
   opacity: 0.9;
-  height: 100%;
-  padding: 10%;
   text-align: center;
-  background-size: 100%;
-  background-origin: 0 0;
-  background-position: 0%;
-  background-repeat: no-repeat;
-  border: 1px solid black;
+  border: 5px solid rgb(163, 60, 60);
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
   border-radius: 10px;
-  box-shadow: 3px 3px rgba(3, 254, 254, 0.276);
 }
 
 .card-background{

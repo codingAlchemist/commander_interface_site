@@ -55,8 +55,9 @@
             </div>
           </mat-form-field>
         </div>
-        <button mat-raised-button type="submit" class="mb-3" [disabled]="!storeOwnerForm.valid">Submit</button>
-        <button mat-button type="button" (click)="loginSelected()">Login</button>
+        <button mat-raised-button type="submit" class="mb-3" color="accent"
+          [disabled]="!storeOwnerForm.valid">Submit</button>
+        <button mat-button type="button" color="accent" (click)="loginSelected()">Login</button>
       </form>
     </mat-card-content>
 

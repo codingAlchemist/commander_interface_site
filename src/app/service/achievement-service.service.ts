@@ -23,7 +23,7 @@ enum URL {
   LOCAL = 'http://localhost:3000/api',
   REMOTE = 'https://gamesachievements.com/api',
 }
-let url = URL.REMOTE;
+let url = URL.LOCAL;
 @Injectable({
   providedIn: 'root',
 })

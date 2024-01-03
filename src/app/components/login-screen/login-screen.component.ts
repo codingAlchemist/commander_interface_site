@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Venue_Admin } from 'src/app/models/venue_admin';
 import { AchievementService } from 'src/app/service/achievement-service.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login.service';
 import { AppConstants } from 'src/app/app.constants';
-import { HttpErrorResponse } from '@angular/common/http';
 import { MessagingService } from 'src/app/service/messaging.service';
+import { Dialog, DialogRef } from '@angular/cdk/dialog';
 @Component({
   selector: 'app-login-screen',
   templateUrl: './login-screen.component.html',
@@ -27,7 +27,8 @@ export class LoginScreenComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private appConstants: AppConstants,
-    private messagingService: MessagingService
+    private messagingService: MessagingService,
+    private dialog: Dialog
   ) {}
   hide = true;
 
@@ -35,6 +36,10 @@ export class LoginScreenComponent implements OnInit {
 
   signUpSelected() {
     this.router.navigate(['/app-store-owner']);
+  }
+
+  openForgotDialog(): void {
+    //const ref = this.dialog.open<
   }
 
   login() {

@@ -22,7 +22,8 @@
         </div>
         <button mat-raised-button class="mb-3" type="submit" color="accent" [disabled]="!loginForm.valid">Login</button>
         <button mat-button class="mb-3" type="button" color="accent" (click)="signUpSelected()">Sign Up</button>
-        <button mat-button type="button" color="accent">Forgot username or password</button>
+        <button mat-button type="button" color="accent" (click)="openForgotDialog()">Forgot username or
+          password</button>
       </div>
 
     </form>

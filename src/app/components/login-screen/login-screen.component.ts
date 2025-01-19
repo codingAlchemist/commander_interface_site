@@ -8,6 +8,8 @@ import { LoginService } from 'src/app/service/login.service';
 import { AppConstants } from 'src/app/app.constants';
 import { MessagingService } from 'src/app/service/messaging.service';
 import { Dialog, DialogRef } from '@angular/cdk/dialog';
+import { ForgotDialogComponent } from '../dialogs/forgot-dialog/forgot-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-login-screen',
   templateUrl: './login-screen.component.html',
@@ -28,7 +30,7 @@ export class LoginScreenComponent implements OnInit {
     private loginService: LoginService,
     private appConstants: AppConstants,
     private messagingService: MessagingService,
-    private dialog: Dialog
+    private dialog: MatDialog
   ) {}
   hide = true;
 
@@ -39,7 +41,7 @@ export class LoginScreenComponent implements OnInit {
   }
 
   openForgotDialog(): void {
-    //const ref = this.dialog.open<
+    const ref = this.dialog.open(ForgotDialogComponent);
   }
 
   login() {

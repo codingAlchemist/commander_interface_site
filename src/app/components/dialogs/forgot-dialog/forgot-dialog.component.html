@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>
+  <mat-toolbar>
+    <span>Create Event</span>
+    <button class="closeButton" mat-icon-button type="button" (click)="closeDialog()"
+      aria-label="button with x for close">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar>
+</h1>
+<div mat-dialog-content>
+  <form (ngSubmit)="submitForgotUsernameOrPassword()" [formGroup]="forgotForm">
+    <mat-form-field>
+      <mat-slide-toggle ngModel name="isForPassword" formControlName="isForPassword">Forgot Password</mat-slide-toggle>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input name="email" placeholder="Email" type="text" matInput formControlName="Email" aria-label="email">
+    </mat-form-field>
+    <button mat-raised-button type="submit" [disabled]="!forgotForm.valid">Submit</button>
+  </form>
+</div>

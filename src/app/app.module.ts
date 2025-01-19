@@ -40,7 +40,7 @@ import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { MessagingService } from './service/messaging.service';
-import { ForgotDialogComponent } from './dialogs/forgot-dialog/forgot-dialog.component';
+import { ForgotDialogComponent } from './components/dialogs/forgot-dialog/forgot-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,

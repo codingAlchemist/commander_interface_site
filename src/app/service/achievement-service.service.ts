@@ -23,7 +23,7 @@ enum URL {
   LOCAL = 'http://localhost:3000/api',
   REMOTE = 'https://gamesachievements.com/api',
 }
-let url = URL.REMOTE;
+let url = URL.LOCAL;
 @Injectable({
   providedIn: 'root',
 })
@@ -155,17 +155,17 @@ export class AchievementService {
       .post<Venue_Admin>(`${url}/venue/login`, owner, this.options)
       .pipe(catchError(this.handleError));
   }
-  forgotPassword(owner: Venue_Admin): Observable<ServiceResponse> {
+  forgotPassword(email: string): Observable<ServiceResponse> {
     return this.http.post<ServiceResponse>(
       `${url}/venue/forgot`,
-      { email: owner.email, method: 'password' },
+      { email: email, method: 'password' },
       this.options
     );
   }
-  forgotUsername(owner: Venue_Admin): Observable<ServiceResponse> {
+  forgotUsername(email: string): Observable<ServiceResponse> {
     return this.http.post<ServiceResponse>(
       `${url}/venue/forgot`,
-      { email: owner.email, method: 'username' },
+      { email: email, method: 'username' },
       this.options
     );
   }
